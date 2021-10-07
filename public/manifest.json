@@ -1,0 +1,35 @@
+{
+  "short_name": "DMS",
+  "name": "DMS - Heartfulness",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "logo180.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo270.png",
+      "type": "image/png",
+      "sizes": "270x270"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
