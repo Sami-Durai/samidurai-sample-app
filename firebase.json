@@ -1,0 +1,15 @@
+{
+  "hosting": [
+    {
+      "target": "dms-qa",
+      "public": "public",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "/",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
