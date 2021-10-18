@@ -1,4 +1,4 @@
-import { TOGGLE, ONHIDE, ONSHOW, CUSTOM } from '../actions/type/modalPopup';
+import { TOGGLE, ONHIDE, ONSHOW, CUSTOM } from 'store/actions/type/modalPopup';
 
 const initialState = {
   header: 'ModalPopup',

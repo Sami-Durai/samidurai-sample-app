@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // utils 
-import buildBreadcrumb from "../../utils/breadcrumb";
+import buildBreadcrumb from "utils/breadcrumb";
 
 class Dashboard extends Component {
   constructor(props) {

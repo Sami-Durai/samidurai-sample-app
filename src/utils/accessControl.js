@@ -1,8 +1,8 @@
 // utils
-import { getLoginRole } from "./login";
+import { getLoginRole } from "utils/login";
 
 // access
-import { userPageAccess } from "../routes/pageAccess";
+import { userPageAccess } from "routes/pageAccess";
 
 export const hasRouteAccess = routeURL => {
   let url, roleRoutes;

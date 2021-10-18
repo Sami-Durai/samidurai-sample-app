@@ -1,4 +1,4 @@
-import { CARTITEM, UPDATECARTDETAILS, CARTPAGEVISIBILITY } from "../actions/type/cart";
+import { CARTITEM, UPDATECARTDETAILS, CARTPAGEVISIBILITY } from "store/actions/type/cart";
 
 let cartState = {
   cartPageVisibility: false,

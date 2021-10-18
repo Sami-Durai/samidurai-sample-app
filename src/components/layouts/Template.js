@@ -7,21 +7,21 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 // components
-import AuthGuard from "../../auth-guard/index";
+import AuthGuard from "auth-guard/index";
 
-import Header from "../../components/layouts/Header";
+import Header from "components/layouts/Header";
 
-import Sidebar from "../../components/layouts/Sidebar";
+import Sidebar from "components/layouts/Sidebar";
 
-import Footer from "../../components/layouts/Footer";
+import Footer from "components/layouts/Footer";
 
 // shared components 
-import HFNLoader from "../../shared-components/lazyLoading";
+import HFNLoader from "shared-components/lazyLoading";
 
-import HFNBreadCrumb from "../../shared-components/breadcrumb";
+import HFNBreadCrumb from "shared-components/breadcrumb";
 
 // utils 
-import lazy from "../../utils/lazy";
+import lazy from "utils/lazy";
 
 // constants
 const lazyDelay = 500;

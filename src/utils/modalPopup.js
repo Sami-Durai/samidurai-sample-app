@@ -1,6 +1,6 @@
-import appStore from '../store/index';
+import appStore from 'store';
 
-import { TOGGLE, ONHIDE, ONSHOW, CUSTOM } from '../store/actions/type/modalPopup';
+import { TOGGLE, ONHIDE, ONSHOW, CUSTOM } from 'store/actions/type/modalPopup';
 
 const modalPopup = {
 

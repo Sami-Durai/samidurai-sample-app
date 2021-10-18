@@ -13,16 +13,16 @@ import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 
 // shared components
-import HFNDynamicForm from "../../shared-components/hfn-form";
+import HFNDynamicForm from "shared-components/hfn-form";
 
 // utils
 import { isEmpty } from "lodash";
 
-import { isLoginAuth } from "../../utils/common";
+import { isLoginAuth } from "utils/common";
 
-import { lStorage } from "../../utils/storage";
+import { lStorage } from "utils/storage";
 
-import { validations } from "../../utils/validations";
+import { validations } from "utils/validations";
 
 //import { HfnFirebaseAuth, signOut } from "@heartfulnessinstitute/react-hfn-profile";
 

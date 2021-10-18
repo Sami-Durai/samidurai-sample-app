@@ -1,8 +1,8 @@
 
-import { LOGIN, SIGNUP, LOGOUT, SHOWLOGIN } from "../actions/type/login";
+import { LOGIN, SIGNUP, LOGOUT, SHOWLOGIN } from "store/actions/type/login";
 
 // local storage
-import { lStorage } from "../../utils/storage";
+import { lStorage } from "utils/storage";
 
 const loginState = {
   login: (lStorage.get("dmsAuthInfo")) ? lStorage.get("dmsAuthInfo") : {

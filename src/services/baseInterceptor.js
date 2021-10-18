@@ -1,13 +1,13 @@
 // redux store
-import appStore from "../store";
+import appStore from "store";
 
-import { REQUESTERROR } from "../store/actions/type/toaster";
+import { REQUESTERROR } from "store/actions/type/toaster";
 
 // local storage
-import { lStorage } from "../utils/storage";
+import { lStorage } from "utils/storage";
 
 // utils
-import { logout } from "../utils/common";
+import { logout } from "utils/common";
 
 const interceptor = ax => {
   ax.interceptors.request.use(

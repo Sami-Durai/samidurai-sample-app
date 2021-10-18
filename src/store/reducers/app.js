@@ -1,4 +1,4 @@
-import { APP_OPENSIDEBAR, APP_UPDATEBREADCRUMB } from "../actions/type/app";
+import { APP_OPENSIDEBAR, APP_UPDATEBREADCRUMB } from "store/actions/type/app";
 
 const appState = {
   isSidebarOpen: (window.screen.width > 767) ? false : true,

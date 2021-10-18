@@ -1,5 +1,5 @@
-import { axApp } from "../../services/base";
-//import { ax } from "../../services/base";
+import { axApp } from "services/base";
+//import { ax } from "services/base";
 
 class donationCollectorService {
     getDonationCollectors(/*payload*/) {

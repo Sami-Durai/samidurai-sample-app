@@ -37,13 +37,13 @@ import { isEmpty, isObject } from "lodash";
 
 import { classNames } from "primereact/utils";
 
-import { modalPopup } from "../../utils/modalPopup";
+import { modalPopup } from "utils/modalPopup";
 
 // service
-import DropdownService from "../../services/login";
+import DropdownService from "services/login";
 
 // config
-import config from "../../assets//config";
+import config from "assets/config";
 
 function HFNDynamicForm({ initialValues, fields, onFormSubmit, submitButtonGroup, formConfig, dd }) {
 

@@ -1,4 +1,4 @@
-import { SUCCESS, INFO, WARN, ERROR, CUSTOM , REQUESTERROR , SETREF} from '../actions/type/toaster';
+import { SUCCESS, INFO, WARN, ERROR, CUSTOM , REQUESTERROR , SETREF} from "store/actions/type/toaster";
 
 const initialState = {
   toasterRef : null,

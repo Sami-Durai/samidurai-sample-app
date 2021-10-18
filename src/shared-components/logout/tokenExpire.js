@@ -12,7 +12,7 @@ import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 
 // utils
-import { showLogin } from '../../utils/common';
+import { showLogin } from 'utils/common';
 
 const TokenExpire = () => {
   const expired = useSelector(state => state.loginDetails.expired);

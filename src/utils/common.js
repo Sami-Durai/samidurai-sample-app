@@ -5,10 +5,10 @@ import { FileIcon } from 'react-file-icon';
 //import { signOut } from '@heartfulnessinstitute/react-hfn-profile';
 
 // storage 
-import { lStorage } from '../utils/storage';
+import { lStorage } from 'utils/storage';
 
 //state
-import appStore from '../store/index';
+import appStore from 'store';
 
 //utils
 import { formatDate } from '@fullcalendar/core'
@@ -17,7 +17,7 @@ import { isEmpty, isString, isObject, isArray, merge } from 'lodash';
 
 import { saveAs } from 'file-saver';
 
-import { LOGOUT, SHOWLOGIN } from "../store/actions/type/login";
+import { LOGOUT, SHOWLOGIN } from "store/actions/type/login";
 
 
 export const fileType = {

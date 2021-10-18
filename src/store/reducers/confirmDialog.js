@@ -1,6 +1,6 @@
-import appStore from '../index';
+import appStore from 'store';
 
-import { TOGGLE, ACCEPT, REJECT, ONHIDE, CUSTOM } from '../actions/type/confirmDialog';
+import { TOGGLE, ACCEPT, REJECT, ONHIDE, CUSTOM } from 'store/actions/type/confirmDialog';
 
 const initialState = {
   message: 'Are you sure you want to proceed?',

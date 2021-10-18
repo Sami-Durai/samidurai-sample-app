@@ -26,7 +26,7 @@ import {
   FONTFAMILY,
   FAQCATEGORY,
   BATCH
-} from '../actions/type/dropdown';
+} from 'store/actions/type/dropdown';
 
 const initialState = {
   status: [],

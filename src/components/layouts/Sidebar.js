@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 // components
 // shared components
-import HFNSidebarMenu from "../../shared-components/sidebarMenu";
+import HFNSidebarMenu from "shared-components/sidebarMenu";
 
 // utils
-import { getLoginRole } from "../../utils/login";
+import { getLoginRole } from "utils/login";
 
 // routes
-import sideBarRoutes from "../../routes/sidebar";
+import sideBarRoutes from "routes/sidebar";
 
 class SideBar extends React.PureComponent {
   constructor(props) {

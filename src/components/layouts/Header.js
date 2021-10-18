@@ -8,14 +8,14 @@ import { connect } from "react-redux";
 
 // import { signOut } from "@heartfulnessinstitute/react-hfn-profile";
 
-import { APP_OPENSIDEBAR } from "../../store/actions/type/app";
+import { APP_OPENSIDEBAR } from "store/actions/type/app";
 
 // components
 // prime components
 import { Menu } from "primereact/menu";
 
 // utils 
-import { lStorage } from "../../utils/storage";
+import { lStorage } from "utils/storage";
 
 class Header extends Component {
   constructor(props) {

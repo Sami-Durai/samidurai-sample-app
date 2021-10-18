@@ -2,13 +2,13 @@ import React, { Component } from "react";
 
 // components
 // shared components 
-import HFNDataTable from "../../shared-components/datatable/HFNDataTable";
+import HFNDataTable from "shared-components/datatable/HFNDataTable";
 
 // utils 
-import buildBreadcrumb from "../../utils/breadcrumb";
+import buildBreadcrumb from "utils/breadcrumb";
 
 // services 
-import DCService from "../../services/donationCollector/donationCollector.service";
+import DCService from "services/donationCollector/donationCollector.service";
 
 class DonationCollectors extends Component {
   constructor(props) {
