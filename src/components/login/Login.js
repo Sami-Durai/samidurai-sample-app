@@ -150,7 +150,7 @@ const Login = () => {
     <div className="login-section">
       <div className="card-wrapper">
 
-        <div className="loging-logo p-px-2 p-mb-4 p-text-center">
+        <div className="loging-logo p-px-2 p-mx-5 p-mx-md-0 p-mb-4 p-text-center">
           <img src="/assets//logo.png" alt="heartfulness" />
         </div>
 

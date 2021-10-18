@@ -32,11 +32,6 @@ class Header extends Component {
               }
             },
             {
-              label: "Configurations", icon: "uil uil-cog", command: () => {
-                this.openSettings()
-              }
-            },
-            {
               label: "Logout", icon: "uil uil-sign-out-alt", command: () => {
                 this.logout()
               }
@@ -63,12 +58,6 @@ class Header extends Component {
     this.props.history.push("/account");
   };
   // user edit section end
-
-  // open configuration settings section start
-  openSettings = () => {
-    this.props.history.push("/configurations");
-  };
-  // open configuration settings section end
 
   openSidebar = () => {
     if (this.props.ad.isSidebarOpen)
