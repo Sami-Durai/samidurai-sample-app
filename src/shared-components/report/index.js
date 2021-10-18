@@ -3,21 +3,21 @@ import React, { Component } from 'react';
 // utils 
 import { isEmpty, merge, pickBy } from 'lodash';
 
-import { toaster } from 'src/utils/toaster';
+import { toaster } from 'utils/toaster';
 
 // components 
-import ReportDownload from "src/shared-components/report/reportDownload";
+import ReportDownload from "shared-components/report/reportDownload";
 
 // prime components 
 import { Button } from 'primereact/button';
 
 // shared components 
-import HFNLoading from 'src/shared-components/lazyLoading/Loading';
+import HFNLoading from 'shared-components/lazyLoading/Loading';
 
-import HFNDynamicForm from "src/shared-components/hfn-form/index";
+import HFNDynamicForm from "shared-components/hfn-form/index";
 
 // options
-import { optionsDefaultValue } from 'src/shared-components/report/options';
+import { optionsDefaultValue } from 'shared-components/report/options';
 
 class ReportForm extends Component {
 

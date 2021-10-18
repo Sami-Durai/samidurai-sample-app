@@ -1,24 +1,20 @@
-import React, { Component } from 'react';
+import React from "react";
 
 // store 
-import { connect } from 'react-redux';
+import { useSelector } from "react-redux";
 
-import { Dialog } from 'primereact/dialog';
+import { Dialog } from "primereact/dialog";
 
-class HFNModalPopup extends Component {
-  render() {
-    return (
-      <div>
-        <Dialog {...this.props.mpd}>
-          {this.props.children}
-        </Dialog>
-      </div>
-    );
-  }
-}
+const Popup = ({ children }) => {
+  const popupProps = useSelector(state => state.modalPopupDetails);
 
-const mapStateToProps = (state) => ({
-  mpd: state.modalPopupDetails
-});
+  return (
+    <div>
+      <Dialog {...popupProps}>
+        {children}
+      </Dialog>
+    </div>
+  );
+};
 
-export default connect(mapStateToProps)(HFNModalPopup);
+export default Popup;

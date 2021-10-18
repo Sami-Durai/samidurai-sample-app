@@ -4,4 +4,4 @@ export const WARN          = 'WARN'        ;
 export const ERROR         = 'ERROR'       ;
 export const CUSTOM        = 'CUSTOM'      ;
 export const REQUESTERROR  = 'REQUESTERROR';
-export const SETTOASTERREF = 'SETTOASTERREF';
+export const SETREF = 'SETTOASTERREF';

@@ -1,4 +1,4 @@
-import { SUCCESS, INFO, WARN, ERROR, CUSTOM , REQUESTERROR , SETTOASTERREF} from '../actions/type/toaster';
+import { SUCCESS, INFO, WARN, ERROR, CUSTOM , REQUESTERROR , SETREF} from '../actions/type/toaster';
 
 const initialState = {
   toasterRef : null,
@@ -19,10 +19,10 @@ const toasterDetails = (state = initialState, action) => {
       return {
         ...state,
       };
-    case SETTOASTERREF:
+    case SETREF:
     return {
       ...state,
-      toasterRef : action.payload.toasterRef
+      toasterRef : action.payload
     };
     default:
       return { ...state, };

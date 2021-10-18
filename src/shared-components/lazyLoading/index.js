@@ -1,23 +1,15 @@
-import React, { Suspense, Component } from 'react'
+import React, { Suspense } from "react";
 
-class DelayedFallback extends Component {
-  render() {
-    return (
-      <>
-        <div className="lds-roller-wrapper">
-          <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-        </div>
-      </>
-    );
-  }
-}
+const DelayedFallback = () => {
+  return (
+    <div className="lds-roller-wrapper">
+      <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+  );
+};
 
-class HFNLoader extends Component {
-  render() {
-    return (
-      <Suspense fallback={<DelayedFallback />}>{this.props.children}</Suspense>
-    );
-  }
-}
+const HFNLoader = ({ children }) => {
+  return <Suspense fallback={<DelayedFallback />}> {children} </Suspense>;
+};
 
-export default HFNLoader
+export default HFNLoader;

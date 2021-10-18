@@ -1,24 +1,21 @@
-import appStore from 'src/store/index';
+// store
+import appStore from "store/index";
+
+import { CLEAR, COLLEGEPOC, MODULELIST } from "store/actions/type/dropdown";
 
 // utils
-import { isEmpty, isArray, isObject } from 'lodash';
+import { isEmpty, isArray, isObject } from "lodash";
 
-import { lStorage } from 'src/utils/storage';
+import { lStorage } from "utils/storage";
 
 // services
-import DropdownService from 'src/services/login';
-
-import {
-  CLEAR,
-  COLLEGEPOC,
-  MODULELIST
-} from 'src/store/actions/type/dropdown';
+import DropdownService from "services/login";
 
 const getAvailableVolunteersForPOC = async (payload) => {
   try {
     appStore.dispatch({ type: COLLEGEPOC, payload: [] })
 
-    let userDetails = lStorage.get('dmsAuthInfo');
+    let userDetails = lStorage.get("dmsAuthInfo");
 
     if (userDetails && userDetails.role_priority) {
       let dropdownService = new DropdownService()

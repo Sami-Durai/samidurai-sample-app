@@ -1,6 +1,6 @@
-import appStore from 'src/store/index';
+import appStore from "store/index";
 
-import { TOGGLE, ACCEPT, REJECT, ONHIDE, CUSTOM } from 'src/store/actions/type/confirmDialog';
+import { TOGGLE, ACCEPT, REJECT, ONHIDE, CUSTOM } from "store/actions/type/confirmDialog";
 
 const confirmDialog = {
 

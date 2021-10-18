@@ -3,7 +3,7 @@ import React from "react";
 //utils
 import { isEmpty } from "lodash";
 
-import { getDateString } from "src/utils/common";
+import { getDateString } from "utils/common";
 
 const statusBadge = (rowData, { field }) => {
   let status = rowData[field];

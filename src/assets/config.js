@@ -1,12 +1,6 @@
-// utils
-//import getMandatoryEnv from "sites-common/src/utils/getMandatoryEnv";
-//const getMandatoryEnv = require("sites-common/src/utils/getMandatoryEnv");
-
 let config = {};
 
 try {
-  //const { dmsConfig } = getMandatoryEnv([ "dmsConfig" ]);
-  //config.apiURL = dmsConfig.apiURL || "";
   config.apiURL = "";
 }
 catch {

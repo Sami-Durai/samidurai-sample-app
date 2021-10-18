@@ -18,10 +18,6 @@ import { Password } from "primereact/password";
 
 import { InputTextarea } from "primereact/inputtextarea";
 
-import { Dropdown } from "primereact/dropdown";
-
-import { MultiSelect } from "primereact/multiselect";
-
 import { Checkbox } from "primereact/checkbox";
 
 import { InputSwitch } from "primereact/inputswitch";
@@ -65,52 +61,14 @@ function HFNDynamicForm({ initialValues, fields, onFormSubmit, submitButtonGroup
 
   useEffect(() => {
     Object.keys(initialValues).forEach(key => {
-      if (initialValues[key]) {
-        if (fields[key]) {
-          if (fields[key].properties.type === "SelectDropdown") {
-            if (typeof initialValues[key] === "object")
-              setValue(key, initialValues[key], { shouldValidate: true, shouldDirty: true });
-          }
-          else if (fields[key].properties.type === "MultiSelectDropdown") {
-            if (Array.isArray(initialValues[key]) && !initialValues[key].find(option => (!option || typeof option !== "object")))
-              setValue(key, initialValues[key], { shouldValidate: true, shouldDirty: true });
-          }
-          else
-            setValue(key, initialValues[key], { shouldValidate: true, shouldDirty: true });
-        }
-        else
-          setValue(key, initialValues[key], { shouldValidate: true, shouldDirty: true });
-      }
+      setValue(key, initialValues[key], { shouldValidate: true, shouldDirty: true });
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSubmitForm = (data) => {
-    let formData = {};
-
-    Object.keys(data).forEach(key => {
-      if (fields[key]) {
-        if (fields[key].properties.type === "SelectDropdown") {
-          if (data[key] && typeof data[key] === "object")
-            formData[key] = data[key].value;
-          else
-            formData[key] = data[key];
-        }
-        else if (fields[key].properties.type === "MultiSelectDropdown") {
-          if (Array.isArray(data[key]) && !data[key].find(option => (!option || typeof option !== "object")))
-            formData[key] = data[key].map(option => option.value);
-          else
-            formData[key] = data[key];
-        }
-        else
-          formData[key] = data[key];
-      }
-      else
-        formData[key] = data[key];
-    });
-
-    onFormSubmit(formData, errors);
-  }
+    onFormSubmit(data, errors);
+  };
 
 
   const setAcItems = (searchField, searchValue, service, method, type) => {
@@ -212,149 +170,47 @@ function HFNDynamicForm({ initialValues, fields, onFormSubmit, submitButtonGroup
                         case "InputTextarea":
                           return <InputTextarea {...primeFieldProps} className={classNames({ "p-invalid": errors[key] })} name={key} {...register(key, validations)} />
 
-                        case "Dropdown":
+
+                        case "Select":
                           return (<Controller control={control} rules={validations} name={key} defaultValue={null}
-                            render={(props) => {
-                              return <Dropdown
-                                className={classNames({ "p-invalid": errors[key] })}
-                                {...primeFieldProps}
-                                name={props.field.name}
-                                value={props.field.value}
-                                filter={false}
-                                onChange={(e) => {
-                                  props.field.onChange(e.value);
-                                  if (primeFieldProps && primeFieldProps.onChange && typeof primeFieldProps.onChange === "function") {
-                                    primeFieldProps.onChange(e, setValue);
-                                  }
-                                }}
-                                optionLabel="label" optionValue="value"
-                                options={!isEmpty(properties.dropdownOptions) && Array.isArray(dd[properties.dropdownOptions]) ? dd[properties.dropdownOptions] : primeFieldProps.options}
-                                inputRef={props.field.ref} />
-                            }} />)
-
-                        case "SelectDropdown":
-                          return (<Controller control={control} rules={validations} name={key} defaultValue={null}
-                            render={({ field: { onChange, value, name }, fieldState: { isDirty } }) => {
-                              let fieldValue = null;
-                              let isLoading = false;
-
-                              if (!isDirty) {
-                                if ((value === null) && (initialValues[key])) {
-                                  let options = [];
-                                  if (properties.dropdownOptions && Array.isArray(dd[properties.dropdownOptions]))
-                                    options = dd[properties.dropdownOptions];
-                                  else if (Array.isArray(primeFieldProps.options))
-                                    options = primeFieldProps.options;
-
-                                  fieldValue = options.find(option => option.value === initialValues[key]);
-
-                                  if (fieldValue)
-                                    onChange(fieldValue);
-                                  else
-                                    isLoading = true;
-                                }
-                              }
-
+                            render={({ field: { onChange, value, name } }) => {
                               return <Select
                                 className={classNames({ "p-invalid": errors[key] })}
+                                noOptionsMessage={() => "No data found"}
                                 {...primeFieldProps}
                                 name={name}
-                                value={value || fieldValue}
-                                isLoading={isLoading}
-                                loadingMessage={() => "No data found"}
-                                placeholder={isLoading ? "Loading..." : (primeFieldProps.placeholder || "")}
-                                isClearable={primeFieldProps.isClearable || primeFieldProps.showClear}
-                                isDisabled={primeFieldProps.isDisabled || primeFieldProps.readOnly}
-                                isSearchable={primeFieldProps.isSearchable || primeFieldProps.filter}
-                                formatOptionLabel={primeFieldProps.formatOptionLabel || primeFieldProps.itemTemplate}
-                                noOptionsMessage={primeFieldProps.noOptionsMessage || (() => "No data found")}
+                                value={value}
                                 onChange={(value) => {
                                   onChange(value);
                                   if (primeFieldProps && primeFieldProps.onChange && typeof primeFieldProps.onChange === "function") {
                                     primeFieldProps.onChange(value, setValue);
                                   }
                                 }}
-                                options={!isEmpty(properties.dropdownOptions) && Array.isArray(dd[properties.dropdownOptions]) ? dd[properties.dropdownOptions] : primeFieldProps.options}
+                                options={!isEmpty(properties.dropdownOptions) && Array.isArray(dd[properties.dropdownOptions]) ? dd[properties.dropdownOptions] : (primeFieldProps.options || [])}
                               />
                             }} />)
 
                         case "MultiSelect":
                           return (<Controller control={control} rules={validations} name={key} defaultValue={null}
-                            render={(props) => {
-                              return <MultiSelect
+                            render={({ field: { onChange, value, name } }) => {
+                              return <Select
                                 className={classNames({ "p-invalid": errors[key] })}
+                                closeMenuOnSelect={false}
+                                noOptionsMessage={() => "No data found"}
                                 {...primeFieldProps}
-                                name={props.field.name}
-                                value={props.field.value}
-                                filter={false}
-                                onChange={(e) => {
-                                  props.field.onChange(e.value);
+                                name={name}
+                                value={value}
+                                isMulti={true}
+                                onChange={(value) => {
+                                  onChange(value);
                                   if (primeFieldProps && primeFieldProps.onChange && typeof primeFieldProps.onChange === "function") {
-                                    primeFieldProps.onChange(e, setValue);
+                                    primeFieldProps.onChange(value, setValue);
                                   }
                                 }}
-                                optionLabel="label" optionValue="value"
-                                options={!isEmpty(properties.dropdownOptions) && Array.isArray(dd[properties.dropdownOptions]) ? dd[properties.dropdownOptions] : primeFieldProps.options}
-                                inputRef={props.field.ref} />
+                                options={!isEmpty(properties.dropdownOptions) && Array.isArray(dd[properties.dropdownOptions]) ? dd[properties.dropdownOptions] : (primeFieldProps.options || [])}
+                              />
                             }} />)
 
-                          case "MultiSelectDropdown":
-                            return (<Controller control={control} rules={validations} name={key} defaultValue={null}
-                              render={({ field: { onChange, value, name }, fieldState: { isDirty } }) => {
-                                let fieldValue = [];
-                                let isLoading = false;
-  
-                                if (!isDirty) {
-                                  if (Array.isArray(initialValues[key]) && 
-                                      (initialValues[key].length > 0) && 
-                                      ((value === null) || (Array.isArray(value) && value.length !== initialValues[key].length)) &&
-                                      initialValues[key].find(option => (!option || typeof option !== "object"))) {
-                                    let options = [];
-
-                                    if (properties.dropdownOptions && Array.isArray(dd[properties.dropdownOptions]))
-                                      options = dd[properties.dropdownOptions];
-                                    else if (Array.isArray(primeFieldProps.options))
-                                      options = primeFieldProps.options;
-
-                                    fieldValue = initialValues[key].map(selectedValue => options.find(option => option.value === selectedValue)).filter(option => option);
-
-                                    if (fieldValue.length === initialValues[key].length) {
-                                      onChange(fieldValue);
-                                    }
-                                    else if (fieldValue.length > 0) {
-                                      onChange(fieldValue);
-                                    }
-                                    else {
-                                      isLoading = true;
-                                    }
-                                  }
-                                }
-  
-                                return <Select
-                                  className={classNames({ "p-invalid": errors[key] })}
-                                  {...primeFieldProps}
-                                  name={name}
-                                  value={value || fieldValue}
-                                  isMulti={true}
-                                  closeMenuOnSelect={false}
-                                  loadingMessage={() => "No data found"}
-                                  isLoading={isLoading}
-                                  placeholder={isLoading ? "Loading..." : (primeFieldProps.placeholder || "")}
-                                  isClearable={primeFieldProps.isClearable || primeFieldProps.showClear}
-                                  isDisabled={primeFieldProps.isDisabled || primeFieldProps.readOnly}
-                                  isSearchable={primeFieldProps.isSearchable || primeFieldProps.filter}
-                                  formatOptionLabel={primeFieldProps.formatOptionLabel || primeFieldProps.itemTemplate}
-                                  noOptionsMessage={primeFieldProps.noOptionsMessage || (() => "No data found")}
-                                  onChange={(value) => {
-                                    onChange(value);
-                                    if (primeFieldProps && primeFieldProps.onChange && typeof primeFieldProps.onChange === "function") {
-                                      primeFieldProps.onChange(value, setValue);
-                                    }
-                                  }}
-                                  options={!isEmpty(properties.dropdownOptions) && Array.isArray(dd[properties.dropdownOptions]) ? dd[properties.dropdownOptions] : primeFieldProps.options}
-                                />
-                              }} />)
-      
                         case "Checkbox":
                           return (<div>
                             <Controller name={key} control={control} rules={validations} render={(props) => (
@@ -456,7 +312,7 @@ function HFNDynamicForm({ initialValues, fields, onFormSubmit, submitButtonGroup
                             )} />
                             <label htmlFor={key} className="p-checkbox-label">{properties.label}</label>
                           </div>)
-                          
+
                         case "PhoneInput":
                           return (<Controller control={control} rules={validations} name={key} defaultValue={null}
                             render={(props) => {

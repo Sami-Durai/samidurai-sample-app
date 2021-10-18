@@ -1,44 +1,20 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from "react";
 
-// store 
-import { connect } from 'react-redux';
+// components
+// prime components
+import { Toast } from "primereact/toast";
 
-// shared component 
-import { Toast } from 'primereact/toast';
+// utils 
+import { toaster } from "utils/toaster";
 
-class HFNToaster extends Component {
+const Toaster = () => {
+  const toast = useRef(null);
 
-  constructor(props) {
+  useEffect(() => {
+    toaster.setRef(toast);
+  }, []);
 
-    super(props);
+  return <Toast ref={toast} onHide={() => { }} />;
+};
 
-    this.toast = React.createRef(null);
-
-    this.state = {
-      toastOptions: {
-        ref: this.toast,
-        onHide: () => {
-        }
-      }
-    }
-    
-  }
-  
-  componentDidMount() {
-    this.props.dispatch({ type: "SETTOASTERREF", payload: { toasterRef: this.toast } })
-  }
-  
-  render() {
-    return (
-      <div>
-        <Toast {...this.state.toastOptions} />
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => ({
-  td: state.toasterDetails
-});
-
-export default connect(mapStateToProps)(HFNToaster);
+export default Toaster;

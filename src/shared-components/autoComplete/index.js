@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { AutoComplete } from 'primereact/autocomplete';
 
 // service 
-import AutoCompleteService  from 'src/services/autoComplete/autoComplete.service'
+import AutoCompleteService  from 'services/autoComplete/autoComplete.service'
 
 export class HFNAutoComplete extends Component {
 

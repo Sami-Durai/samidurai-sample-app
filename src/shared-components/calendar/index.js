@@ -7,7 +7,7 @@ import FullCalendar from '@fullcalendar/react';
 import { isArray, isObject, isDate, merge } from "lodash";
 
 // options
-import { options } from 'src/shared-components/calendar/options';
+import { options } from 'shared-components/calendar/options';
 
 export default class HFNCalendar extends Component {
 
