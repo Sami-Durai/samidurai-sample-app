@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
+import React from "react";
 
-// store 
-import { connect } from 'react-redux';
+// state 
+import { useSelector } from "react-redux";
 
-import { ConfirmDialog } from 'primereact/confirmdialog';
+// components
+// prime components
+import { ConfirmDialog } from "primereact/confirmdialog";
 
-class HFNConfirmDialog extends Component {
-  render() {
-    return (
-      <div>
-        <ConfirmDialog {...this.props.cd} />
-      </div>
-    );
-  }
-}
+const HFNConfirmDialog = () => {
+  const popupProps = useSelector(state => state.confirmDialogDetails);
 
-const mapStateToProps = (state) => ({
-  cd: state.confirmDialogDetails
-});
+  return (
+    <ConfirmDialog {...popupProps} />
+  );
+};
 
-export default connect(mapStateToProps)(HFNConfirmDialog);
+export default HFNConfirmDialog;

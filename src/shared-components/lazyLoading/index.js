@@ -9,7 +9,9 @@ const DelayedFallback = () => {
 };
 
 const HFNLoader = ({ children }) => {
-  return <Suspense fallback={<DelayedFallback />}> {children} </Suspense>;
+  return (
+    <Suspense fallback={<DelayedFallback />}> {children} </Suspense>
+  );
 };
 
 export default HFNLoader;

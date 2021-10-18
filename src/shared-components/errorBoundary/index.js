@@ -1,19 +1,18 @@
-import React from 'react';
+import React from "react";
 
 import { withRouter } from "react-router";
 
 // prime components
-import { Button } from 'primereact/button';
+import { Button } from "primereact/button";
 
 // utils
-import moment from 'moment';
+import moment from "moment";
 
 // config
-import config from '../../assets//config';
+import config from "assets/config";
 
 class HFNErrorBoundary extends React.Component {
   constructor(props) {
-
     super(props);
 
     // variable init start
@@ -30,7 +29,7 @@ class HFNErrorBoundary extends React.Component {
 
       mailURL: date ? (basicMailURL + date) : basicMailURL
 
-     }
+     };
      // state management end
   }
 
@@ -38,14 +37,11 @@ class HFNErrorBoundary extends React.Component {
     this.setState({
       error: null,
       errorInfo: null
-    }, () => { this.props.history.push("") })
+    }, () => { this.props.history.push("") });
   }
 
   componentDidCatch(error, errorInfo) {
-    this.setState({
-      error: error,
-      errorInfo: errorInfo
-    })
+    this.setState({ error: error, errorInfo: errorInfo });
   }
 
   render() {
@@ -62,7 +58,7 @@ class HFNErrorBoundary extends React.Component {
               <a className="p-button p-component report-issue-button p-mt-2 p-mr-3" href={this.state.mailURL}> Report  Issue </a>
             </div>
             {
-              (!config.NODE_ENV || config.NODE_ENV === 'development') ? <details style={{ whiteSpace: 'pre-wrap' }}>
+              (!config.NODE_ENV || config.NODE_ENV === "development") ? <details style={{ whiteSpace: "pre-wrap" }}>
                 {this.state.error && this.state.error.toString()}
                 <br />
                 {this.state.errorInfo.componentStack}

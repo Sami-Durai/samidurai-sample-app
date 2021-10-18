@@ -1,69 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState, useRef, useCallback } from "react";
 
-// prime component 
-import { AutoComplete } from 'primereact/autocomplete';
+// prime components
+import { AutoComplete } from "primereact/autocomplete";
 
-// service 
-import AutoCompleteService  from 'services/autoComplete/autoComplete.service'
+// services
+import AutoCompleteService from "services/autoComplete/autoComplete.service";
 
-export class HFNAutoComplete extends Component {
+export const HFNAutoComplete = ({ method }) => {
 
-  constructor(props) {
+  const [selectedItem, setSelectedItem] = useState(null);
 
-    super(props);
+  const [filteredItems, setFilteredItems] = useState(null);
 
-    const { method } = this.props;
+  const service = useRef(new AutoCompleteService());
 
-    this.state = {
-      method : method,
-      selectedItem: null,
-      filteredItems: null,
-    };
+  const setCountries = useCallback(searchValue => {
+    const payload = { college_name: searchValue };
 
-    this.searchItems = this.searchItems.bind(this);
+    try {
+      service[method](payload)
+        .then((res) => {
+          setFilteredItems(res.data.data);
+        });
+    }
+    catch {
+      console.log("Something went wrong.");
+    }
+  }, []);
 
-    this.service = new AutoCompleteService();
+  const searchItems = useCallback(e => {
+    const searchValue = e.query;
 
-  }
-
-  setCountries = (searchValue) => {
-
-    let payload =  { college_name : searchValue }
-
-    this.service[this.state.method](payload)
-    .then((res) => {
-      this.setState({ filteredItems: res.data.data })
-    });
-
-  }
-
-  searchItems(ev) {
-
-    let searchValue = ev.query ;
-
-    if(searchValue.length > 2) {
+    if (searchValue.length > 2) {
       setTimeout(() => {
-        this.setCountries(ev.query)
+        setCountries(searchValue)
       }, 500);
     } else {
       console.log("search value must be minimum 3 character...")
     }
+  }, []);
 
-  }
-
-  render() {
-    return (
-      <div className="hfn-auto-complete">
-        <AutoComplete
-          value={this.state.selectedItem}
-          suggestions={this.state.filteredItems}
-          completeMethod={this.searchItems}
-          field="label"
-          onChange={(e) => this.setState({ selectedItem: e.value })}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="hfn-auto-complete">
+      <AutoComplete
+        value={selectedItem}
+        suggestions={filteredItems}
+        completeMethod={searchItems}
+        field="label"
+        onChange={(e) => setSelectedItem(e.value)}
+      />
+    </div>
+  );
+};
 
 export default HFNAutoComplete;

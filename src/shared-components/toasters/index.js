@@ -14,7 +14,9 @@ const Toaster = () => {
     toaster.setRef(toast);
   }, []);
 
-  return <Toast ref={toast} onHide={() => { }} />;
+  return (
+    <Toast ref={toast} onHide={() => { }} />
+  );
 };
 
 export default Toaster;

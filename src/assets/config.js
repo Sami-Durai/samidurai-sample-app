@@ -1,7 +1,10 @@
+// eslint-disable-next-line no-undef
+const configData = process.env;
 let config = {};
 
 try {
-  config.apiURL = "";
+  config.apiURL = configData.REACT_APP_API_BASE_URI || "";
+  config.NODE_ENV = configData.NODE_ENV;
 }
 catch {
   config.apiURL = "";

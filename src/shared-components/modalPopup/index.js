@@ -9,11 +9,7 @@ const Popup = ({ children }) => {
   const popupProps = useSelector(state => state.modalPopupDetails);
 
   return (
-    <div>
-      <Dialog {...popupProps}>
-        {children}
-      </Dialog>
-    </div>
+    <Dialog {...popupProps}> {children} </Dialog>
   );
 };
 

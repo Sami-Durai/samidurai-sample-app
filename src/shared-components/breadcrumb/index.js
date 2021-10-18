@@ -11,34 +11,24 @@ import { Link } from "react-router-dom";
 import { BreadCrumb } from "primereact/breadcrumb";
 
 const HFNBreadcrumb = () => {
-
   const breadcrumb = useSelector(state => state.appDetails.breadcrumb);
 
   const menuItems = useMemo(() => {
     return breadcrumb.map((menu, index) => {
       return {
         ...menu,
-        template: (item, options) => {
-          return (
-            (breadcrumb.length - 1 === index) ?
-              <Link to={`/${item.url}`} className={`disabled ${options.className}`} key={index} >
-                <span className={options.labelClassName}>{item.label}</span>
-              </Link> :
-              <Link to={`/${item.url}`} className={options.className} key={index} >
-                <span className={options.labelClassName}>{item.label}</span>
-              </Link>
-
-          );
-        },
+        template: (item, options) => (
+          <Link to={`/${item.url}`} className={`${(breadcrumb.length - 1 === index) ? "disabled" : ""} ${options.className}`} key={index} >
+            <span className={options.labelClassName}>{item.label}</span>
+          </Link>
+        )
       };
     });
   }, [breadcrumb]);
 
   return (
-    <div>
-      <BreadCrumb model={menuItems} />
-    </div>
+    <BreadCrumb model={menuItems} />
   )
-}
+};
 
 export default HFNBreadcrumb;

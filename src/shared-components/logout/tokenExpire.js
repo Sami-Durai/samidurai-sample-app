@@ -22,7 +22,7 @@ const TokenExpire = () => {
   const login = useCallback(() => {
     showLogin();
     history.push('/login');
-  });
+  }, []);
 
   return (
     <div>
