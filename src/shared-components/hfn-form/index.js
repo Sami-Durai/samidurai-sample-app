@@ -37,7 +37,7 @@ import { isEmpty, isObject } from "lodash";
 
 import { classNames } from "primereact/utils";
 
-import { modalPopup } from "utils/modalPopup";
+import modalPopup from "utils/modalPopup";
 
 // service
 import DropdownService from "services/login";

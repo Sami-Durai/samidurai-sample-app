@@ -1,4 +1,5 @@
-import appStore from "store/index";
+// store
+import appStore from "store";
 
 import { SETREF, SUCCESS, INFO, WARN, ERROR, CUSTOM } from "store/actions/type/toaster";
 
@@ -33,10 +34,7 @@ const toaster = {
     appStore.dispatch({
       type: CUSTOM, payload: { toastMessage: toastMessage }
     });
-  },
+  }
+};
 
-}
-
-export {
-  toaster
-}
+export default toaster;

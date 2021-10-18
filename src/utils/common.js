@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import { FileIcon } from 'react-file-icon';
+import { FileIcon } from "react-file-icon";
 
-//import { signOut } from '@heartfulnessinstitute/react-hfn-profile';
+//import { signOut } from "@heartfulnessinstitute/react-hfn-profile";
 
 // storage 
-import { lStorage } from 'utils/storage';
+import { lStorage } from "utils/storage";
 
 //state
-import appStore from 'store';
+import appStore from "store";
 
 //utils
-import { formatDate } from '@fullcalendar/core'
+import { formatDate } from "@fullcalendar/core"
 
-import { isEmpty, isString, isObject, isArray, merge } from 'lodash';
+import { isEmpty, isString, isObject, isArray, merge } from "lodash";
 
-import { saveAs } from 'file-saver';
+import { saveAs } from "file-saver";
 
 import { LOGOUT, SHOWLOGIN } from "store/actions/type/login";
 
@@ -78,9 +78,9 @@ export const fileType = {
 }
 
 const dateOptions = {
-  day: '2-digit',
-  month: 'short',
-  year: 'numeric',
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
 }
 
 export const logout = () => {
@@ -189,7 +189,7 @@ export const getAttachmentIcon = (fileExtension) => {
 }
 
 export const isLoginAuth = () => {
-  let loginDetails = lStorage.get('dmsAuthInfo');
+  let loginDetails = lStorage.get("dmsAuthInfo");
   return (loginDetails && loginDetails.token) ? true : false;
 }
 
@@ -233,7 +233,7 @@ export const getResponseMessage = (apiResponseData) => {
 }
 
 export const randomText = (val) => {
-  return Array.from(Array(val), () => Math.floor(Math.random() * 36).toString(36)).join('');
+  return Array.from(Array(val), () => Math.floor(Math.random() * 36).toString(36)).join("");
 }
 
 export const getTotalHours = val => {

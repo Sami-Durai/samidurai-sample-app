@@ -22,7 +22,7 @@ import { isLoginAuth } from "utils/common";
 
 import { lStorage } from "utils/storage";
 
-import { validations } from "utils/validations";
+import validations from "utils/validations";
 
 //import { HfnFirebaseAuth, signOut } from "@heartfulnessinstitute/react-hfn-profile";
 

@@ -1,11 +1,11 @@
-import CryptoJS from 'crypto-js';
+import CryptoJS from "crypto-js";
 
-const $secretKey = "$AuthInfoLock$"
+// constants
+const $secretKey = "$AuthInfoLock$";
 
+// local storage
 const lStorage = {
-
   set: (key, val) => {
-
     let stringfyVal, encriptData;
 
     stringfyVal = JSON.stringify(val);
@@ -13,11 +13,9 @@ const lStorage = {
     encriptData = CryptoJS.AES.encrypt(stringfyVal, $secretKey).toString();
 
     localStorage.setItem(key, encriptData);
-
   },
 
   get: (key) => {
-
     let val, bytes, originalText;
 
     val = localStorage.getItem(key);
@@ -27,7 +25,6 @@ const lStorage = {
       originalText = bytes.toString(CryptoJS.enc.Utf8);
       return JSON.parse(originalText);
     }
-
   },
 
   remove: (key) => {
@@ -37,11 +34,10 @@ const lStorage = {
   clear: (key) => {
     localStorage.clear(key);
   }
+};
 
-}
-
+// session storage
 const sStorage = {
-
   set: (key, val) => {
     sessionStorage.setItem(key, val);
   },
@@ -58,7 +54,6 @@ const sStorage = {
   clear: (key) => {
     sessionStorage.clear(key);
   }
-
-}
+};
 
 export { lStorage, sStorage };

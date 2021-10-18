@@ -5,7 +5,7 @@ import React, { useEffect, useRef } from "react";
 import { Toast } from "primereact/toast";
 
 // utils 
-import { toaster } from "utils/toaster";
+import toaster from "utils/toaster";
 
 const Toaster = () => {
   const toast = useRef(null);

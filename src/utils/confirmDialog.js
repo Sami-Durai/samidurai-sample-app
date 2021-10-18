@@ -1,9 +1,9 @@
-import appStore from "store/index";
+// store
+import appStore from "store";
 
 import { TOGGLE, ACCEPT, REJECT, ONHIDE, CUSTOM } from "store/actions/type/confirmDialog";
 
 const confirmDialog = {
-
   toggle: (bool) => {
     appStore.dispatch({
       type: TOGGLE, payload: bool
@@ -32,10 +32,7 @@ const confirmDialog = {
     appStore.dispatch({
       type: CUSTOM, payload: confirmDialogOptions
     });
-  },
+  }
+};
 
-}
-
-export {
-  confirmDialog
-}
+export default confirmDialog;

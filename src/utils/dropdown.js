@@ -69,8 +69,8 @@ const clearDropdown = () => {
   appStore.dispatch({ type: CLEAR })
 }
 
-export const dropdown = {
+export default {
   clear: clearDropdown,
   collegePOC: getAvailableVolunteersForPOC,
   moduleList: getModuleDropdown
-}
+};
