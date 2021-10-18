@@ -26,8 +26,9 @@ import {
   FONTFAMILY,
   FAQCATEGORY,
   BATCH
-} from 'store/actions/type/dropdown';
+} from "store/actions/type/dropdown";
 
+// constants
 const initialState = {
   status: [],
   country: [],
@@ -57,6 +58,7 @@ const initialState = {
   batch: []
 };
 
+// reducer
 const dropdownDetails = (state = initialState, action) => {
   switch (action.type) {
     case STATUS:
@@ -172,6 +174,4 @@ const dropdownDetails = (state = initialState, action) => {
   }
 };
 
-export {
-  dropdownDetails
-}
+export default dropdownDetails;

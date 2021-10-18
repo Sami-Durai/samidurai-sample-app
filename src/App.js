@@ -3,23 +3,23 @@ import React, { Component } from "react";
 import { Switch, Redirect } from "react-router-dom";
 
 // components 
-import AuthGuard from "./auth-guard/index";
+import AuthGuard from "auth-guard/index";
 
-import Login from "./components/login/Login";
+import Login from "components/login/Login";
 
 // shared components 
-import HFNErrorBoundary from "./shared-components/errorBoundary";
+import HFNErrorBoundary from "shared-components/errorBoundary";
 
-import HFNLoader from "./shared-components/lazyLoading";
+import HFNLoader from "shared-components/lazyLoading";
 
-import HFNToaster from "./shared-components/toasters";
+import HFNToaster from "shared-components/toasters";
 
-import HFNConfirmDialog from "./shared-components/confirmDialog";
+import HFNConfirmDialog from "shared-components/confirmDialog";
 
-import TokenExpire from "./shared-components/logout/tokenExpire";
+import TokenExpire from "shared-components/logout/tokenExpire";
 
 // utils 
-import lazy from "./utils/lazy";
+import lazy from "utils/lazy";
 
 // lazy components 
 const LayoutContainer = lazy("layouts/Template");

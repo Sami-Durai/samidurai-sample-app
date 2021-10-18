@@ -7,20 +7,20 @@
 
 
 // app style css
-@import '~./assets/styles/responsive.scss';
-@import "~./assets/styles/theme.scss";
-@import '~./assets/styles/primereact.boostrap.scss';
-@import '~./assets/styles/common.scss';
-@import '~./assets/styles/app.scss';
-@import '~./assets/styles/header.scss';
-@import '~./assets/styles/login.scss';
-@import '~./assets/styles/sidebar.scss';
-@import '~./assets/styles/loader.scss';
-@import '~./assets/styles/form.scss';
-@import '~./assets/styles/datatable.scss';
-@import '~./assets/styles/calendar.scss';
-@import '~./assets/styles/report.scss';
-@import '~./assets/styles/dashboard.scss';
+@import '~assets/styles/responsive.scss';
+@import "~assets/styles/theme.scss";
+@import '~assets/styles/primereact.boostrap.scss';
+@import '~assets/styles/common.scss';
+@import '~assets/styles/app.scss';
+@import '~assets/styles/header.scss';
+@import '~assets/styles/login.scss';
+@import '~assets/styles/sidebar.scss';
+@import '~assets/styles/loader.scss';
+@import '~assets/styles/form.scss';
+@import '~assets/styles/datatable.scss';
+@import '~assets/styles/calendar.scss';
+@import '~assets/styles/report.scss';
+@import '~assets/styles/dashboard.scss';
 
 // primeflex seprate for overwriting issue 
 @import url('primeflex/primeflex.css');

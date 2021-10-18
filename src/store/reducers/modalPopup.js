@@ -1,14 +1,14 @@
-import { TOGGLE, ONHIDE, ONSHOW, CUSTOM } from 'store/actions/type/modalPopup';
+import { TOGGLE, ONHIDE, ONSHOW, CUSTOM } from "store/actions/type/modalPopup";
 
+// constants
 const initialState = {
-  header: 'ModalPopup',
+  header: "ModalPopup",
   visible: false,
-  className: 'sdm-popup',
-  onHide: () => {
-
-  }
+  className: "sdm-popup",
+  onHide: () => { }
 };
 
+// reducer
 const modalPopupDetails = (state = initialState, action) => {
   switch (action.type) {
     case TOGGLE:
@@ -34,6 +34,4 @@ const modalPopupDetails = (state = initialState, action) => {
   }
 };
 
-export {
-  modalPopupDetails
-}
+export default modalPopupDetails;

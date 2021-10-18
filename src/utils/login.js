@@ -1,5 +1,5 @@
 // storage 
-import { lStorage } from "./storage";
+import { lStorage } from "utils/storage";
 
 export const getLoginID = () => {
   const loginDetails = lStorage.get("dmsAuthInfo");

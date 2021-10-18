@@ -19,11 +19,11 @@ import { Column } from 'primereact/column';
 
 import { merge, isEmpty, isString, upperFirst } from 'lodash';
 
-import { optionsDefaultValue } from './options';
+import { optionsDefaultValue } from 'shared-components/datatable/options';
 
-import HFNDatatableToolbar from './HFNDatatableToolbar';
+import HFNDatatableToolbar from 'shared-components/datatable/HFNDatatableToolbar';
 
-import HFNDataTablePagination from './HFNDataTablePagination';
+import HFNDataTablePagination from 'shared-components/datatable/HFNDataTablePagination';
 
 class HFNDataTable extends React.PureComponent {
 

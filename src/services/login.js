@@ -1,4 +1,4 @@
-import { ax } from "./base";
+import { ax } from "services/base";
 
 // constants
 const config = {

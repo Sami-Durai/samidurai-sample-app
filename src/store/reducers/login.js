@@ -1,9 +1,10 @@
 
 import { LOGIN, SIGNUP, LOGOUT, SHOWLOGIN } from "store/actions/type/login";
 
-// local storage
+// storage
 import { lStorage } from "utils/storage";
 
+// constants
 const loginState = {
   login: (lStorage.get("dmsAuthInfo")) ? lStorage.get("dmsAuthInfo") : {
     id: null,
@@ -19,8 +20,8 @@ const loginState = {
   expired: false
 };
 
+// reducer
 const loginDetails = (state = loginState, action) => {
-
   switch (action.type) {
     case LOGIN:
       return {
