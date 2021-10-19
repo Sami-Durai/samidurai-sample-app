@@ -55,7 +55,7 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
         }
       }
     }
-  }));
+  }), []);
 
   // form submit section start
   const formOnsubmit = useCallback((data, error) => {
@@ -67,7 +67,7 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
         formData.updated_by = getLoginID();
       addUpdateCountry(formData);
     }
-  });
+  }, []);
 
   // add new and update section start
   const addUpdateCountry = useCallback(async (data) => {
@@ -85,7 +85,7 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
         data: { itemId: initValue.id, item: data },
         dataTable: dataTableRef
       });
-  });
+  }, []);
   // add new and update section end
   // form submit section end
 

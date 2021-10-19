@@ -57,7 +57,7 @@ const Country = () => {
             },
             dataTable: tableRef
         });
-    });
+    }, []);
     //bulk status update end
 
     // add section start
@@ -65,7 +65,7 @@ const Country = () => {
         setFormState({ initValue: formInitValue, isEditable: false });
         modalPopup.toggle(true);
         modalPopup.custom({ header: "Add Country", className: "sdm-popup" });
-    });
+    }, []);
     // add section end
 
     // update section start
@@ -80,7 +80,7 @@ const Country = () => {
         });
         modalPopup.toggle(true)
         modalPopup.custom({ header: "Update Country", className: "sdm-popup" });
-    });
+    }, []);
     // update section start
 
     // remove section start
@@ -91,7 +91,7 @@ const Country = () => {
             data: { itemId: id },
             dataTable: tableRef
         });
-    });
+    }, []);
     // remove section start
 
     const options = useMemo(() =>({
@@ -181,7 +181,7 @@ const Country = () => {
             ]
         },
         enableSelection: true
-    }));
+    }), []);
 
     return (
         <div>
