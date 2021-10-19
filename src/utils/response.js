@@ -1,7 +1,7 @@
 // utils 
-import { toaster } from "utils/toaster";
+import toaster from "utils/toaster";
 
-import { modalPopup } from "utils/modalPopup";
+import modalPopup from "utils/modalPopup";
 
 import { isArray, isEmpty, isObject, isString, merge } from "lodash";
 

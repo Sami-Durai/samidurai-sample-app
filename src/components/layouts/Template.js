@@ -29,6 +29,7 @@ const lazyDelay = 500;
 // lazy components 
 const Dashboard              = lazy("dashboard"         , lazyDelay);
 const DonationCollector      = lazy("donationCollector" , lazyDelay);
+const StandardData           = lazy('standardData'      , lazyDelay);
 
 class DashboardContainer extends Component {
   render() {
@@ -57,6 +58,7 @@ class DashboardContainer extends Component {
                 <Switch>
                   <AuthGuard path="/dashboard"                  component={Dashboard             } />
                   <AuthGuard path="/donation-collectors"        component={DonationCollector     } />
+                  <AuthGuard path='/standard-data'              component={StandardData          } />
                   <Route exact path="/" />
                   <Route>
                     <Redirect to="/" />

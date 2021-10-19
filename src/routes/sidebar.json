@@ -38,7 +38,7 @@
           },
           {
             "url": "standard-data/ashrams",
-            "label": "Donation Center/Ashram",
+            "label": "Donation Center / Ashram",
             "icon": "uil uil-books"
           },
           {
@@ -58,7 +58,7 @@
           },
           {
             "url": "standard-data/roles",
-            "label": "AM Roles",
+            "label": "Donation Roles",
             "icon": "uil uil-books"
           }
         ]
