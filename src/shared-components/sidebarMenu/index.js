@@ -1,5 +1,8 @@
 import React from "react";
 
+// state
+import { connect } from "react-redux";
+
 import { Link } from "react-router-dom";
 
 // components
@@ -77,4 +80,4 @@ class HFNSidebarMenu extends React.PureComponent {
     }
 }
 
-export default HFNSidebarMenu;
+export default connect()(HFNSidebarMenu);
