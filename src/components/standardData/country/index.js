@@ -174,9 +174,7 @@ const Country = () => {
                         });
                     }
                 },
-                deleteBtnsOptions: {
-                    visibility: false
-                },
+                enableDelete: false
             },
             rightBtnsOptions: [
                 { onClick: setFormInitValue }
