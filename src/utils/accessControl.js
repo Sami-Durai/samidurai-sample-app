@@ -2,7 +2,7 @@
 import { getLoginRole } from "utils/login";
 
 // access
-import { userPageAccess } from "routes/pageAccess";
+import userPageAccess from "routes/pageAccess.json";
 
 export const hasRouteAccess = routeURL => {
   let url, roleRoutes;

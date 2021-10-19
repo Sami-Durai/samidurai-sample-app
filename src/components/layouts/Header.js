@@ -92,7 +92,7 @@ class Header extends Component {
             </span>
             <span className="user-name">
               <span className="name"> {userDetails.name || ""} </span>
-              <span className="role"> {userDetails.role || ""} </span>
+              <span className="role"> {userDetails.role_name || ""} </span>
             </span>
           </div>
 

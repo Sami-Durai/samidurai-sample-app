@@ -1,0 +1,149 @@
+[
+  {
+    "role": "sa",
+    "routes": [
+      {
+        "url": "finance-controllers",
+        "label": "Manage Finance Controller",
+        "icon": "uil uil-books"
+      },
+      {
+        "url": "ashram-managers",
+        "label": "Manage Ashram Manager",
+        "icon": "uil uil-books"
+      },
+      {
+        "url": "donation-collectors",
+        "label": "Manage Office Staff",
+        "icon": "uil uil-books"
+      },
+      {
+        "url": "onsite-transactions",
+        "label": "Manage Onsite Transaction",
+        "icon": "uil uil-books"
+      },
+      {
+        "url": "online-transactions",
+        "label": "Manage Online Transaction",
+        "icon": "uil uil-books"
+      },
+      {
+        "label": "Standard Data",
+        "icon": "uil uil-books",
+        "items": [
+          {
+            "url": "standard-data/countries",
+            "label": "Donation Country",
+            "icon": "uil uil-books"
+          },
+          {
+            "url": "standard-data/ashrams",
+            "label": "Donation Center/Ashram",
+            "icon": "uil uil-books"
+          },
+          {
+            "url": "standard-data/organizations",
+            "label": "Donation Organization",
+            "icon": "uil uil-books"
+          },
+          {
+            "url": "standard-data/donation-accounts",
+            "label": "Donation Accounts",
+            "icon": "uil uil-books"
+          },
+          {
+            "url": "standard-data/payment-accounts",
+            "label": "Payment Accounts",
+            "icon": "uil uil-books"
+          },
+          {
+            "url": "standard-data/roles",
+            "label": "AM Roles",
+            "icon": "uil uil-books"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "role": "fc",
+    "routes": [
+      {
+        "url": "ashram-managers",
+        "label": "Manage Ashram Manager",
+        "icon": "uil uil-books"
+      },
+      {
+        "url": "donation-collectors",
+        "label": "Manage Office Staff",
+        "icon": "uil uil-books"
+      },
+      {
+        "url": "onsite-transactions",
+        "label": "Manage Onsite Transaction",
+        "icon": "uil uil-books"
+      },
+      {
+        "url": "online-transactions",
+        "label": "Manage Online Transaction",
+        "icon": "uil uil-books"
+      },
+      {
+        "label": "Standard Data",
+        "icon": "uil uil-books",
+        "items": [
+          {
+            "url": "standard-data/organizations",
+            "label": "Donation Organization",
+            "icon": "uil uil-books"
+          },
+          {
+            "url": "standard-data/donation-accounts",
+            "label": "Donation Accounts",
+            "icon": "uil uil-books"
+          },
+          {
+            "url": "standard-data/payment-accounts",
+            "label": "Payment Accounts",
+            "icon": "uil uil-books"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "role": "am",
+    "routes": [
+      {
+        "url": "donation-collectors",
+        "label": "Manage Office Staff",
+        "icon": "uil uil-books"
+      },
+      {
+        "url": "donations",
+        "label": "Manage Donation",
+        "icon": "uil uil-books"
+      }
+    ]
+  },
+  {
+    "role": "dc",
+    "routes": [
+      {
+        "url": "dashboard",
+        "label": "Dashboard",
+        "icon": "uil uil-books"
+      },
+      {
+        "url": "donations",
+        "label": "Manage Donation",
+        "icon": "uil uil-books"
+      }
+    ]
+  },
+  {
+    "role": "sg",
+    "routes": [
+    ]
+  }
+]

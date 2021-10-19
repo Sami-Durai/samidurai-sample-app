@@ -10,7 +10,7 @@ import HFNSidebarMenu from "shared-components/sidebarMenu";
 import { getLoginRole } from "utils/login";
 
 // routes
-import sideBarRoutes from "routes/sidebar";
+import sideBarRoutes from "routes/sidebar.json";
 
 class SideBar extends React.PureComponent {
   constructor(props) {

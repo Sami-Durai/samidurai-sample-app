@@ -24,7 +24,11 @@ import { lStorage } from "utils/storage";
 
 import validations from "utils/validations";
 
+import toaster from "utils/toaster";
+
 //import { HfnFirebaseAuth, signOut } from "@heartfulnessinstitute/react-hfn-profile";
+
+import credentials from "assets/data/credentials.json";
 
 const Login = () => {
 
@@ -82,8 +86,13 @@ const Login = () => {
   // Login form submit section starts
   const loginFormOnsubmit = async (data, err) => {
     if (isEmpty(err)) {
-      lStorage.set("dmsAuthInfo", { name: "Ashram Manager", role: "AM", token: "xyz", authed: true, isUser: true });
-      history.push("/dashboard");
+      const user = credentials.find(({ email_address, password }) => (email_address === data.email_address && password === data.password));
+      if (user) {
+        lStorage.set("dmsAuthInfo", user);
+        history.push("/");
+      }
+      else
+        toaster.error("Invalid credentials");
     }
   };
   // Login form submit section end
