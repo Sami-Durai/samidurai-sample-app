@@ -1,11 +1,11 @@
 import React from "react";
 
-const Role = () => {
+const Organization = () => {
     return (
         <div>
-            Roles will be displayed here after development.
+            Organization will be displayed here after development.
         </div>
     );
 };
 
-export default Role;
+export default Organization;

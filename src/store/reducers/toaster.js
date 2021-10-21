@@ -1,4 +1,4 @@
-import { SUCCESS, INFO, WARN, ERROR, CUSTOM, REQUESTERROR, SETREF } from "store/actions/type/toaster";
+import { SUCCESS, INFO, WARN, ERROR, CUSTOM, REQUESTERROR, SETREF } from "store/actionTypes/toaster";
 
 // constants
 const initialState = {

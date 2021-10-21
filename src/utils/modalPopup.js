@@ -1,7 +1,7 @@
 // store
 import appStore from "store";
 
-import { TOGGLE, ONHIDE, ONSHOW, CUSTOM } from "store/actions/type/modalPopup";
+import { TOGGLE, ONHIDE, ONSHOW, CUSTOM } from "store/actionTypes/modalPopup";
 
 const modalPopup = {
   toggle: (bool) => {

@@ -1,7 +1,7 @@
 // redux store
 import appStore from "store";
 
-import { REQUESTERROR } from "store/actions/type/toaster";
+import { REQUESTERROR } from "store/actionTypes/toaster";
 
 // local storage
 import { lStorage } from "utils/storage";

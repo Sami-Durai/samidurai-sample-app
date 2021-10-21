@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 // components
 // shared components
-import HFNSidebarMenu from "shared-components/sidebarMenu";
+import HFNSidebarMenu from "sharedComponents/sidebarMenu";
 
 // utils
 import { getLoginRole } from "utils/login";

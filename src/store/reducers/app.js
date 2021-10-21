@@ -1,4 +1,4 @@
-import { APP_OPENSIDEBAR, APP_UPDATEBREADCRUMB } from "store/actions/type/app";
+import { APP_OPENSIDEBAR, APP_UPDATEBREADCRUMB } from "store/actionTypes/app";
 
 // constants
 const initialState = {

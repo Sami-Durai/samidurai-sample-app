@@ -11,13 +11,13 @@ import { lStorage } from "utils/storage";
 import appStore from "store";
 
 //utils
-import { formatDate } from "@fullcalendar/core"
+import moment from "moment";
 
-import { isEmpty, isString, isObject, isArray, merge } from "lodash";
+import { isEmpty, isString, isObject, isArray } from "lodash";
 
 import { saveAs } from "file-saver";
 
-import { LOGOUT, SHOWLOGIN } from "store/actions/type/login";
+import { LOGOUT, SHOWLOGIN } from "store/actionTypes/login";
 
 
 export const fileType = {
@@ -77,12 +77,6 @@ export const fileType = {
 
 }
 
-const dateOptions = {
-  day: "2-digit",
-  month: "short",
-  year: "numeric",
-}
-
 export const logout = () => {
   lStorage.clear();
   appStore.dispatch({ type: LOGOUT });
@@ -93,15 +87,15 @@ export const showLogin = () => {
   appStore.dispatch({ type: SHOWLOGIN })
 }
 
-export const getDateString = (inputDate, customDateOptions) => {
+export const getDateString = (inputDate, dateFormat = "MMM DD, YYYY") => {
   let date = inputDate;
   if (!(inputDate instanceof Date))
     date = new Date(inputDate);
   if (!isNaN(date)) {
-    return formatDate(date, merge({}, dateOptions, customDateOptions))
+    return moment(date).format(dateFormat);
   }
   return null;
-}
+};
 
 export const getFileTypeIcon = (rowData) => {
 

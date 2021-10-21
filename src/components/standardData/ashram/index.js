@@ -1,11 +1,11 @@
 import React from "react";
 
-const Ashram = () => {
+const Organization = () => {
     return (
         <div>
-            Ashrams will be displayed here after development.
+            Organization will be displayed here after development.
         </div>
     );
 };
 
-export default Ashram;
+export default Organization;

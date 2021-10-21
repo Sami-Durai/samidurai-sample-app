@@ -1,7 +1,7 @@
 // store
 import appStore from "store";
 
-import { TOGGLE, ACCEPT, REJECT, ONHIDE, CUSTOM } from "store/actions/type/confirmDialog";
+import { TOGGLE, ACCEPT, REJECT, ONHIDE, CUSTOM } from "store/actionTypes/confirmDialog";
 
 const confirmDialog = {
   toggle: (bool) => {

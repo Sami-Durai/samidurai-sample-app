@@ -6,18 +6,18 @@ import { isEmpty, merge, pickBy } from 'lodash';
 import { toaster } from 'utils/toaster';
 
 // components 
-import ReportDownload from "shared-components/report/reportDownload";
+import ReportDownload from "sharedComponents/report/reportDownload";
 
 // prime components 
 import { Button } from 'primereact/button';
 
 // shared components 
-import HFNLoading from 'shared-components/lazyLoading/Loading';
+import HFNLoading from 'sharedComponents/lazyLoading/Loading';
 
-import HFNDynamicForm from "shared-components/hfn-form/index";
+import HFNDynamicForm from "sharedComponents/hfnForm/index";
 
 // options
-import { optionsDefaultValue } from 'shared-components/report/options';
+import { optionsDefaultValue } from 'sharedComponents/report/options';
 
 class ReportForm extends Component {
 

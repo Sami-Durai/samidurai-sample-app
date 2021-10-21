@@ -2,7 +2,7 @@ import React, { useRef, useMemo, useCallback } from "react";
 
 // components
 // shared components
-import HFNDynamicForm from "shared-components/hfn-form";
+import HFNDynamicForm from "sharedComponents/hfnForm";
 
 // utils
 import { isEmpty } from "lodash";
@@ -20,7 +20,7 @@ import CountryService from "services/standardData/country.service";
 const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTableRef }) => {
   const initValue = useRef(propInitValue);
 
-  const service = useRef(new CountryService());
+  const service = useMemo(() => new CountryService(), []);
 
   const formFields = useMemo(() => ({
     name: {
@@ -34,7 +34,19 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
         }
       }
     },
-    status_id: {
+    fc: {
+      properties: {
+        type: "MultiSelect",
+        label: "Finance Controller",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required,
+        },
+        dropdownOptions: "fc"
+      }
+    },
+    status: {
       properties: {
         type: "Select",
         label: "Status",
@@ -76,6 +88,10 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
         service: service,
         method: "addCountry",
         data: { item: data },
+        toasterMessage: {
+          success: `Country "${data.name}" has been created successfully`,
+          error: `Unable to create country ${data.name}`
+        },
         dataTable: dataTableRef
       });
     else
@@ -83,6 +99,10 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
         service: service,
         method: "updateCountry",
         data: { itemId: initValue.id, item: data },
+        toasterMessage: {
+          success: `Country "${data.name}" has been updated successfully`,
+          error: `Unable to update country ${data.name}`
+        },
         dataTable: dataTableRef
       });
   }, []);
@@ -90,7 +110,7 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
   // form submit section end
 
   return (
-    <HFNDynamicForm initialValues={initValue} fields={formFields} onFormSubmit={formOnsubmit} />
+    <HFNDynamicForm initialValues={initValue.current} fields={formFields} onFormSubmit={formOnsubmit} />
   );
 }
 

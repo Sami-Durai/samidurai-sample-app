@@ -13,7 +13,7 @@ import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 
 // shared components
-import HFNDynamicForm from "shared-components/hfn-form";
+import HFNDynamicForm from "sharedComponents/hfnForm";
 
 // utils
 import { isEmpty } from "lodash";

@@ -1,9 +1,11 @@
 
 import { ax } from "services/base";
+import { axApp } from "services/base";
 
 class CountryService {
     getCountryList(payload) {
-        return ax.post("listcountry", payload);
+        //return ax.get("dcountry", payload);
+        return axApp.get("/sampleData/countries.json", payload);
     }
 
     getCountry(id) {
@@ -23,4 +25,4 @@ class CountryService {
     }
 }
 
-export default  CountryService;
+export default CountryService;

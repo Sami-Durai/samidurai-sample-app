@@ -1,10 +1,11 @@
-import { TOGGLE, ONHIDE, ONSHOW, CUSTOM } from "store/actions/type/modalPopup";
+import { TOGGLE, ONHIDE, ONSHOW, CUSTOM } from "store/actionTypes/modalPopup";
 
 // constants
 const initialState = {
   header: "ModalPopup",
   visible: false,
   className: "sdm-popup",
+  blockScroll: true,
   onHide: () => { }
 };
 

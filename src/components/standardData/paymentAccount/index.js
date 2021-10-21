@@ -1,11 +1,11 @@
 import React from "react";
 
-const PaymentAccount = () => {
+const Organization = () => {
     return (
         <div>
-            Payment Accounts will be displayed here after development.
+            Organization will be displayed here after development.
         </div>
     );
 };
 
-export default PaymentAccount;
+export default Organization;

@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 
 // import { signOut } from "@heartfulnessinstitute/react-hfn-profile";
 
-import { APP_OPENSIDEBAR } from "store/actions/type/app";
+import { APP_OPENSIDEBAR } from "store/actionTypes/app";
 
 // components
 // prime components

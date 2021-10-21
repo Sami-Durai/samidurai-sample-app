@@ -16,9 +16,9 @@ import Sidebar from "components/layouts/Sidebar";
 import Footer from "components/layouts/Footer";
 
 // shared components 
-import HFNLoader from "shared-components/lazyLoading";
+import HFNLoader from "sharedComponents/lazyLoading";
 
-import HFNBreadCrumb from "shared-components/breadcrumb";
+import HFNBreadCrumb from "sharedComponents/breadcrumb";
 
 // utils 
 import lazy from "utils/lazy";

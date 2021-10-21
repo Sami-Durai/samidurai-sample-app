@@ -5,7 +5,7 @@ import { Route, Redirect } from "react-router-dom";
 
 // components
 // shared components
-import Unauthorized from "shared-components/logout/Unauthorized";
+import Unauthorized from "sharedComponents/logout/Unauthorized";
 
 // utils
 import { hasRouteAccess } from "utils/accessControl";

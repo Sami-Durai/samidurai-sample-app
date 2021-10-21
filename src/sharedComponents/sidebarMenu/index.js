@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { PanelMenu } from "primereact/panelmenu";
 
 // state
-import { APP_OPENSIDEBAR } from "store/actions/type/app";
+import { APP_OPENSIDEBAR } from "store/actionTypes/app";
 
 class HFNSidebarMenu extends React.PureComponent {
     addTemplate = (menus) => {

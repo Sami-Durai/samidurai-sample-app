@@ -1,11 +1,11 @@
 import React from "react";
 
-const DonationAccount = () => {
+const Organization = () => {
     return (
         <div>
-            Donation Accounts will be displayed here after development.
+            Organization will be displayed here after development.
         </div>
     );
 };
 
-export default DonationAccount;
+export default Organization;

@@ -16,12 +16,26 @@ const statusBadge = (rowData, { field }) => {
   return slug ? <div className={slug}>{status}</div> : status;
 };
 
-
 const createdDateBadge = (rowData, { field }) => {
   return (!isEmpty(rowData[field])) ? <div className="hfn-datatable-td" title={getDateString(rowData[field])}>{getDateString(rowData[field])}</div> : "-";
 };
 
+const financeControllersBadge = (rowData, { field }) => {
+  if (Array.isArray(rowData[field])) {
+    return (
+    <ul className="p-pl-2">
+    {rowData[field].map(({name, id}) => {
+        return <li key={id}> {name || "-"} </li>
+    })}
+    </ul>
+    )
+  }
+  else
+  return ""
+}  
+
 export {
   statusBadge,
-  createdDateBadge
+  createdDateBadge,
+  financeControllersBadge
 };

@@ -19,11 +19,11 @@ import { Column } from 'primereact/column';
 
 import { merge, isEmpty, isString, upperFirst } from 'lodash';
 
-import { optionsDefaultValue } from 'shared-components/datatable/options';
+import { optionsDefaultValue } from 'sharedComponents/datatable/options';
 
-import HFNDatatableToolbar from 'shared-components/datatable/HFNDatatableToolbar';
+import HFNDatatableToolbar from 'sharedComponents/datatable/HFNDatatableToolbar';
 
-import HFNDataTablePagination from 'shared-components/datatable/HFNDataTablePagination';
+import HFNDataTablePagination from 'sharedComponents/datatable/HFNDataTablePagination';
 
 class HFNDataTable extends React.PureComponent {
 
@@ -100,7 +100,6 @@ class HFNDataTable extends React.PureComponent {
   }
 
   loadData = async () => {
-
     this.setState({ loading: true });
 
     try {
@@ -108,19 +107,19 @@ class HFNDataTable extends React.PureComponent {
 
         let tableResponse = await this.state.url[this.state.method]({ lazyEvent: this.state.lazyParams, ...this.state.params }, this.state.urlPath)
 
-        if (tableResponse && tableResponse.data && !tableResponse.data.isError && Array.isArray(tableResponse.data.data)) {
+        if (tableResponse && tableResponse.data && !tableResponse.data.isError && Array.isArray(tableResponse.data.results)) {
           this.setState({
             totalRecords: parseInt(tableResponse.data.count),
-            data: tableResponse.data.data,
+            data: tableResponse.data.results,
             loading: false
-          })
+          });
         }
         else {
           this.setState({
             totalRecords: 0,
             data: [],
             loading: false
-          })
+          });
         }
       }
     }

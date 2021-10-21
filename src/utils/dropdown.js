@@ -1,76 +1,79 @@
 // store
 import appStore from "store/index";
 
-import { CLEAR, COLLEGEPOC, MODULELIST } from "store/actions/type/dropdown";
-
-// utils
-import { isEmpty, isArray, isObject } from "lodash";
-
-import { lStorage } from "utils/storage";
+import { CLEAR, GENERALSTATUS, FC } from "store/actionTypes/dropdown";
 
 // services
-import DropdownService from "services/login";
+//import DropdownService from "services/login";
 
-const getAvailableVolunteersForPOC = async (payload) => {
+const geFunctionalControllers = async () => {
   try {
-    appStore.dispatch({ type: COLLEGEPOC, payload: [] })
-
-    let userDetails = lStorage.get("dmsAuthInfo");
-
-    if (userDetails && userDetails.role_priority) {
-      let dropdownService = new DropdownService()
-      let apiResponse = await dropdownService.getVolunteersForPOC(payload)
-
-      if (apiResponse && apiResponse.data) {
-        let apiResponseData = apiResponse.data;
-        if (!apiResponseData.isError && apiResponseData.data) {
-          let rows = [], dropdownOptions;
-          if (isArray(apiResponseData.data))
-            rows = apiResponseData.data;
-          else if (isObject(apiResponseData.data))
-            rows = [apiResponseData.data];
-          dropdownOptions = rows.map(value => ({
-            label: value.name || "",
-            value: value.user_id,
-            city: value.city || "",
-            state: value.state || "",
-            zone: value.zone || ""
-          }));
-          appStore.dispatch({ type: COLLEGEPOC, payload: dropdownOptions })
-        }
+    appStore.dispatch({ type: FC, payload: [] });
+    //const dropdownService = new DropdownService();
+    //const apiResponse = await dropdownService.getFCList();
+    const apiResponse = {
+      data: {
+        results:
+          [
+            {
+              name: "Sami",
+              id: 10
+            },
+            {
+              name: "Durai",
+              id: 11
+            }
+          ]
       }
+    };
+
+    if (apiResponse && apiResponse.data && !apiResponse.data.isError && Array.isArray(apiResponse.data.results)) {
+      const results = apiResponse.data.results;
+      appStore.dispatch({ type: FC, payload: results.map(({ name, id }) => ({ label: name, value: id })) });
     }
   }
   catch {
     console.log("Something went wrong.");
   }
-}
+};
 
-const getModuleDropdown = async () => {
-  let dd = appStore.getState().dropdownDetails;
-
-  if (isEmpty(dd.discipline)) {
-    let dropdownService = new DropdownService()
-    let apiResponse = await dropdownService.getModuleList()
-    if (apiResponse && apiResponse.data) {
-      let apiResponseData = apiResponse.data;
-
-      if (!apiResponseData.isError) {
-        let dropdownOptions = apiResponseData.data.map(value => {
-          return { label: value.module_name, value: value.module_id }
-        });
-        appStore.dispatch({ type: MODULELIST, payload: dropdownOptions })
+const getGeneralStatuses = async () => {
+  try {
+    appStore.dispatch({ type: GENERALSTATUS, payload: [] });
+    //const dropdownService = new DropdownService();
+    //const apiResponse = await dropdownService.getGeneralStatusList();
+    const apiResponse = {
+      data: {
+        results:
+          [
+            {
+              name: "Active",
+              id: 1
+            },
+            {
+              name: "In Active",
+              id: 2
+            }
+          ]
       }
+    };
+
+    if (apiResponse && apiResponse.data && !apiResponse.data.isError && Array.isArray(apiResponse.data.results)) {
+      const results = apiResponse.data.results;
+      appStore.dispatch({ type: GENERALSTATUS, payload: results.map(({ name, id }) => ({ label: name, value: id })) });
     }
   }
-}
+  catch {
+    console.log("Something went wrong.");
+  }
+};
 
 const clearDropdown = () => {
   appStore.dispatch({ type: CLEAR })
-}
+};
 
 export default {
   clear: clearDropdown,
-  collegePOC: getAvailableVolunteersForPOC,
-  moduleList: getModuleDropdown
+  fc: geFunctionalControllers,
+  generalStatus: getGeneralStatuses
 };

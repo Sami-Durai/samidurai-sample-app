@@ -1,5 +1,4 @@
-
-import { LOGIN, SIGNUP, LOGOUT, SHOWLOGIN } from "store/actions/type/login";
+import { LOGIN, SIGNUP, LOGOUT, SHOWLOGIN } from "store/actionTypes/login";
 
 // storage
 import { lStorage } from "utils/storage";

@@ -1,7 +1,7 @@
 // store
 import appStore from "store";
 
-import { SETREF, SUCCESS, INFO, WARN, ERROR, CUSTOM } from "store/actions/type/toaster";
+import { SETREF, SUCCESS, INFO, WARN, ERROR, CUSTOM } from "store/actionTypes/toaster";
 
 const toaster = {
   setRef: (ref) => appStore.dispatch({ type: SETREF,  payload: ref }),
