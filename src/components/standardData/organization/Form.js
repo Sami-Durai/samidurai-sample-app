@@ -14,7 +14,7 @@ import response from "utils/response";
 import { getLoginID } from "utils/login";
 
 // services
-import Service from "services/standardData/country.service";
+import Service from "services/standardData/organization.service";
 
 // form component
 const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTableRef }) => {
@@ -27,6 +27,85 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
       properties: {
         type: "InputText",
         label: "Name",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
+    dcountry: {
+      properties: {
+        type: "Select",
+        label: "Country",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        },
+        dropdownOptions: "country"
+      }
+    },
+    legal_name: {
+      properties: {
+        type: "InputText",
+        label: "Legal Name",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
+    business_address: {
+      properties: {
+        type: "InputText",
+        label: "Business Address",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
+    pan: {
+      properties: {
+        type: "InputText",
+        label: "PAN",
+        primeFieldProps: {
+        },
+        validations: {
+          pattern: validations.panNo,
+          required: validations.required
+        }
+      }
+    },
+    tan: {
+      properties: {
+        type: "InputText",
+        label: "TAN",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
+    gst: {
+      properties: {
+        type: "InputText",
+        label: "GST",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
+    certified80g: {
+      properties: {
+        type: "InputSwitch",
+        label: "Certified 80G",
         primeFieldProps: {
         },
         validations: {
@@ -65,22 +144,22 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
     if (!isEditable)
       await response.add({
         service: service,
-        method: "addCountry",
+        method: "addOrganization",
         data: { item: data },
         toasterMessage: {
-          success: `Country "${data.name}" has been created successfully`,
-          error: `Unable to create country ${data.name}`
+          success: `Organization "${data.name}" has been created successfully`,
+          error: `Unable to create organization ${data.name}`
         },
         dataTable: dataTableRef
       });
     else
       await response.update({
         service: service,
-        method: "updateCountry",
+        method: "updateOrganization",
         data: { itemId: initValue.id, item: data },
         toasterMessage: {
-          success: `Country "${data.name}" has been updated successfully`,
-          error: `Unable to update country ${data.name}`
+          success: `Organization "${data.name}" has been updated successfully`,
+          error: `Unable to update organization ${data.name}`
         },
         dataTable: dataTableRef
       });

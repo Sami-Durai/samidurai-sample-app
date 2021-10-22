@@ -6,7 +6,7 @@ import { withRouter } from "react-router";
 // react redux 
 import { connect } from "react-redux";
 
-// import { signOut } from "@heartfulnessinstitute/react-hfn-profile";
+import { signOut } from "@heartfulnessinstitute/react-hfn-profile";
 
 import { APP_OPENSIDEBAR } from "store/actionTypes/app";
 
@@ -49,7 +49,7 @@ class Header extends Component {
   logout = () => {
     lStorage.clear();
     this.props.history.push("/login");
-    //signOut();
+    signOut();
   }
   // logout section end
 
@@ -67,7 +67,7 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    const userDetails = lStorage.get("dmsAuthInfo");
+    const userDetails = lStorage.get("authInfo");
     this.setState({ userDetails: userDetails });
   }
 

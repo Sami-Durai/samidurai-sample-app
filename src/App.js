@@ -32,7 +32,7 @@ class App extends Component {
           <div className="hfn">
             <Switch>
 
-              <Login path="/login"></Login>
+              <Login path="/login" />
 
               <AuthGuard path="/" component={LayoutContainer} />
 

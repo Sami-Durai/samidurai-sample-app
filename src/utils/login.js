@@ -2,23 +2,23 @@
 import { lStorage } from "utils/storage";
 
 export const getLoginID = () => {
-  const loginDetails = lStorage.get("dmsAuthInfo");
+  const loginDetails = lStorage.get("authInfo");
   return (loginDetails && loginDetails.id) ? loginDetails.id : null;
 };
 
 export const getLoginName = () => {
-  const loginDetails = lStorage.get("dmsAuthInfo");
+  const loginDetails = lStorage.get("authInfo");
   return (loginDetails && loginDetails.name) ? loginDetails.name : "";
 };
 
 
 export const getLoginRole = () => {
-  const loginDetails = lStorage.get("dmsAuthInfo");
+  const loginDetails = lStorage.get("authInfo");
   return (loginDetails && loginDetails.role) ? loginDetails.role : "";
 };
 
 export const getLoginUer = () => {
-  const loginDetails = lStorage.get("dmsAuthInfo");
+  const loginDetails = lStorage.get("authInfo");
 
   return (loginDetails ? {
     id: loginDetails.id || null,
@@ -34,3 +34,8 @@ export const getLoginUer = () => {
     ashram: loginDetails.ashram || null
   } : {})
 };
+
+export const isLoginAuth = () => {
+  let loginDetails = lStorage.get("authInfo");
+  return (loginDetails && loginDetails.token) ? true : false;
+}

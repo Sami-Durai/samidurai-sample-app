@@ -14,4 +14,15 @@ config.appURL = `${window.location.protocol}//${window.location.hostname}:${wind
 
 config.maxAllowedFileSize = 20;
 
+config.donationAccountTypeList = [
+  {
+    name: "online",
+    value: "online",
+  },
+  {
+    name: "onsite ",
+    value: "onsite ",
+  }
+];
+
 export default config;

@@ -17,7 +17,7 @@ import confirmDialog from "utils/confirmDialog";
 
 import modalPopup from "utils/modalPopup";
 
-import { financeControllersBadge, createdDateBadge } from "utils/badgeTemplate";
+import { createdDateBadge } from "utils/badgeTemplate";
 
 import { setBulkStatus } from "utils/bulk";
 
@@ -30,7 +30,8 @@ import Service from "services/standardData/country.service";
 
 // constants
 const breadcrumbs = [
-    { label: "Country", url: "", }
+    { label: "Dashboard", url: "dashboard", icon: 'pi pi-home' },
+    { label: "Country", url: "" }
 ];
 
 const formInitValue = {};
@@ -42,7 +43,6 @@ const Country = () => {
     useEffect(() => {
         buildBreadcrumb(breadcrumbs);
         dropdown.generalStatus();
-        dropdown.fc();
     }, []);
 
     const tableRef = useRef(null);
@@ -75,7 +75,6 @@ const Country = () => {
             initValue: {
                 id: rowData.id,
                 name: rowData.name,
-                fc: Array.isArray(rowData.fc) ? rowData.fc.map(({ name, id }) => ({ label: name, value: id })) : [],
                 status: rowData.status ? { label: rowData.status.name, value: rowData.status.id } : null
             },
             isEditable: true
@@ -123,23 +122,8 @@ const Country = () => {
                 sortable: true,
                 filter: true,
                 headerStyle: {
-                    width: "150px"
+                    minWidth: "150px"
                 }
-            },
-            {
-                header: "Finance Controller",
-                field: "fc",
-                sortable: true,
-                filter: true,
-                filterType: "select",
-                filterElementOptions: {
-                    type: "Dropdown",
-                    value: "fc"
-                },
-                headerStyle: {
-                    width: "200px"
-                },
-                body: financeControllersBadge
             },
             {
                 header: "Status",
@@ -154,7 +138,7 @@ const Country = () => {
                     value: "generalStatus"
                 },
                 headerStyle: {
-                    width: "100px"
+                    minWidth: "100px"
                 }
             },
             {
@@ -169,7 +153,7 @@ const Country = () => {
                     }
                 },
                 headerStyle: {
-                    width: "100px"
+                    minWidth: "100px"
                 },
                 body: createdDateBadge
             }
@@ -177,9 +161,11 @@ const Country = () => {
 
         actionBtnOptions: [
             {
+                title: "update country",
                 onClick: editItem
             },
             {
+                title: "Delete country",
                 onClick: (ev, rowData) => {
                     confirmDialog.custom({
                         message: "Are you sure you want to delete this country? This may affect other screens",
@@ -191,7 +177,7 @@ const Country = () => {
         ],
 
         toolBarBtnOptions: {
-            title: "Country List",
+            title: "Donation Country List",
             selection: {
                 field: {
                     options: "generalStatus"

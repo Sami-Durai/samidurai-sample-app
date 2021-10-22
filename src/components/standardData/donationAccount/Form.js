@@ -14,7 +14,7 @@ import response from "utils/response";
 import { getLoginID } from "utils/login";
 
 // services
-import Service from "services/standardData/country.service";
+import Service from "services/standardData/donationAccount.service";
 
 // form component
 const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTableRef }) => {
@@ -32,6 +32,53 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
         validations: {
           required: validations.required
         }
+      }
+    },
+    dorg: {
+      properties: {
+        type: "Select",
+        label: "Organization",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        },
+        dropdownOptions: "organization"
+      }
+    },
+    payment_gateway: {
+      properties: {
+        type: "InputText",
+        label: "Payment Gateway",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
+    contact_email: {
+      properties: {
+        type: "InputText",
+        label: "Contact Email",
+        primeFieldProps: {
+        },
+        validations: {
+          pattern: validations.email,
+          required: validations.required
+        }
+      }
+    },
+    account_type: {
+      properties: {
+        type: "Select",
+        label: "Account Type",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        },
+        dropdownOptions: "accountType"
       }
     },
     status: {
@@ -65,22 +112,22 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
     if (!isEditable)
       await response.add({
         service: service,
-        method: "addCountry",
+        method: "addDonationAccount",
         data: { item: data },
         toasterMessage: {
-          success: `Country "${data.name}" has been created successfully`,
-          error: `Unable to create country ${data.name}`
+          success: `Donation account "${data.name}" has been created successfully`,
+          error: `Unable to create donation account ${data.name}`
         },
         dataTable: dataTableRef
       });
     else
       await response.update({
         service: service,
-        method: "updateCountry",
+        method: "updateDonationAccount",
         data: { itemId: initValue.id, item: data },
         toasterMessage: {
-          success: `Country "${data.name}" has been updated successfully`,
-          error: `Unable to update country ${data.name}`
+          success: `Donation account "${data.name}" has been updated successfully`,
+          error: `Unable to update donation account ${data.name}`
         },
         dataTable: dataTableRef
       });

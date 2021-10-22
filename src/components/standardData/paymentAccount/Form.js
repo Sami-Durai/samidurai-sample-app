@@ -14,7 +14,7 @@ import response from "utils/response";
 import { getLoginID } from "utils/login";
 
 // services
-import Service from "services/standardData/country.service";
+import Service from "services/standardData/paymentAccount.service";
 
 // form component
 const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTableRef }) => {
@@ -34,6 +34,41 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
         }
       }
     },
+    dorg: {
+      properties: {
+        type: "Select",
+        label: "Organization",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        },
+        dropdownOptions: "organization"
+      }
+    },
+    payment_gateway: {
+      properties: {
+        type: "InputText",
+        label: "Payment Gateway",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
+    contact_email: {
+      properties: {
+        type: "InputText",
+        label: "Contact Email",
+        primeFieldProps: {
+        },
+        validations: {
+          pattern: validations.email,
+          required: validations.required
+        }
+      }
+    },
     status: {
       properties: {
         type: "Select",
@@ -41,7 +76,7 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
         primeFieldProps: {
         },
         validations: {
-          required: validations.required,
+          required: validations.required
         },
         dropdownOptions: "generalStatus"
       }
@@ -65,22 +100,22 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
     if (!isEditable)
       await response.add({
         service: service,
-        method: "addCountry",
+        method: "addPaymentAccount",
         data: { item: data },
         toasterMessage: {
-          success: `Country "${data.name}" has been created successfully`,
-          error: `Unable to create country ${data.name}`
+          success: `Payment Account "${data.name}" has been created successfully`,
+          error: `Unable to create payment Account ${data.name}`
         },
         dataTable: dataTableRef
       });
     else
       await response.update({
         service: service,
-        method: "updateCountry",
+        method: "updatePaymentAccount",
         data: { itemId: initValue.id, item: data },
         toasterMessage: {
-          success: `Country "${data.name}" has been updated successfully`,
-          error: `Unable to update country ${data.name}`
+          success: `Payment Account "${data.name}" has been updated successfully`,
+          error: `Unable to update payment Account ${data.name}`
         },
         dataTable: dataTableRef
       });

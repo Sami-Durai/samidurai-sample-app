@@ -59,9 +59,8 @@ class DashboardContainer extends Component {
                   <AuthGuard path="/dashboard"                  component={Dashboard             } />
                   <AuthGuard path="/donation-collectors"        component={DonationCollector     } />
                   <AuthGuard path='/standard-data'              component={StandardData          } />
-                  <Route exact path="/" />
-                  <Route>
-                    <Redirect to="/" />
+                  <Route exact path="/">
+                    <Redirect to="/dashboard" />
                   </Route>
                 </Switch>
               </HFNLoader>

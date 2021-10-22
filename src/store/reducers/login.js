@@ -5,7 +5,7 @@ import { lStorage } from "utils/storage";
 
 // constants
 const loginState = {
-  login: (lStorage.get("dmsAuthInfo")) ? lStorage.get("dmsAuthInfo") : {
+  login: (lStorage.get("authInfo")) ? lStorage.get("authInfo") : {
     id: null,
     isUser: false,
     userRole: null,

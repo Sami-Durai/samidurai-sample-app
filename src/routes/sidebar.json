@@ -3,6 +3,11 @@
     "role": "sa",
     "routes": [
       {
+        "url": "dashboard",
+        "label": "Dashboard",
+        "icon": "uil uil-books"
+      },
+      {
         "url": "finance-controllers",
         "label": "Manage Finance Controller",
         "icon": "uil uil-books"
@@ -69,6 +74,11 @@
     "role": "fc",
     "routes": [
       {
+        "url": "dashboard",
+        "label": "Dashboard",
+        "icon": "uil uil-books"
+      },
+      {
         "url": "ashram-managers",
         "label": "Manage Ashram Manager",
         "icon": "uil uil-books"
@@ -115,6 +125,11 @@
     "role": "am",
     "routes": [
       {
+        "url": "dashboard",
+        "label": "Dashboard",
+        "icon": "uil uil-books"
+      },
+      {
         "url": "donation-collectors",
         "label": "Manage Office Staff",
         "icon": "uil uil-books"
@@ -144,6 +159,11 @@
   {
     "role": "sg",
     "routes": [
+      {
+        "url": "dashboard",
+        "label": "Dashboard",
+        "icon": "uil uil-books"
+      }
     ]
   }
 ]

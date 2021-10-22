@@ -5,7 +5,21 @@ import { isEmpty } from "lodash";
 
 import { getDateString } from "utils/common";
 
-const statusBadge = (rowData, { field }) => {
+export const ObjArrayBadge = (rowData, { field }) => {
+  if (Array.isArray(rowData[field])) {
+    return (
+      <ul className="p-pl-2">
+        {rowData[field].map(({ name, id }) => {
+          return <li key={id} title={name || ""}> {name || "-"} </li>
+        })}
+      </ul>
+    )
+  }
+  else
+    return ""
+};
+
+export const statusBadge = (rowData, { field }) => {
   let status = rowData[field];
   let slug = "";
   if (!isEmpty(rowData.status)) {
@@ -16,26 +30,16 @@ const statusBadge = (rowData, { field }) => {
   return slug ? <div className={slug}>{status}</div> : status;
 };
 
-const createdDateBadge = (rowData, { field }) => {
+export const createdDateBadge = (rowData, { field }) => {
   return (!isEmpty(rowData[field])) ? <div className="hfn-datatable-td" title={getDateString(rowData[field])}>{getDateString(rowData[field])}</div> : "-";
 };
 
-const financeControllersBadge = (rowData, { field }) => {
-  if (Array.isArray(rowData[field])) {
-    return (
-    <ul className="p-pl-2">
-    {rowData[field].map(({name, id}) => {
-        return <li key={id}> {name || "-"} </li>
-    })}
-    </ul>
-    )
-  }
-  else
-  return ""
-}  
-
-export {
-  statusBadge,
-  createdDateBadge,
-  financeControllersBadge
-};
+export const certified80gBadge = (rowData, { field }) => {
+  return (
+    (typeof rowData[field] === "boolean")
+      ?
+      <div className="hfn-datatable-td" title={rowData[field] ? "Yes" : "No"}> {rowData[field] ? "Yes" : "No"} </div>
+      :
+      "-"
+  );
+}

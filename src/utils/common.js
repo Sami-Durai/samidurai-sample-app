@@ -182,11 +182,6 @@ export const getAttachmentIcon = (fileExtension) => {
   )
 }
 
-export const isLoginAuth = () => {
-  let loginDetails = lStorage.get("dmsAuthInfo");
-  return (loginDetails && loginDetails.token) ? true : false;
-}
-
 export const getResponseMessage = (apiResponseData) => {
   let errMsg = "", message, errObj;
 

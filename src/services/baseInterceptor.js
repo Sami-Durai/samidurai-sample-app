@@ -12,7 +12,7 @@ import { logout } from "utils/common";
 const interceptor = ax => {
   ax.interceptors.request.use(
     config => {
-      let token = lStorage.get("dmsAuthInfo") ? lStorage.get("dmsAuthInfo").token : null;
+      let token = lStorage.get("authInfo") ? lStorage.get("authInfo").token : null;
       config.headers = {
         "Authorization": `Bearer ${token}`
       }

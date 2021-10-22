@@ -2,12 +2,24 @@
 import { ax } from "services/base";
 
 class DropdownService {
-    getFCList() {
+    getGeneralStatusList() {
+        return ax.get("dropdown/generalStatus");
+    }
+
+    getCountryList() {
+        return ax.get("dropdown/country");
+    }
+
+    getOrganizationList() {
+        return ax.get("dropdown/organization");
+    }
+
+    getFinanceControllerList() {
         return ax.get("dropdown/fc");
     }
 
-    getGeneralStatusList() {
-        return ax.get("dropdown/generalStatus");
+    getAshramManagerList() {
+        return ax.get("dropdown/am");
     }
 }
 

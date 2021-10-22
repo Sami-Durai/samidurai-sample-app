@@ -10,7 +10,7 @@ import Unauthorized from "sharedComponents/logout/Unauthorized";
 // utils
 import { hasRouteAccess } from "utils/accessControl";
 
-import { isLoginAuth } from "utils/common";
+import { isLoginAuth } from "utils/login";
 
 const AuthGuard = ({ component: Component, ...rest }) => {
   const hasAccess = hasRouteAccess(rest.computedMatch.path);

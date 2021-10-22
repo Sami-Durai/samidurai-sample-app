@@ -4,6 +4,7 @@
      "route":[
         "/",
         "account",
+        "dashboard",
         "finance-controllers",
         "ashram-managers",
         "donation-collectors",
@@ -23,6 +24,7 @@
      "route":[
         "/",
         "account",
+        "dashboard",
         "ashram-managers",
         "donation-collectors",
         "onsite-transactions",
@@ -38,6 +40,7 @@
      "route":[
         "/",
         "account",
+        "dashboard",
         "donation-collectors",
         "donations"
      ]
@@ -55,7 +58,8 @@
      "role":"sg",
      "route":[
         "/",
-        "account"
+        "account",
+        "dashboard"
      ]
   }
 ]

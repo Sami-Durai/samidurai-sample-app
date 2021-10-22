@@ -1,0 +1,67 @@
+{
+    "count": 6,
+    "previous": "",
+    "next": "",
+    "results": [
+        {
+            "id": 1,
+            "name": "sa",
+            "display_name": "Super Admin",
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 2,
+            "name": "fc",
+            "display_name": "Finance Controller",
+            "created_at": "2021-10-21T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 3,
+            "name": "am",
+            "display_name": "Ashram Manager",
+            "created_at": "2021-10-21T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 4,
+            "name": "dc",
+            "display_name": "Donation Collector",
+            "created_at": "2021-10-21T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 5,
+            "name": "sg",
+            "display_name": "Special Guest",
+            "created_at": "2021-10-21T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        }
+    ]
+}
