@@ -23,7 +23,7 @@ const SideBar = () => {
     <div className="sidebar">
       <div className="header-section">
         <Link to="/">
-          <img src="/assets//logo.png" alt="heartfulness" />
+          <img src="/assets/logo.png" alt="heartfulness" />
         </Link>
       </div>
       <div className="panel-menu">

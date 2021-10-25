@@ -50,7 +50,7 @@ class HFNErrorBoundary extends React.Component {
         <div className="error-boundary-section p-mt-4">
           <div className="p-p-4 p-p-4">
             <div className="p-mb-4 p-text-center">
-              <img src="/assets//logo.png" alt="heartfulness" />
+              <img src="/assets/logo.png" alt="heartfulness" />
             </div>
             <div className="p-text-center p-text-normal"> Oops! Something went wrong </div>
             <div className="p-field p-text-center p-mx-6 p-mb-6 p-mt-5">

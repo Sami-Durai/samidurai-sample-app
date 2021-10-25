@@ -11,7 +11,7 @@ import { CSVLink } from "react-csv";
 // prime components 
 import { Paginator } from 'primereact/paginator';
 
-import fileDownload from 'assets//icons/download_file.png'
+import fileDownload from 'assets/icons/download_file.png'
 
 class ReportDownload extends Component {
 

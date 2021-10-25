@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
 // components
-import { HfnFirebaseAuth } from "@heartfulnessinstitute/react-hfn-profile";
+import { HfnFirebaseAuth,  } from "@heartfulnessinstitute/react-hfn-profile";
 
 // primereact components 
 import { Card } from "primereact/card";
@@ -55,7 +55,7 @@ const Login = () => {
       <div className="card-wrapper">
 
         <div className="loging-logo p-px-2 p-mx-5 p-mx-md-0 p-mb-4 p-text-center">
-          <img src="/assets//logo.png" alt="heartfulness" />
+          <img src="/assets/logo.png" alt="heartfulness" />
         </div>
 
         <Card>
