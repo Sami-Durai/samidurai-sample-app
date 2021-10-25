@@ -7,7 +7,7 @@ import { REQUESTERROR } from "store/actionTypes/toaster";
 import { lStorage } from "utils/storage";
 
 // utils
-import { logout } from "utils/common";
+import { logout } from "utils/login";
 
 const interceptor = ax => {
   ax.interceptors.request.use(

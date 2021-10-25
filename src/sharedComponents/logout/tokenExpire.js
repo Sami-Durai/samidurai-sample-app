@@ -1,18 +1,18 @@
-import React, { useCallback } from 'react';
+import React, { useCallback } from "react";
 
 // router
 import { useHistory } from "react-router";
 
 // state 
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 // prime components
-import { Dialog } from 'primereact/dialog';
+import { Dialog } from "primereact/dialog";
 
-import { Button } from 'primereact/button';
+import { Button } from "primereact/button";
 
 // utils
-import { showLogin } from 'utils/common';
+import { showLogin } from "utils/login";
 
 const TokenExpire = () => {
   const expired = useSelector(state => state.loginDetails.expired);
@@ -21,7 +21,7 @@ const TokenExpire = () => {
 
   const login = useCallback(() => {
     showLogin();
-    history.push('/login');
+    history.push("/login");
   }, []);
 
   return (

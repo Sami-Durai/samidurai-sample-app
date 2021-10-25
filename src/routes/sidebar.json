@@ -5,66 +5,60 @@
       {
         "url": "dashboard",
         "label": "Dashboard",
-        "icon": "uil uil-books"
+        "icon": "uil uil-home-alt"
       },
       {
         "url": "finance-controllers",
         "label": "Manage Finance Controller",
-        "icon": "uil uil-books"
+        "icon": "uil uil-users-alt"
       },
       {
         "url": "ashram-managers",
         "label": "Manage Ashram Manager",
-        "icon": "uil uil-books"
+        "icon": "uil uil-users-alt"
       },
       {
         "url": "donation-collectors",
         "label": "Manage Office Staff",
-        "icon": "uil uil-books"
+        "icon": "uil uil-users-alt"
       },
       {
         "url": "onsite-transactions",
         "label": "Manage Onsite Transaction",
-        "icon": "uil uil-books"
+        "icon": "uil uil-coins"
       },
       {
         "url": "online-transactions",
         "label": "Manage Online Transaction",
-        "icon": "uil uil-books"
+        "icon": "uil uil-credit-card"
       },
       {
         "label": "Standard Data",
-        "icon": "uil uil-books",
+        "icon": "uil uil-database",
         "items": [
           {
             "url": "standard-data/countries",
-            "label": "Donation Country",
-            "icon": "uil uil-books"
+            "label": "Donation Country"
           },
           {
             "url": "standard-data/ashrams",
-            "label": "Donation Center / Ashram",
-            "icon": "uil uil-books"
+            "label": "Donation Center / Ashram"
           },
           {
             "url": "standard-data/organizations",
-            "label": "Donation Organization",
-            "icon": "uil uil-books"
+            "label": "Donation Organization"
           },
           {
             "url": "standard-data/donation-accounts",
-            "label": "Donation Accounts",
-            "icon": "uil uil-books"
+            "label": "Donation Accounts"
           },
           {
             "url": "standard-data/payment-accounts",
-            "label": "Payment Accounts",
-            "icon": "uil uil-books"
+            "label": "Payment Accounts"
           },
           {
             "url": "standard-data/roles",
-            "label": "Donation Roles",
-            "icon": "uil uil-books"
+            "label": "Donation Roles"
           }
         ]
       }
@@ -76,46 +70,43 @@
       {
         "url": "dashboard",
         "label": "Dashboard",
-        "icon": "uil uil-books"
+        "icon": "uil uil-home-alt"
       },
       {
         "url": "ashram-managers",
         "label": "Manage Ashram Manager",
-        "icon": "uil uil-books"
+        "icon": "uil uil-users-alt"
       },
       {
         "url": "donation-collectors",
         "label": "Manage Office Staff",
-        "icon": "uil uil-books"
+        "icon": "uil uil-users-alt"
       },
       {
         "url": "onsite-transactions",
         "label": "Manage Onsite Transaction",
-        "icon": "uil uil-books"
+        "icon": "uil uil-coins"
       },
       {
         "url": "online-transactions",
         "label": "Manage Online Transaction",
-        "icon": "uil uil-books"
+        "icon":"uil uil-credit-card"
       },
       {
         "label": "Standard Data",
-        "icon": "uil uil-books",
+        "icon": "uil uil-database",
         "items": [
           {
             "url": "standard-data/organizations",
-            "label": "Donation Organization",
-            "icon": "uil uil-books"
+            "label": "Donation Organization"
           },
           {
             "url": "standard-data/donation-accounts",
-            "label": "Donation Accounts",
-            "icon": "uil uil-books"
+            "label": "Donation Accounts"
           },
           {
             "url": "standard-data/payment-accounts",
-            "label": "Payment Accounts",
-            "icon": "uil uil-books"
+            "label": "Payment Accounts"
           }
         ]
       }
@@ -127,17 +118,17 @@
       {
         "url": "dashboard",
         "label": "Dashboard",
-        "icon": "uil uil-books"
+        "icon": "uil uil-home-alt"
       },
       {
         "url": "donation-collectors",
         "label": "Manage Office Staff",
-        "icon": "uil uil-books"
+        "icon": "uil uil-users-alt"
       },
       {
         "url": "donations",
         "label": "Manage Donation",
-        "icon": "uil uil-books"
+        "icon": "uil uil-coins"
       }
     ]
   },
@@ -147,12 +138,12 @@
       {
         "url": "dashboard",
         "label": "Dashboard",
-        "icon": "uil uil-books"
+        "icon": "uil uil-home-alt"
       },
       {
         "url": "donations",
         "label": "Manage Donation",
-        "icon": "uil uil-books"
+        "icon": "uil uil-coins"
       }
     ]
   },
@@ -162,7 +153,7 @@
       {
         "url": "dashboard",
         "label": "Dashboard",
-        "icon": "uil uil-books"
+        "icon": "uil uil-home-alt"
       }
     ]
   }

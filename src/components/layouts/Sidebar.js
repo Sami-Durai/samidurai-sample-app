@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -12,31 +12,25 @@ import { getLoginRole } from "utils/login";
 // routes
 import sideBarRoutes from "routes/sidebar.json";
 
-class SideBar extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const SideBar = () => {
+  const sideBarMenu = useMemo(() => {
+    const roleInfo = getLoginRole();
+    const sideBarMenu = sideBarRoutes.find(menu => menu.role === roleInfo.role);
+    return (sideBarMenu && Array.isArray(sideBarMenu.routes)) ? sideBarMenu.routes : [];
+  }, []);
 
-    // variable init start
-    const role = getLoginRole();
-    const sideBarMenu = sideBarRoutes.find(menu => menu.role === role);
-    this.sideBarMenu = (sideBarMenu && Array.isArray(sideBarMenu.routes)) ? sideBarMenu.routes : [] ;
-    // variable init end
-  }
-
-  render() {
-    return (
-      <div className="sidebar">
-        <div className="header-section">
-          <Link to="/">
-            <img src="/assets//logo.png" alt="heartfulness" />
-          </Link>
-        </div>
-        <div className="panel-menu">
-          <HFNSidebarMenu sidebarMenuList={this.sideBarMenu} />
-        </div>
+  return (
+    <div className="sidebar">
+      <div className="header-section">
+        <Link to="/">
+          <img src="/assets//logo.png" alt="heartfulness" />
+        </Link>
       </div>
-    )
-  }
-}
+      <div className="panel-menu">
+        <HFNSidebarMenu sidebarMenuList={sideBarMenu} />
+      </div>
+    </div>
+  );
+};
 
 export default SideBar;

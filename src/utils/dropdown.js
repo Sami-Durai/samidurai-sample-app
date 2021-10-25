@@ -1,7 +1,7 @@
 // store
 import appStore from "store/index";
 
-import { CLEAR, GENERALSTATUS, COUNTRY, ORGANIZATION, FC, AM, ACCOUNTTYPE } from "store/actionTypes/dropdown";
+import { CLEAR, GENERALSTATUS, COUNTRY, ORGANIZATION, ASHRAM, FC, AM, ACCOUNTTYPE } from "store/actionTypes/dropdown";
 
 // services
 //import DropdownService from "services/login";
@@ -110,6 +110,41 @@ const getOrganizations = async () => {
   }
 };
 
+const getAshrams = async () => {
+  try {
+    appStore.dispatch({ type: ASHRAM, payload: [] });
+    //const dropdownService = new DropdownService();
+    //const apiResponse = await dropdownService.getOrganizationList();
+    const apiResponse = {
+      data: {
+        results:
+          [
+            {
+              name: "Babuji Memorial Ashram, Chennai",
+              id: 1
+            },
+            {
+              name: "Satkhol Himalayan Ashram",
+              id: 2
+            },
+            {
+              name: "Shahjahanpur, Uttar Pradesh",
+              id: 3
+            }
+          ]
+      }
+    };
+
+    if (apiResponse && apiResponse.data && !apiResponse.data.isError && Array.isArray(apiResponse.data.results)) {
+      const results = apiResponse.data.results;
+      appStore.dispatch({ type: ASHRAM, payload: results.map(({ name, id }) => ({ label: name, value: id })) });
+    }
+  }
+  catch {
+    console.log("Something went wrong.");
+  }
+};
+
 const getFinanceControllers = async () => {
   try {
     appStore.dispatch({ type: FC, payload: [] });
@@ -203,6 +238,7 @@ export default {
   generalStatus: getGeneralStatuses,
   country: getCountries,
   organization: getOrganizations,
+  ashram: getAshrams,
   fc: getFinanceControllers,
   am: getAshramManagers,
   accountType: getAccountTypes

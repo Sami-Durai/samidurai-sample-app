@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
 // components
-import { HfnFirebaseAuth, signOut } from "@heartfulnessinstitute/react-hfn-profile";
+import { HfnFirebaseAuth } from "@heartfulnessinstitute/react-hfn-profile";
 
 // primereact components 
 import { Card } from "primereact/card";
@@ -14,12 +14,9 @@ import { isLoginAuth } from "utils/login";
 
 import { lStorage } from "utils/storage";
 
-import toaster from "utils/toaster";
-
 import credentials from "assets/data/credentials.json";
 
 const Login = () => {
-
   let history = useHistory();
 
   const [loginCheck, setLoginCheck] = useState(false);
@@ -32,19 +29,23 @@ const Login = () => {
   const processLogin = useCallback(async ({ myInfo }) => {
     if (myInfo) {
       setLoginCheck(true);
-      if (myInfo.email) {
-        const user = credentials.find(({ email_address }) => email_address === myInfo.email);
-        if (user) {
-          lStorage.set("authInfo", user);
-          setTimeout(() => {
-            history.push("/dashboard");
-          });
-        }
-        else {
-          toaster.error("Invalid credentials");
-          signOut();
-          setLoginCheck(false);
-        }
+      if (myInfo.id) {
+        
+        const roleInfo = credentials.find(({ email_address }) => email_address === myInfo.email);
+
+        const user = {
+          id: myInfo.id,
+          name: myInfo.name,
+          email: myInfo.email,
+          photo_url: myInfo.photo_url,
+          role: roleInfo ? roleInfo.role : { role: "sa", name: "Super Admin", slug: "super_admin" },
+          token: "xyz"
+        };
+
+        lStorage.set("authInfo", user);
+        setTimeout(() => {
+          history.push("/dashboard");
+        });
       }
     }
   }, []);
@@ -60,7 +61,7 @@ const Login = () => {
         <Card>
           <div className="login">
             <HfnFirebaseAuth doLogin={processLogin} />
-            {loginCheck ? <div className="p-text-center p-m-4 p-text-bold"> Validating... </div> : null}
+            {loginCheck ? <div className="p-text-center p-m-4 p-text-bold"> Fetching info... </div> : null}
           </div>
         </Card>
       </div>

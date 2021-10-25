@@ -1,4 +1,4 @@
-import { LOGIN, SIGNUP, LOGOUT, SHOWLOGIN } from "store/actionTypes/login";
+import { LOGIN, LOGOUT, SHOWLOGIN } from "store/actionTypes/login";
 
 // storage
 import { lStorage } from "utils/storage";
@@ -7,14 +7,11 @@ import { lStorage } from "utils/storage";
 const loginState = {
   login: (lStorage.get("authInfo")) ? lStorage.get("authInfo") : {
     id: null,
-    isUser: false,
-    userRole: null,
     name: null,
     email: null,
-    avatar: null
-  },
-  signup: {
-    signupMessage: "React Signup"
+    role: {},
+    avatar: null,
+    token: null
   },
   expired: false
 };
@@ -27,8 +24,6 @@ const loginDetails = (state = loginState, action) => {
         ...state,
         login: action.payload
       }
-    case SIGNUP:
-      return { ...state, signup: action.payload }
     case LOGOUT:
       return {
         ...state,
@@ -39,11 +34,11 @@ const loginDetails = (state = loginState, action) => {
         ...state,
         login: {
           id: null,
-          isUser: false,
-          userRole: null,
           name: null,
           email: null,
-          avatar: null
+          role: {},
+          avatar: null,
+          token: null
         },
         expired: false
       }

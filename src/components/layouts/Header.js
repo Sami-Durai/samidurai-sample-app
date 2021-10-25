@@ -1,14 +1,9 @@
-import React, { Component } from "react";
+import React, { useRef, useMemo } from "react";
 
 // react router
-import { withRouter } from "react-router";
-
-// react redux 
-import { connect } from "react-redux";
+import { useHistory } from "react-router";
 
 import { signOut } from "@heartfulnessinstitute/react-hfn-profile";
-
-import { APP_OPENSIDEBAR } from "store/actionTypes/app";
 
 // components
 // prime components
@@ -17,96 +12,62 @@ import { Menu } from "primereact/menu";
 // utils 
 import { lStorage } from "utils/storage";
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
+import { toggleSideBar } from "utils/common";
 
-    // state management start
-    this.state = {
-      userMenuItems: [
+const Header = () => {
+  const menuRef = useRef(null);
+
+  const history = useHistory();
+
+  const user = useMemo(() => lStorage.get("authInfo"), []);
+
+  const menu = useMemo(() => ([
+    {
+      items: [
         {
-          items: [
-            {
-              label: "My Account", icon: "uil uil-user", command: () => {
-                this.openAccount()
-              }
-            },
-            {
-              label: "Logout", icon: "uil uil-sign-out-alt", command: () => {
-                this.logout()
-              }
-            },
-          ]
+          label: "My Account", icon: "uil uil-user", command: () => {
+            history.push("/account");
+          }
+        },
+        {
+          label: "Logout", icon: "uil uil-sign-out-alt", command: () => {
+            lStorage.clear();
+            signOut();
+            history.push("/login");
+          }
         }
-      ],
+      ]
+    }
+  ]), []);
 
-      userDetails: null
-    };
-    // state management end
-  }
+  return (
+    <nav className="header-nav">
 
-  // logout section start
-  logout = () => {
-    lStorage.clear();
-    this.props.history.push("/login");
-    signOut();
-  }
-  // logout section end
+      <div className="menu-toggler" onClick={toggleSideBar}>
+        <i className="uil uil-bars"></i>
+      </div>
 
-  // user edit section start
-  openAccount = () => {
-    this.props.history.push("/account");
-  };
-  // user edit section end
+      {user && <div className="left-menu">
 
-  openSidebar = () => {
-    if (this.props.ad.isSidebarOpen)
-      this.props.dispatch({ type: APP_OPENSIDEBAR, payload: false });
-    else
-      this.props.dispatch({ type: APP_OPENSIDEBAR, payload: true });
-  }
-
-  componentDidMount() {
-    const userDetails = lStorage.get("authInfo");
-    this.setState({ userDetails: userDetails });
-  }
-
-  render() {
-    const { userDetails } = this.state;
-
-    return (
-      <nav className="header-nav">
-
-        <div className="menu-toggler" onClick={this.openSidebar}>
-          <i className="uil uil-bars"></i>
+        <div className="helper-links">
         </div>
 
-        {userDetails && <div className="left-menu">
-
-          <div className="helper-links">
-          </div>
-
-          <div className="user-info" onClick={(event) => this.menu.toggle(event)}>
-            <span className="avator">
-              <img src="/assets/avatar.png" alt="profile" />
-            </span>
-            <span className="user-name">
-              <span className="name"> {userDetails.name || ""} </span>
-              <span className="role"> {userDetails.role_name || ""} </span>
-            </span>
-          </div>
-
-          <Menu className="user-menu" model={this.state.userMenuItems} popup ref={el => this.menu = el} />
-
+        <div className="user-info" onClick={(event) => menuRef.current && menuRef.current.toggle(event)}>
+          <span className="avator">
+            <img src="/assets/avatar.png" alt="profile" />
+          </span>
+          <span className="user-name">
+            <span className="name"> {user.name || ""} </span>
+            <span className="role"> {(user.role && user.role.name) ? user.role.name : ""} </span>
+          </span>
         </div>
-        }
-      </nav>
-    )
-  }
+
+        <Menu className="user-menu" model={menu} popup ref={menuRef} />
+
+      </div>
+      }
+    </nav>
+  );
 }
 
-const mapStateToProps = (state) => ({
-  ad: state.appDetails
-});
-
-export default withRouter(connect(mapStateToProps)(Header));
+export default Header;

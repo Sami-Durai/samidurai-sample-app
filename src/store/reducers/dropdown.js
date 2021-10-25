@@ -3,6 +3,7 @@ import {
   GENERALSTATUS,
   COUNTRY,
   ORGANIZATION,
+  ASHRAM,
   FC,
   AM,
   ACCOUNTTYPE
@@ -13,6 +14,7 @@ const initialState = {
   generalStatus: [],
   country: [],
   organization: [],
+  ashram: [],
   fc: [],
   am: [],
   accountType: []
@@ -36,6 +38,10 @@ const dropdownDetails = (state = initialState, action) => {
     case ORGANIZATION:
       return {
         ...state, organization: action.payload
+      };
+    case ASHRAM:
+      return {
+        ...state, ashram: action.payload
       };
     case FC:
       return {
