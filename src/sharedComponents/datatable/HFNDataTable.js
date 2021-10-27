@@ -1,29 +1,28 @@
-/* eslint-disable array-callback-return */
-import React from 'react';
+import React from "react";
 
+// state
 import { connect } from "react-redux";
 
 // utils 
-import moment from 'moment';
+import { merge, isEmpty, isString, upperFirst } from "lodash";
 
 // primereact components 
 import { Button } from "primereact/button";
 
-import { Dropdown } from 'primereact/dropdown';
+import { Dropdown } from "primereact/dropdown";
 
-import { Calendar } from 'primereact/calendar';
+import { Calendar } from "primereact/calendar";
 
-import { DataTable } from 'primereact/datatable';
+import { DataTable } from "primereact/datatable";
 
-import { Column } from 'primereact/column';
+import { Column } from "primereact/column";
 
-import { merge, isEmpty, isString, upperFirst } from 'lodash';
+import HFNDatatableToolbar from "sharedComponents/datatable/HFNDatatableToolbar";
 
-import { optionsDefaultValue } from 'sharedComponents/datatable/options';
+import HFNDataTablePagination from "sharedComponents/datatable/HFNDataTablePagination";
 
-import HFNDatatableToolbar from 'sharedComponents/datatable/HFNDatatableToolbar';
-
-import HFNDataTablePagination from 'sharedComponents/datatable/HFNDataTablePagination';
+// options
+import { optionsDefaultValue } from "sharedComponents/datatable/options";
 
 class HFNDataTable extends React.PureComponent {
 
@@ -81,7 +80,7 @@ class HFNDataTable extends React.PureComponent {
 
       currentPage: lazyParams.page,
 
-      pageInputTooltip: 'Press \'Enter\' key to go to this page.',
+      pageInputTooltip: "Press \"Enter\" key to go to this page.",
 
       totalRecords: 0,
 
@@ -151,14 +150,14 @@ class HFNDataTable extends React.PureComponent {
   }
 
   onPageInputKeyDown = (event, options) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       const page = parseInt(this.state.currentPage);
       if (page < 0 || page > options.totalPages) {
         this.setState({ pageInputTooltip: `Value must be between 1 and ${options.totalPages}.` })
       }
       else {
         const first = this.state.currentPage ? options.rows * (page - 1) : 0;
-        this.setState({ first: first, pageInputTooltip: 'Press \'Enter\' key to go to this page.' });
+        this.setState({ first: first, pageInputTooltip: "Press \"Enter\" key to go to this page." });
       }
     }
   }
@@ -174,13 +173,13 @@ class HFNDataTable extends React.PureComponent {
     let actionBtnCheck;
 
     return (
-      <div className='p-text-center'>
+      <div className="p-text-center">
         {this.state.actionBtnOptions.map((option, index) => {
           let buttonOption = { ...option };
 
           actionBtnCheck = option.visibility !== false;
 
-          if ((actionBtnCheck === true) && (typeof option.visibilityCheck === 'function')) {
+          if ((actionBtnCheck === true) && (typeof option.visibilityCheck === "function")) {
             actionBtnCheck = option.visibilityCheck(rowData);
             delete buttonOption.visibilityCheck;
           }
@@ -210,8 +209,8 @@ class HFNDataTable extends React.PureComponent {
   onFilter = (event) => {
     setTimeout(() => {
       let lazyParams = { ...this.state.lazyParams, ...event };
-      lazyParams['first'] = 0;
-      lazyParams['page'] = 1;
+      lazyParams["first"] = 0;
+      lazyParams["page"] = 1;
       this.setState({ lazyParams }, this.loadData);
     }, 1000);
   }
@@ -230,33 +229,13 @@ class HFNDataTable extends React.PureComponent {
   }
 
   // filter states 
-  handleFilterElement = (ev, colName, type, item) => {
-    let val, filterVal;
-
-    if (type === 'calendar' && ev.target.value) {
-      if (!isEmpty(item.filterElementOptions.outputFormat) && item.filterElementOptions.outputFormat) {
-        val = moment(ev.target.value).format(item.filterElementOptions.outputFormat)
-      } else {
-        val = moment(ev.target.value).format('YYYY-MM-DD HH:mm:ss')
-      }
-    }
-    else {
-      val = ev.target.value;
-    }
-
-    if (item.filterField) {
-      filterVal = item.filterField;
-    } else {
-      filterVal = colName;
-    }
-
-    this.dt.filter(val, filterVal, 'startsWith');
-
-    this.setState({ [colName]: ev.target.value });
+  handleFilterElement = (ev, colName, type, { filterField }) => {
+    this.dt.filter(ev.value, filterField ? filterField : colName, "startsWith");
+    this.setState({ [colName]: ev.value });
   }
 
   lookup = (obj, key) => {
-    return key.split('.').reduce((o, k) => o && o[k], obj);
+    return key.split(".").reduce((o, k) => o && o[k], obj);
   }
 
   transformBodyTemplate = (rowData, { field }) => {
@@ -308,7 +287,7 @@ class HFNDataTable extends React.PureComponent {
     }
 
     return (
-      <div className={`hfn-datatable ${this.state.tablePrimeConfig.lazy ? 'hfn-datatable-lazy' : ''}`}>
+      <div className={`hfn-datatable ${this.state.tablePrimeConfig.lazy ? "hfn-datatable-lazy" : ""}`}>
 
         <HFNDatatableToolbar
           ref={this.toolBarRef}
@@ -333,11 +312,11 @@ class HFNDataTable extends React.PureComponent {
           {...dataTableConfigs}
         >
 
-          {this.state.enableSelection && <Column selectionMode="multiple" headerStyle={{ width: '3rem' }}></Column>}
+          {this.state.enableSelection && <Column selectionMode="multiple" headerStyle={{ width: "3rem" }}></Column>}
 
           {this.state.columns.map((item, index) => {
 
-            if ((typeof item.body !== 'function') && !item.showOriginalValue) {
+            if ((typeof item.body !== "function") && !item.showOriginalValue) {
               item.body = (item.transformValue !== false) ? this.transformBodyTemplate : this.defaultBodyTemplate;
             }
 
@@ -352,7 +331,7 @@ class HFNDataTable extends React.PureComponent {
                 filterOptions = [];
 
               switch (item.filterElementOptions.type) {
-                case 'Dropdown':
+                case "Dropdown":
                   return <Column {...item} key={index}
                     filterElement={
                       <Dropdown
@@ -362,12 +341,12 @@ class HFNDataTable extends React.PureComponent {
                         optionLabel="label"
                         value={this.state[item.field]}
                         filter={false}
-                        onChange={(ev) => { this.handleFilterElement(ev, item.field, 'dropdown', item) }}
+                        onChange={(ev) => { this.handleFilterElement(ev, item.field, "dropdown", item) }}
                       >
                       </Dropdown>
                     }
                   />
-                case 'Calendar':
+                case "Calendar":
                   return <Column {...item} key={index}
                     filterElement={
                       <Calendar
@@ -379,7 +358,7 @@ class HFNDataTable extends React.PureComponent {
                         todayButtonClassName="p-button-secondary p-ml-2"
                         clearButtonClassName="p-button-secondary p-mr-2"
                         {...item.filterElementOptions.primeFieldProps}
-                        onChange={(ev) => { this.handleFilterElement(ev, item.field, 'calendar', item) }}
+                        onChange={(ev) => { this.handleFilterElement(ev, item.field, "calendar", item) }}
                       />
                     }
                   />
@@ -394,7 +373,7 @@ class HFNDataTable extends React.PureComponent {
 
           {
             (this.state.enableActionColumn === true) &&
-            <Column className='p-text-center p-action-column' body={this.actionColumnTemplate} header='Actions' style={{ width: '140px' }} />
+            <Column className="p-text-center p-action-column" body={this.actionColumnTemplate} header="Actions" style={{ width: "140px" }} />
           }
 
         </DataTable>

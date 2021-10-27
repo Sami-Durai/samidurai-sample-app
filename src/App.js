@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { Switch, Redirect } from "react-router-dom";
 
-// components 
+// components
 import AuthGuard from "auth-guard/index";
 
 import Login from "components/login/Login";
 
-// shared components 
+// shared components
 import HFNErrorBoundary from "sharedComponents/errorBoundary";
 
 import HFNLoader from "sharedComponents/lazyLoading";
@@ -18,14 +18,13 @@ import HFNConfirmDialog from "sharedComponents/confirmDialog";
 
 import TokenExpire from "sharedComponents/logout/tokenExpire";
 
-// utils 
+// utils
 import lazy from "utils/lazy";
 
-// lazy components 
+// lazy components
 const LayoutContainer = lazy("layouts/Template");
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
       <HFNErrorBoundary>
         <HFNLoader>
@@ -48,8 +47,7 @@ class App extends Component {
           </div>
         </HFNLoader>
       </HFNErrorBoundary>
-    )
-  }
-}
+    );
+};
 
 export default App;

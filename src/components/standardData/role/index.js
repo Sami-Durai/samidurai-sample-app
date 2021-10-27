@@ -143,7 +143,8 @@ const Role = () => {
                 filterElementOptions: {
                     type: "Calendar",
                     primeFieldProps: {
-                        maxDate: new Date()
+                        maxDate: new Date(),
+                        selectionMode: "range"
                     }
                 },
                 headerStyle: {
