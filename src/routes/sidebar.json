@@ -23,13 +23,13 @@
         "icon": "uil uil-users-alt"
       },
       {
-        "url": "onsite-transactions",
-        "label": "Manage Onsite Transaction",
+        "url": "donation-transactions",
+        "label": "Manage Donation Transaction",
         "icon": "uil uil-coins"
       },
       {
-        "url": "online-transactions",
-        "label": "Manage Online Transaction",
+        "url": "payment-transactions",
+        "label": "Manage Payment Transaction",
         "icon": "uil uil-credit-card"
       },
       {
@@ -83,12 +83,12 @@
         "icon": "uil uil-users-alt"
       },
       {
-        "url": "onsite-transactions",
+        "url": "donation-transactions",
         "label": "Manage Onsite Transaction",
         "icon": "uil uil-coins"
       },
       {
-        "url": "online-transactions",
+        "url": "payment-transactions",
         "label": "Manage Online Transaction",
         "icon":"uil uil-credit-card"
       },
@@ -141,7 +141,7 @@
         "icon": "uil uil-home-alt"
       },
       {
-        "url": "donations",
+        "url": "donation-collections",
         "label": "Manage Donation",
         "icon": "uil uil-coins"
       }

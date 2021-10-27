@@ -34,7 +34,7 @@ export const createdDateBadge = (rowData, { field }) => {
   return (!isEmpty(rowData[field])) ? <div className="hfn-datatable-td" title={getDateString(rowData[field])}>{getDateString(rowData[field])}</div> : "-";
 };
 
-export const certified80gBadge = (rowData, { field }) => {
+export const boolBadge = (rowData, { field }) => {
   return (
     (typeof rowData[field] === "boolean")
       ?

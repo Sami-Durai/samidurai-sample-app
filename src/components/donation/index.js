@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 
 // components
-import Form from "components/standardData/organization/Form";
+import Form from "components/donation/Form";
 
 // shared components 
 import HFNDataTable from "sharedComponents/datatable/HFNDataTable";
@@ -19,54 +19,31 @@ import modalPopup from "utils/modalPopup";
 
 import { boolBadge, createdDateBadge } from "utils/badgeTemplate";
 
-import { setBulkStatus } from "utils/bulk";
-
-import { getLoginID } from "utils/login";
-
-import dropdown from "utils/dropdown";
-
 // services 
-import Service from "services/standardData/organization.service";
+import Service from "services/donation/donation.service";
 
 // constants
 const breadcrumbs = [
     { label: "Dashboard", url: "dashboard", icon: 'pi pi-home' },
-    { label: "Organization", url: "" }
+    { label: "Donation", url: "" }
 ];
 
 const formInitValue = {};
 
 // page component
-const Organization = () => {
+const Donation = () => {
     const [formState, setFormState] = useState({ isEditable: false, initValue: formInitValue });
 
     useEffect(() => {
         buildBreadcrumb(breadcrumbs);
-        dropdown.generalStatus();
-        dropdown.country();
     }, []);
 
     const tableRef = useRef(null);
 
-    //bulk status update starts
-    const bulkStatusUpdate = useCallback(async (selections, status) => {
-        await setBulkStatus({
-            data: {
-                type: "Organization",
-                name: "id",
-                value: selections.map(value => { return value.id }),
-                status: status,
-                updated_by: getLoginID()
-            },
-            dataTable: tableRef
-        });
-    }, []);
-    //bulk status update end
-
     // add section start
     const setFormInitValue = useCallback(() => {
         setFormState({ initValue: formInitValue, isEditable: false });
-        modalPopup.custom({ header: "Add Organization", className: "sdm-popup", visible: true });
+        modalPopup.custom({ header: "Add Donation", className: "sdm-popup", visible: true });
     }, []);
     // add section end
 
@@ -76,18 +53,29 @@ const Organization = () => {
             initValue: {
                 id: rowData.id,
                 name: rowData.name,
-                dcountry: rowData.dcountry ? { label: rowData.dcountry.name, value: rowData.dcountry.id } : null,
-                legal_name: rowData.legal_name,
-                business_address: rowData.business_address,
-                pan: rowData.pan,
-                tan: rowData.tan,
-                gst: rowData.gst,
-                certified80g: rowData.certified80g,
-                status: rowData.status ? { label: rowData.status.name, value: rowData.status.id } : null
+                email: rowData.email,
+                date: rowData.date,
+                currency: rowData.currency,
+                amount: rowData.amount,
+                full_address: rowData.full_address,
+                city_id: rowData.city_id,
+                state_id: rowData.state_id,
+                country_id: rowData.country_id,
+                tax_id: rowData.tax_id,
+                payment_type: rowData.payment_type,
+                dcollector: rowData.dcollector,
+                cash_given_to_am: rowData.cash_given_to_am,
+                tax_id_type: rowData.tax_id_type,
+                citizenship: rowData.citizenship,
+                country_name: rowData.country_name,
+                duser_id: rowData.duser_id,
+                daccount_d: rowData.daccount_d,
+                dorg_id: rowData.dorg_id,
+                web_payment_gate_way: rowData.web_payment_gate_way,
             },
             isEditable: true
         });
-        modalPopup.custom({ header: "Update Organization", className: "sdm-popup", visible: true });
+        modalPopup.custom({ header: "Update Donation", className: "sdm-popup", visible: true });
     }, []);
     // update section start
 
@@ -98,8 +86,8 @@ const Organization = () => {
             method: "removeItem",
             data: { itemId: id },
             toasterMessage: {
-                success: "Organization" + (name ? ` "${name}"` : "") + " has been removed successfully",
-                error: "Unable to remove organization" + (name ? ` "${name}"` : "")
+                success: "Donation" + (name ? ` "${name}"` : "") + " has been removed successfully",
+                error: "Unable to remove payment Account" + (name ? ` "${name}"` : "")
             },
             dataTable: tableRef
         });
@@ -116,7 +104,7 @@ const Organization = () => {
 
         url: service,
 
-        method: "getOrganizationList",
+        method: "getDonationList",
 
         lazyParams: {
             sortField: "created_at",
@@ -134,81 +122,76 @@ const Organization = () => {
                 }
             },
             {
-                header: "Country",
-                field: "dcountry.name",
+                header: "Email",
+                field: "email",
                 sortable: true,
-                sortField: "dcountry",
                 filter: true,
-                filterField: "dcountry",
-                filterType: "select",
+                headerStyle: {
+                    minWidth: "150px"
+                },
+                transformValue: false
+            },
+            {
+                header: "Currency",
+                field: "currency",
+                sortable: true,
+                filter: true,
+                headerStyle: {
+                    minWidth: "150px"
+                }
+            },
+            {
+                header: "Amount",
+                field: "amount",
+                sortable: true,
+                filter: true,
+                headerStyle: {
+                    minWidth: "150px"
+                }
+            },
+            {
+                header: "Donation Collector",
+                field: "dcollector",
+                sortable: true,
+                filter: true,
+                headerStyle: {
+                    minWidth: "150px"
+                }
+            },
+            {
+                header: "Payment Type",
+                field: "payment_type",
+                sortable: true,
+                filter: true,
+                headerStyle: {
+                    minWidth: "150px"
+                }
+            },
+            {
+                header: "Transaction Date",
+                field: "date",
+                sortable: true,
+                filter: true,
                 filterElementOptions: {
-                    type: "Dropdown",
-                    value: "country"
+                    type: "Calendar",
+                    primeFieldProps: {
+                        maxDate: new Date()
+                    }
                 },
                 headerStyle: {
+                    minWidth: "100px"
+                },
+                body: createdDateBadge
+            },
+            {
+                header: "Cash Given To AM",
+                field: "cash_given_to_am",
+                sortable: true,
+                filter: true,
+                headerStyle: {
                     minWidth: "150px"
-                }
-            },
-            {
-                header: "Legal Name",
-                field: "legal_name",
-                sortable: true,
-                filter: true,
-                headerStyle: {
-                    minWidth: "150px"
-                }
-            },
-            {
-                header: "PAN",
-                field: "pan",
-                sortable: true,
-                filter: true,
-                headerStyle: {
-                    minWidth: "100px"
-                }
-            },
-            {
-                header: "TAN",
-                field: "tan",
-                sortable: true,
-                filter: true,
-                headerStyle: {
-                    minWidth: "10px"
-                }
-            },
-            {
-                header: "GST",
-                field: "gst",
-                sortable: true,
-                filter: true,
-                headerStyle: {
-                    minWidth: "100px"
-                }
-            },
-            {
-                header: "Certified 80G",
-                field: "certified80g",
-                sortable: true,
-                headerStyle: {
-                    minWidth: "100px"
                 },
                 body: boolBadge
-            },
-            {
-                header: "Status",
-                field: "status.name",
-                sortable: true,
-                sortField: "status",
-                filter: true,
-                filterField: "status",
-                filterType: "select",
-                filterElementOptions: {
-                    type: "Dropdown",
-                    value: "generalStatus"
-                },
-                headerStyle: {
-                    minWidth: "100px"
-                }
             },
             {
                 header: "Created On",
@@ -230,14 +213,14 @@ const Organization = () => {
 
         actionBtnOptions: [
             {
-                title: "Update organization",
+                title: "Update donation",
                 onClick: editItem
             },
             {
-                title: "Delete organization",
+                title: "Delete donation",
                 onClick: (ev, rowData) => {
                     confirmDialog.custom({
-                        message: "Are you sure you want to delete this organization? This may affect other screens",
+                        message: "Are you sure you want to delete this donation? This may affect other screens",
                         accept: () => { removeItem(rowData.id, rowData.name) },
                         visible: true
                     });
@@ -246,27 +229,11 @@ const Organization = () => {
         ],
 
         toolBarBtnOptions: {
-            title: "Donation Organization List",
-            selection: {
-                field: {
-                    options: "generalStatus"
-                },
-                updateBtnsOptions: {
-                    onClick: ({ selections, status }) => {
-                        confirmDialog.custom({
-                            message: "You are about to mass update the status of organizations?",
-                            accept: () => { bulkStatusUpdate(selections, status) },
-                            visible: true
-                        });
-                    }
-                },
-                enableDelete: false
-            },
+            title: "Donation List",
             rightBtnsOptions: [
                 { onClick: setFormInitValue }
             ]
-        },
-        enableSelection: true
+        }
     }), []);
 
     return (
@@ -279,4 +246,4 @@ const Organization = () => {
     );
 };
 
-export default Organization;
+export default Donation;

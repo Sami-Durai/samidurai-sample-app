@@ -8,8 +8,8 @@
         "finance-controllers",
         "ashram-managers",
         "donation-collectors",
-        "onsite-transactions",
-        "online-transactions",
+        "donation-transactions",
+        "payment-transactions",
         "standard-data",
         "standard-data/countries",
         "standard-data/ashrams",
@@ -27,8 +27,8 @@
         "dashboard",
         "ashram-managers",
         "donation-collectors",
-        "onsite-transactions",
-        "online-transactions",
+        "donation-transactions",
+        "payment-transactions",
         "standard-data",
         "standard-data/organizations",
         "standard-data/donation-accounts",
@@ -51,7 +51,7 @@
         "/",
         "account",
         "dashboard",
-        "donations"
+        "donation-collections"
      ]
   },
   {
