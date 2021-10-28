@@ -17,6 +17,9 @@ import { DataTable } from "primereact/datatable";
 
 import { Column } from "primereact/column";
 
+import { DataViewLayoutOptions } from "primereact/dataview";
+
+// shared-components
 import HFNDatatableToolbar from "sharedComponents/datatable/HFNDatatableToolbar";
 
 import HFNDataTablePagination from "sharedComponents/datatable/HFNDataTablePagination";
@@ -38,6 +41,9 @@ class HFNDataTable extends React.PureComponent {
       urlPath,
       params,
       lazyParams,
+      responsive,
+      enableCardsView,
+      layout,
       columns,
       pagination,
       enableActionColumn,
@@ -52,7 +58,10 @@ class HFNDataTable extends React.PureComponent {
 
       privilege: privilege,
 
-      tablePrimeConfig: tablePrimeConfig,
+      tablePrimeConfig: {
+        ...tablePrimeConfig,
+        className: responsive ? (tablePrimeConfig.className || "") + " responsive-datatable" : (tablePrimeConfig.className || "")
+      },
 
       url: url,
 
@@ -61,6 +70,12 @@ class HFNDataTable extends React.PureComponent {
       urlPath: urlPath,
 
       params: params,
+
+      responsive: responsive,
+
+      enableCardsView: enableCardsView,
+
+      layout: enableCardsView ? layout : (this.props.options.layout || "list"),
 
       columns: columns,
 
@@ -173,25 +188,28 @@ class HFNDataTable extends React.PureComponent {
     let actionBtnCheck;
 
     return (
-      <div className="p-text-center">
-        {this.state.actionBtnOptions.map((option, index) => {
-          let buttonOption = { ...option };
+      <React.Fragment>
+        <span className="p-column-title"> Action </span>
+        <span className="actions">
+          {this.state.actionBtnOptions.map((option, index) => {
+            let buttonOption = { ...option };
 
-          actionBtnCheck = option.visibility !== false;
+            actionBtnCheck = option.visibility !== false;
 
-          if ((actionBtnCheck === true) && (typeof option.visibilityCheck === "function")) {
-            actionBtnCheck = option.visibilityCheck(rowData);
-            delete buttonOption.visibilityCheck;
-          }
+            if ((actionBtnCheck === true) && (typeof option.visibilityCheck === "function")) {
+              actionBtnCheck = option.visibilityCheck(rowData);
+              delete buttonOption.visibilityCheck;
+            }
 
-          if (actionBtnCheck) {
-            return <Button key={index} {...buttonOption} onClick={ev => {
-              option.onClick(ev, rowData);
-            }}></Button>
-          }
+            if (actionBtnCheck) {
+              return <Button key={index} {...buttonOption} onClick={ev => {
+                option.onClick(ev, rowData);
+              }}></Button>
+            }
 
-        })}
-      </div>
+          })}
+        </span>
+      </React.Fragment>
     );
   };
 
@@ -229,28 +247,43 @@ class HFNDataTable extends React.PureComponent {
   }
 
   // filter states 
-  handleFilterElement = (ev, colName, type, { filterField }) => {
-    this.dt.filter(ev.value, filterField ? filterField : colName, "startsWith");
-    this.setState({ [colName]: ev.value });
+  handleFilterElement = ({ value }, colName, type, { filterField }) => {
+    this.dt.filter(value, filterField ? filterField : colName, "startsWith");
+    this.setState({ [colName]: value });
   }
 
   lookup = (obj, key) => {
     return key.split(".").reduce((o, k) => o && o[k], obj);
   }
 
-  transformBodyTemplate = (rowData, { field }) => {
+  transformBodyTemplate = (rowData, { field, header }) => {
     let data = this.lookup(rowData, field);
     if (data || (data === 0)) {
-      return (isString(data)) ? <div className="hfn-datatable-td" title={upperFirst(data)}>{upperFirst(data)}</div> : <div className="hfn-datatable-td" title={data}>{data}</div>;
+      return (<React.Fragment>
+        <span className="p-column-title"> {header} </span>
+        {(isString(data)) ?
+          <span className="hfn-datatable-td" title={upperFirst(data)}>{upperFirst(data)}</span>
+          :
+          <span className="hfn-datatable-td" title={data}>{data}</span>}
+      </React.Fragment>)
     }
     else {
-      return "-";
+      return (<React.Fragment>
+        <span className="p-column-title"> {header} </span>
+        <span className="hfn-datatable-td">-</span>
+      </React.Fragment>)
     }
   }
 
-  defaultBodyTemplate = (rowData, { field }) => {
+  defaultBodyTemplate = (rowData, { field, header }) => {
     let data = this.lookup(rowData, field);
-    return (!isEmpty(data) || (data === 0)) ? <div className="hfn-datatable-td" title={data}>{data}</div> : "-";
+    return (<React.Fragment>
+      <span className="p-column-title"> {header} </span>
+      {(!isEmpty(data) || (data === 0)) ?
+        <span className="hfn-datatable-td" title={data}>{data}</span>
+        :
+        <span className="hfn-datatable-td">-</span>}
+    </React.Fragment>)
   }
 
   componentDidMount() {
@@ -283,8 +316,11 @@ class HFNDataTable extends React.PureComponent {
 
     dataTableConfigs = {
       ...DatatableLazyConfig,
-      ...this.state.tablePrimeConfig
+      ...this.state.tablePrimeConfig,
     }
+
+    if (this.state.layout === "grid")
+      dataTableConfigs.className = (dataTableConfigs.className || "") + " cards-datatable";
 
     return (
       <div className={`hfn-datatable ${this.state.tablePrimeConfig.lazy ? "hfn-datatable-lazy" : ""}`}>
@@ -300,6 +336,15 @@ class HFNDataTable extends React.PureComponent {
           access={this.state.privilege}
         >
         </HFNDatatableToolbar>
+
+        {this.state.enableCardsView ? 
+          <DataViewLayoutOptions
+            className="p-text-right p-pb-2"
+            layout={this.state.layout}
+            onChange={(e) => this.setState({ layout: e.value })}
+          />
+        : null }
+        
 
         <DataTable
           ref={(el) => this.dt = el}
@@ -373,7 +418,7 @@ class HFNDataTable extends React.PureComponent {
 
           {
             (this.state.enableActionColumn === true) &&
-            <Column className="p-text-center p-action-column" body={this.actionColumnTemplate} header="Actions" style={{ width: "140px" }} />
+            <Column className="p-action-column" body={this.actionColumnTemplate} header="Actions" style={{ minWidth: "100px" }} />
           }
 
         </DataTable>

@@ -1,8 +1,6 @@
 import React from "react";
 
 //utils
-import { isEmpty } from "lodash";
-
 import { getDateString } from "utils/common";
 
 export const ObjArrayBadge = (rowData, { field }) => {
@@ -19,27 +17,22 @@ export const ObjArrayBadge = (rowData, { field }) => {
     return ""
 };
 
-export const statusBadge = (rowData, { field }) => {
-  let status = rowData[field];
-  let slug = "";
-  if (!isEmpty(rowData.status)) {
-    if (!isEmpty(rowData.status.status_name)) status = rowData.status.status_name;
-    if (!isEmpty(rowData.status.status_slug)) slug = "p-badge status-" + rowData.status.status_slug;
-  }
+export const createdDateBadge = (rowData, { field, header }) => {
+  return (<React.Fragment>
+    <span className="p-column-title"> {header} </span>
+    {(rowData[field]) ?
+    <span className="hfn-datatable-td" title={getDateString(rowData[field])}> {getDateString(rowData[field])} </span>
+    :
+    <span className="hfn-datatable-td"> - </span>}
+  </React.Fragment>)
+  };
 
-  return slug ? <div className={slug}>{status}</div> : status;
-};
-
-export const createdDateBadge = (rowData, { field }) => {
-  return (!isEmpty(rowData[field])) ? <div className="hfn-datatable-td" title={getDateString(rowData[field])}>{getDateString(rowData[field])}</div> : "-";
-};
-
-export const boolBadge = (rowData, { field }) => {
-  return (
-    (typeof rowData[field] === "boolean")
-      ?
-      <div className="hfn-datatable-td" title={rowData[field] ? "Yes" : "No"}> {rowData[field] ? "Yes" : "No"} </div>
-      :
-      "-"
-  );
+export const boolBadge = (rowData, { field, header }) => {
+  return (<React.Fragment>
+    <span className="p-column-title"> {header} </span>
+    {(typeof rowData[field] === "boolean") ?
+    <span className="hfn-datatable-td" title={rowData[field] ? "Yes" : "No"}> {rowData[field] ? "Yes" : "No"} </span>
+    :
+    <span className="hfn-datatable-td"> - </span>}
+  </React.Fragment>)
 }

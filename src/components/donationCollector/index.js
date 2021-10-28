@@ -21,12 +21,13 @@ import { createdDateBadge } from "utils/badgeTemplate";
 
 import { setBulkStatus } from "utils/bulk";
 
-import { getLoginID } from "utils/login";
+import { getLoginID, getLoginRole } from "utils/login";
 
 import dropdown from "utils/dropdown";
 
 // services 
 import Service from "services/donationCollector/donationCollector.service";
+import { ROLE_AM, ROLE_DC } from "utils/constants";
 
 // constants
 const breadcrumbs = [
@@ -120,6 +121,8 @@ const DonationCollector = () => {
             sortField: "created_at",
             sortOrder: -1
         },
+
+        enableCardsView: [ ROLE_AM, ROLE_DC ].includes(getLoginRole()) ? true : false,
 
         columns: [
             {

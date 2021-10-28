@@ -111,6 +111,8 @@ const Donation = () => {
             sortOrder: -1
         },
 
+        enableCardsView: true,
+
         columns: [
             {
                 header: "Name",

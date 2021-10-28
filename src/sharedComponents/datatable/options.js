@@ -1,5 +1,4 @@
 const optionsDefaultValue = {
-
   privilege: {
     isActive: false,
     moduleName: {
@@ -9,14 +8,14 @@ const optionsDefaultValue = {
   },
 
   tablePrimeConfig: {
-    emptyMessage: 'No data are found.'
+    emptyMessage: "No data are found."
   },
 
   url: null,
 
   method: null,
 
-  urlPath: '',
+  urlPath: "",
 
   params: null,
 
@@ -29,23 +28,27 @@ const optionsDefaultValue = {
     }
   },
 
+  responsive: false,
+
+  layout: (window.screen.width > 767) ? "list" : "grid",
+
   columns: [],
 
   pagination: {
 
     prevPageLink: {
       isPrevPageLink: true,
-      classNames: ''
+      classNames: ""
     },
 
     nextPageLink: {
       isNextPageLink: true,
-      classNames: ''
+      classNames: ""
     },
 
     pageLinks: {
       isPageLinks: true,
-      classNames: ''
+      classNames: ""
     },
 
     rowsPerPageDropdown: {
@@ -56,14 +59,14 @@ const optionsDefaultValue = {
         { label: 20, value: 20 },
         { label: 50, value: 50 },
       ],
-      classNames: ''
+      classNames: ""
     },
 
     currentPageReport: {
       isPageResult: true,
       shortResult: false,
       isPageNavigator: false,
-      classNames: ''
+      classNames: ""
     }
 
   },
@@ -72,18 +75,18 @@ const optionsDefaultValue = {
 
   actionBtnOptions: [
     {
-      type: 'update',
+      type: "update",
       icon: "uil uil-pen edit-icon",
       className: "p-mr-2",
       disabled: false,
-      title: 'Edit Item',
+      title: "Edit Item",
     },
     {
-      type: 'delete',
+      type: "delete",
       icon: "uil uil-trash-alt remove-icon",
       className: "p-mr-23",
       disabled: false,
-      title: 'Delete Item',
+      title: "Delete Item",
     }
   ],
 
@@ -102,19 +105,19 @@ const optionsDefaultValue = {
         placeholder: "Select Status",
       },
       updateBtnsOptions: {
-        type: 'update',
+        type: "update",
         label: "Update",
         icon: "",
-        classNames: 'p-button-primary p-ml-3',
+        classNames: "p-button-primary p-ml-3",
         onClick: () => {
           console.log("Please provide button action")
         }
       },
       deleteBtnsOptions: {
-        type: 'delete',
+        type: "delete",
         label: "Delete",
         icon: "pi pi-times",
-        classNames: 'p-button-danger p-ml-3',
+        classNames: "p-button-danger p-ml-3",
         onClick: () => {
           console.log("Please provide button action")
         }
@@ -122,7 +125,7 @@ const optionsDefaultValue = {
       reportBtnsOptions: {
         label: "Export",
         icon: "pi pi-file-o",
-        classNames: 'p-button p-button-primary p-ml-3 p-mr-3',
+        classNames: "p-button p-button-primary p-ml-3 p-mr-3",
         headers: null,
         fileName: "Report",
         timestampSuffix: "",
@@ -133,10 +136,10 @@ const optionsDefaultValue = {
     },
     rightBtnsOptions: [
       {
-        type: 'create',
-        label: 'Add New',
-        icon: 'pi pi-plus',
-        classNames: 'p-button-primary p-ml-3',
+        type: "create",
+        label: "Add New",
+        icon: "pi pi-plus",
+        classNames: "p-button-primary p-ml-3",
         visibility: true,
       }
     ]
