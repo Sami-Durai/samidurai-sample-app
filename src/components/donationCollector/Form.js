@@ -23,6 +23,17 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
   const service = useMemo(() => new Service(), []);
 
   const formFields = useMemo(() => ({
+    abhyasi_id: {
+      properties: {
+        type: 'InputText',
+        label: 'Abhyasi ID',
+        validations: {
+          required: false,
+          pattern: validations.abhyasiId
+        }
+      },
+    },
+
     name: {
       properties: {
         type: "InputText",

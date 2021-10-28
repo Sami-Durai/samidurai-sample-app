@@ -135,6 +135,14 @@ const DonationCollector = () => {
                 }
             },
             {
+                header: "Abhyasi ID",
+                field: "abhyasi_id",
+                sortable: true,
+                headerStyle: {
+                    minWidth: "120px"
+                }
+            },
+            {
                 header: "Email",
                 field: "email",
                 sortable: true,

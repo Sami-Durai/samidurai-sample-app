@@ -123,6 +123,14 @@ const AshramManager = () => {
 
         columns: [
             {
+                header: "Abhyasi ID",
+                field: "abhyasi_id",
+                sortable: true,
+                headerStyle: {
+                    minWidth: "120px"
+                }
+            },
+            {
                 header: "Name",
                 field: "name",
                 sortable: true,
