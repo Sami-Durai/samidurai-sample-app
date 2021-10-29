@@ -394,6 +394,10 @@
 @media only screen and (max-width:645px) {
   .hfn-datatable {
     padding: 12.5px;
+
+    .layout-options-md {
+      display: none;
+    }
   }
 
   .p-toolbar {
@@ -434,7 +438,15 @@
     .add-new-btn-wrapper {
       width: 100%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+    }
+
+    .layout-options {
+      width: 50%!important;
+
+      .p-dataview-layout-options {
+        display: block!important;
+      }
     }
 
   }

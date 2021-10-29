@@ -27,9 +27,10 @@ import dropdown from "utils/dropdown";
 
 // services 
 import Service from "services/donationCollector/donationCollector.service";
-import { ROLE_AM, ROLE_DC } from "utils/constants";
 
 // constants
+import { ROLE_AM, ROLE_DC } from "utils/constants";
+
 const breadcrumbs = [
     { label: "Dashboard", url: "dashboard", icon: 'pi pi-home' },
     { label: "Donation Collector", url: "" }
@@ -122,7 +123,7 @@ const DonationCollector = () => {
             sortOrder: -1
         },
 
-        enableCardsView: [ ROLE_AM, ROLE_DC ].includes(getLoginRole()) ? true : false,
+        enableCardsView: [ ROLE_AM, ROLE_DC ].includes(getLoginRole().role) ? true : false,
 
         columns: [
             {
@@ -253,7 +254,7 @@ const DonationCollector = () => {
         },
         enableSelection: true
     }), []);
-
+    
     return (
         <div>
             <HFNDataTable ref={tableRef} options={options} />

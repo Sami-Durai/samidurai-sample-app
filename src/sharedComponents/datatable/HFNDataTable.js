@@ -285,6 +285,10 @@ class HFNDataTable extends React.PureComponent {
         <span className="hfn-datatable-td">-</span>}
     </React.Fragment>)
   }
+  
+  handleTableState (stateName, layout) {
+    this.setState({ [ stateName ]: layout });
+  }
 
   componentDidMount() {
     this.loadData()
@@ -334,12 +338,15 @@ class HFNDataTable extends React.PureComponent {
           tableItems={this.state.data}
           toolBarOptions={this.state.toolBarBtnOptions}
           access={this.state.privilege}
+          enableCardsView={this.state.enableCardsView}
+          layout={this.state.layout}
+          handleTableState={this.handleTableState}
         >
         </HFNDatatableToolbar>
 
-        {this.state.enableCardsView ? 
+        {(this.state.enableSelection && this.state.enableCardsView) ? 
           <DataViewLayoutOptions
-            className="p-text-right p-pb-2"
+            className="p-text-left layout-options-md p-pb-2"
             layout={this.state.layout}
             onChange={(e) => this.setState({ layout: e.value })}
           />

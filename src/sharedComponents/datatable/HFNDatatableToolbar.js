@@ -12,6 +12,8 @@ import { Dropdown } from 'primereact/dropdown';
 
 import { Button } from 'primereact/button';
 
+import { DataViewLayoutOptions } from "primereact/dataview";
+
 // utils
 import moment from 'moment';
 
@@ -168,9 +170,18 @@ class HFNDatatableToolbar extends Component {
 
             if (rightBtnCheck) {
               return <div className={`add-new-btn-wrapper ${(toolBarOptions.selection.enableBulkEdit) ? 'add-new-btn-wrapper-end' : ''}`} key={index}>
-                <Button title={item.title} label={item.label} icon={item.icon} className={`${item.classNames}`}
-                  onClick={(ev) => { item.onClick(ev) }}
-                /></div>
+
+                <div className={"p-text-left p-p-0" + (this.props.enableCardsView ? (enableSelection ? " layout-options" : " p-col-6") : "")}>
+                  {this.props.enableCardsView ?
+                    <DataViewLayoutOptions
+                      className={enableSelection ? "p-d-none" : ""}
+                      layout={this.props.layout}
+                      onChange={(e) => this.props.handleTableState("layout", e.value)}
+                    />
+                    : null}
+                </div>
+                <Button title={item.title} label={item.label} icon={item.icon} className={`${item.classNames}`} onClick={(ev) => { item.onClick(ev) }} />
+              </div>
             }
           }) : <></>
         }
