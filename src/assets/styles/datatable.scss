@@ -250,6 +250,7 @@
       };
 
       &:last-child {
+        padding-bottom: 8px;
         border-bottom: 1px solid $border-color;
       };
     };
@@ -387,6 +388,7 @@
   };
 
   .p-datatable.responsive-datatable .p-datatable-tbody > tr > td:last-child {
+    padding-bottom: 8px;
     border-bottom: 1px solid $border-color;
   };
 }

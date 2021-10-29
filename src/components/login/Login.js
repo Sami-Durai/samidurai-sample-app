@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
 // components
-import { HfnFirebaseAuth,  } from "@heartfulnessinstitute/react-hfn-profile";
+import { HfnFirebaseAuth, } from "@heartfulnessinstitute/react-hfn-profile";
 
 // primereact components 
 import { Card } from "primereact/card";
@@ -30,7 +30,7 @@ const Login = () => {
     if (myInfo) {
       setLoginCheck(true);
       if (myInfo.id) {
-        
+
         const roleInfo = credentials.find(({ email_address }) => email_address === myInfo.email);
 
         const user = {
@@ -60,7 +60,8 @@ const Login = () => {
 
         <Card>
           <div className="login">
-            <HfnFirebaseAuth doLogin={processLogin} />
+            <h2 className="title"> LogIn</h2>
+            <HfnFirebaseAuth titleText="" doLogin={processLogin} />
             {loginCheck ? <div className="p-text-center p-m-4 p-text-bold"> Fetching info... </div> : null}
           </div>
         </Card>

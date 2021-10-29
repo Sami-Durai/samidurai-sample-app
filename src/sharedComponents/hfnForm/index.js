@@ -148,13 +148,19 @@ function HFNDynamicForm({ initialValues, fields, onFormSubmit, submitButtonGroup
 
                 <div className={`p-field-wrapper p-col-12 ${properties.fieldWrapperClassNames ? properties.fieldWrapperClassNames : ""}`} key={key + index}>
 
-                  <label htmlFor="lastname1" className={`p-field-label ${properties.fieldLabelClassNames ? properties.fieldLabelClassNames : ""}`}>
-                    {
-                      (validations && validations.required && validations.required.value) ? <em>*&nbsp;</em> : <></>
-                    }
-                    {properties.label}
-                    {properties.tooltip ? <span className="tooltip-icon" title={properties.tooltip} > <i className="uil uil-info-circle"></i> </span> : <></>}
-                  </label>
+                  {
+                    (["Checkbox"].indexOf(properties.type) === -1)
+                      ?
+                      <label htmlFor="lastname1" className={`p-field-label ${properties.fieldLabelClassNames ? properties.fieldLabelClassNames : ""}`}>
+                        {
+                          (validations && validations.required && validations.required.value) ? <em>*&nbsp;</em> : <></>
+                        }
+                        {properties.label}
+                        {properties.tooltip ? <span className="tooltip-icon" title={properties.tooltip} > <i className="uil uil-info-circle"></i> </span> : <></>}
+                      </label>
+                      :
+                      null
+                  }
 
                   <div className={`p-field-section ${properties.fieldSectionClassNames ? properties.fieldSectionClassNames : ""}`}>
                     {(() => {
@@ -223,7 +229,15 @@ function HFNDynamicForm({ initialValues, fields, onFormSubmit, submitButtonGroup
                                 }}
                                 checked={props.field.value} />
                             )} />
-                            <label htmlFor={key} className="p-checkbox-label">{properties.label}</label>
+
+                            <label htmlFor={key} className={`p-pl-2 p-checkbox-label ${properties.fieldLabelClassNames ? properties.fieldLabelClassNames : ""}`}>
+                              {
+                                (validations && validations.required && validations.required.value) ? <em>*&nbsp;</em> : <></>
+                              }
+                              {properties.label}
+                              {properties.tooltip ? <span className="tooltip-icon" title={properties.tooltip} > <i className="uil uil-info-circle"></i> </span> : <></>}
+                            </label>
+
                           </div>)
 
                         case "RadioButton":

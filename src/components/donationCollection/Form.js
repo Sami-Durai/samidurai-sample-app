@@ -23,10 +23,80 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
   const service = useMemo(() => new Service(), []);
 
   const formFields = useMemo(() => ({
+    amount: {
+      properties: {
+        type: "InputText",
+        label: "Amount",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
+    initiative: {
+      properties: {
+        type: "Select",
+        label: "Initiative",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        },
+        dropdownOptions: "organization"
+      }
+    },
+    identification_type: {
+      properties: {
+        type: "Select",
+        label: "Indentification Type",
+        primeFieldProps: {
+          options: [
+            {
+              value: 1,
+              label: "Abhyasi Id"
+            },
+            {
+              value: 2,
+              label: "PAN No"
+            },
+            {
+              value: 3,
+              label: "Aadhar"
+            },
+          ]
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
+    identification_no: {
+      properties: {
+        type: "InputText",
+        label: "Identification No",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
     name: {
       properties: {
         type: "InputText",
         label: "Name",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
+    phoneNo: {
+      properties: {
+        type: "PhoneInput",
+        label: "Phone No",
         primeFieldProps: {
         },
         validations: {
@@ -46,36 +116,44 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
         }
       }
     },
-    currency: {
+    address: {
       properties: {
         type: "InputText",
-        label: "Currency",
-        primeFieldProps: {
-        },
-        validations: {
-          required: validations.required
-        }
-      }
-    },
-    amount: {
-      properties: {
-        type: "InputText",
-        label: "Amount",
-        primeFieldProps: {
-        },
-        validations: {
-          required: validations.required
-        }
-      }
-    },
-    full_address: {
-      properties: {
-        type: "InputTextarea",
         label: "Address",
         primeFieldProps: {
         },
         validations: {
           required: validations.required
+        }
+      }
+    },
+    city: {
+      properties: {
+        type: "InputText",
+        label: "City",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
+    pincode: {
+      properties: {
+        type: "InputText",
+        label: "Pincode",
+        primeFieldProps: {
+        },
+        validations: {
+          required: validations.required
+        }
+      }
+    },
+    print_receipt: {
+      properties: {
+        type: "Checkbox",
+        label: "Should Receipt Be Printed",
+        primeFieldProps: {
         }
       }
     }

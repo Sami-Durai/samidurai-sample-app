@@ -17,7 +17,9 @@ import confirmDialog from "utils/confirmDialog";
 
 import modalPopup from "utils/modalPopup";
 
-import { boolBadge, createdDateBadge } from "utils/badgeTemplate";
+import { amountBadge, createdDateBadge } from "utils/badgeTemplate";
+
+import dropdown from "utils/dropdown";
 
 // services 
 import Service from "services/donationCollection/donationCollection.service";
@@ -36,6 +38,7 @@ const DonationCollection = () => {
 
     useEffect(() => {
         buildBreadcrumb(breadcrumbs);
+        dropdown.organization()
     }, []);
 
     const tableRef = useRef(null);
@@ -55,8 +58,10 @@ const DonationCollection = () => {
                 name: rowData.name,
                 email: rowData.email,
                 date: rowData.date,
-                initiative_id: rowData.initiative_id,
+                initiative: rowData.initiative ? { label: rowData.initiative.name, value: rowData.initiative.id } : null,
                 printReceipt: rowData.printReceipt,
+                phoneNo: rowData.phoneNo,
+                abhyasi_id: rowData.abhyasi_id,
                 currency: rowData.currency,
                 amount: rowData.amount,
                 full_address: rowData.full_address,
@@ -72,7 +77,8 @@ const DonationCollection = () => {
                 country_name: rowData.country_name,
                 duser_id: rowData.duser_id,
                 daccount_d: rowData.daccount_d,
-                dorg_id: rowData.dorg_id,
+                transaction_date: rowData.transaction_date,
+                city: rowData.city
             },
             isEditable: true
         });
@@ -107,17 +113,45 @@ const DonationCollection = () => {
 
         method: "getDonationCollectionList",
 
-        lazyParams: {
-            sortField: "created_at",
-            sortOrder: -1
-        },
-
         enableCardsView: true,
 
         columns: [
             {
+                header: "Iniiative",
+                field: "initiative.name",
+                sortable: true,
+                filter: true,
+                filterField: "initiative.id",
+                filterType: "select",
+                filterElementOptions: {
+                    type: "Dropdown",
+                    value: "organization"
+                },
+                headerStyle: {
+                    minWidth: "150px"
+                }
+            },
+            {
+                header: "Abhyasi ID",
+                field: "abhyasi_id",
+                sortable: true,
+                filter: true,
+                headerStyle: {
+                    minWidth: "150px"
+                }
+            },
+            {
                 header: "Name",
                 field: "name",
+                sortable: true,
+                filter: true,
+                headerStyle: {
+                    minWidth: "150px"
+                }
+            },
+            {
+                header: "Phone No",
+                field: "phoneNo",
                 sortable: true,
                 filter: true,
                 headerStyle: {
@@ -135,36 +169,27 @@ const DonationCollection = () => {
                 transformValue: false
             },
             {
-                header: "Currency",
-                field: "currency",
-                sortable: true,
-                filter: true,
-                headerStyle: {
-                    minWidth: "150px"
-                }
-            },
-            {
                 header: "Amount",
                 field: "amount",
                 sortable: true,
                 filter: true,
                 headerStyle: {
-                    minWidth: "150px"
-                }
+                    minWidth: "100px"
+                },
+                body: amountBadge
             },
             {
-                header: "Print Receipt",
-                field: "printReceipt",
+                header: "City",
+                field: "city",
                 sortable: true,
                 filter: true,
                 headerStyle: {
-                    minWidth: "150px"
-                },
-                body: boolBadge
+                    minWidth: "120px"
+                }
             },
             {
-                header: "Created On",
-                field: "created_at",
+                header: "Transaction Date",
+                field: "transaction_date",
                 sortable: true,
                 filter: true,
                 filterElementOptions: {
@@ -188,6 +213,7 @@ const DonationCollection = () => {
             },
             {
                 title: "Delete donation collection",
+                visibility: false,
                 onClick: (ev, rowData) => {
                     confirmDialog.custom({
                         message: "Are you sure you want to delete this donation collection? This may affect other screens",
