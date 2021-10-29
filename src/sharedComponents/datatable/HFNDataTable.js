@@ -286,7 +286,7 @@ class HFNDataTable extends React.PureComponent {
     </React.Fragment>)
   }
   
-  handleTableState (stateName, layout) {
+  handleTableState = (stateName, layout) => {
     this.setState({ [ stateName ]: layout });
   }
 

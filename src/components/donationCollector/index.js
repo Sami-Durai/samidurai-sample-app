@@ -149,7 +149,7 @@ const DonationCollector = () => {
                 sortable: true,
                 filter: true,
                 headerStyle: {
-                    minWidth: "150px"
+                    minWidth: "350px"
                 },
                 transformValue: false
             },
@@ -176,7 +176,7 @@ const DonationCollector = () => {
                     value: "ashram"
                 },
                 headerStyle: {
-                    minWidth: "100px"
+                    minWidth: "250px"
                 }
             },
             {
@@ -208,7 +208,7 @@ const DonationCollector = () => {
                     }
                 },
                 headerStyle: {
-                    minWidth: "100px"
+                    minWidth: "120px"
                 },
                 body: createdDateBadge
             }
