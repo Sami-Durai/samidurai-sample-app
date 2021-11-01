@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-// react router
+// router
 import { useHistory } from "react-router-dom";
 
 // components
 import { HfnFirebaseAuth, } from "@heartfulnessinstitute/react-hfn-profile";
 
-// primereact components 
+// prime components
 import { Card } from "primereact/card";
 
 // utils
@@ -38,7 +38,8 @@ const Login = () => {
           name: myInfo.name,
           email: myInfo.email,
           photo_url: myInfo.photo_url,
-          role: roleInfo ? roleInfo.role : { role: "sa", name: "Super Admin", slug: "super_admin" },
+          role: roleInfo.role,
+          roles: roleInfo.roles,
           token: "xyz"
         };
 

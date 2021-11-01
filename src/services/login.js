@@ -5,24 +5,30 @@ const config = {
   headers: { "content-type": "multipart/form-data" } // to send file in request data
 };
 
-export default class LoginService {
-  login(payload) {
+class LoginService {
+  login (payload) {
     return ax.post("user/authenticate", payload);
   }
 
-  ssoLogin(payload) {
+  ssoLogin (payload) {
     return ax.post("user/ssoauthenticate", payload);
   }
 
-  register(payload) {
+  register (payload) {
     return ax.post("user", payload, config);
   }
 
-  forgetPassword(payload) {
+  forgetPassword (payload) {
     return ax.post("user/forgotpassword", payload);
   }
 
-  resetPassword(payload) {
+  resetPassword (payload) {
     return ax.post("user/resetpassword", payload);
   }
+
+  changeUserRole (payload) {
+    return ax.post("change-role", payload);
+  }
 }
+
+export default LoginService;
