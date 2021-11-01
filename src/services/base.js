@@ -15,4 +15,8 @@ export const axApp = axios.create({
   baseURL: config.appURL
 });
 
+export const axCityAutoComplete = axios.create({
+  baseURL: config.cityAutoCompleteURL
+});
+
 interceptor(ax);

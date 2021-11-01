@@ -13,14 +13,20 @@ import response from "utils/response";
 
 import { getLoginID } from "utils/login";
 
+import { cityACTemplate } from "utils/badgeTemplate";
+
 // services
 import Service from "services/donationCollection/donationCollection.service";
+
+import DropdownService from "services/dropdown/dropdown.service";
 
 // form component
 const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTableRef }) => {
   const initValue = useRef(propInitValue);
 
-  const service = useMemo(() => new Service(), []);
+  const service = useRef(new Service());
+
+  const dropdownService = useRef(new DropdownService());
 
   const formFields = useMemo(() => ({
     amount: {
@@ -129,9 +135,12 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
     },
     city: {
       properties: {
-        type: "InputText",
+        type: "AutoComplete",
         label: "City",
+        service: dropdownService.current,
+        method: "getAutoCompleteCities",
         primeFieldProps: {
+          formatOptionLabel: cityACTemplate
         },
         validations: {
           required: validations.required
@@ -175,7 +184,7 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
   const addUpdateItem = useCallback(async (data) => {
     if (!isEditable)
       await response.add({
-        service: service,
+        service: service.current,
         method: "addDonationCollection",
         data: { item: data },
         toasterMessage: {
@@ -186,7 +195,7 @@ const Form = ({ initialValue: { initValue: propInitValue, isEditable }, dataTabl
       });
     else
       await response.update({
-        service: service,
+        service: service.current,
         method: "updateDonationCollection",
         data: { itemId: initValue.id, item: data },
         toasterMessage: {

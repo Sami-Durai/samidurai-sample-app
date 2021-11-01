@@ -49,3 +49,23 @@ export const boolBadge = (rowData, { field, header }) => {
       <span className="hfn-datatable-td"> - </span>}
   </React.Fragment>)
 }
+
+export const cityACTemplate = ({ name, state, country }, { context }) => {
+  if (context === "menu")
+    return (
+      <div className="cac-wrapper">
+        <div className="cac-name">{name}</div>
+        <div className="cac-sc-wrapper">
+          <span className="cac-sc">
+            {state}
+            {
+              (state) ? <span>&nbsp;,&nbsp;</span> : <></>
+            }
+            {country}
+          </span>
+        </div>
+      </div>
+    );
+  else
+    return (name ? (name + (state ? ", " + state : "") + (country ? ", " + country : "")) : null);
+};

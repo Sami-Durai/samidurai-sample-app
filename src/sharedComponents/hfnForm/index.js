@@ -9,6 +9,8 @@ import { useForm, Controller } from "react-hook-form";
 // components
 import Select from "react-select";
 
+import Async from 'react-select/async';
+
 import PhoneInput from "react-phone-input-2";
 
 //prime components
@@ -40,7 +42,7 @@ import { classNames } from "primereact/utils";
 import modalPopup from "utils/modalPopup";
 
 // service
-import DropdownService from "services/login";
+//import DropdownService from "services/dropdown/dropdown.service";
 
 // config
 import config from "assets/config";
@@ -71,36 +73,22 @@ function HFNDynamicForm({ initialValues, fields, onFormSubmit, submitButtonGroup
   };
 
 
-  const setAcItems = (searchField, searchValue, service, method, type) => {
+  const setAcItems = (searchField, searchValue, service, method) => {
+    try {
+      let payload = searchField ? { [searchField]: searchValue } : searchValue
 
-    let payload = { [searchField]: searchValue }
-
-    if (type === "ac") {
       service[method](payload)
         .then((res) => {
-          setFilteredItems(res.data.data);
+          if (res && res.data)
+            setFilteredItems(Array.isArray(res.data) ? res.data : res.data.data);
+          else
+            setFilteredItems([]);
         });
-    } else {
-
-      let params, dropdownService;
-
-      params = {
-        session: "74c576ef-7234-4f47-8b11-f8e41d247f3b",
-        input: searchValue
-      }
-
-      dropdownService = new DropdownService();
-
-      dropdownService.getCityDetails(params).then((res) => {
-        if (res && res.data) {
-          setFilteredItems(res.data);
-        } else {
-          setFilteredItems([]);
-        }
-      });
-
     }
-
+    catch {
+      setFilteredItems([]);
+      console.log("Something went wrong.");
+    }
   }
 
   const searchAcItems = (ev, searchField, service, method, type) => {
@@ -113,6 +101,36 @@ function HFNDynamicForm({ initialValues, fields, onFormSubmit, submitButtonGroup
       }, 500);
     }
 
+  }
+
+  const loadACOptions = (inputValue, callback, service, method, labelField, valueField) => {
+    try {
+      if (inputValue.length > 2) {
+        service[method](inputValue)
+          .then((res) => {
+            let acOptions = [];
+            let results = [];
+
+            if (res && res.data) {
+              if (Array.isArray(res.data))
+                results = res.data;
+              else if (Array.isArray(res.data.data))
+                results = res.data.data;
+                
+              acOptions = results.map(acOption => ({
+                ...acOption,
+                label: acOption[labelField],
+                value: acOption[valueField]
+              }));
+            }
+            callback(acOptions);
+          });
+      }
+    }
+    catch {
+      callback([]);
+      console.log("Something went wrong.");
+    }
   }
 
   return (
@@ -347,32 +365,26 @@ function HFNDynamicForm({ initialValues, fields, onFormSubmit, submitButtonGroup
 
                         case "AutoComplete":
                           return (<Controller control={control} rules={validations} name={key} defaultValue={null}
-                            render={(props) => {
-                              return <AutoComplete
+                            render={({ field: { onChange, value, name } }) => {
+                              return <Async
                                 className={classNames({ "p-invalid": errors[key] })}
+                                noOptionsMessage={() => "No data found"}
                                 {...primeFieldProps}
+                                name={name}
+                                value={value}
                                 autoComplete="off"
-                                name={props.field.name}
-                                value={props.field.value}
-                                suggestions={filteredItems}
-                                completeMethod={(ev) => {
-                                  searchAcItems(ev, properties.searchField, properties.service, properties.method, "ac")
+                                loadOptions={(inputValue, callback) => {
+                                  loadACOptions(inputValue, callback, properties.service, properties.method, properties.optionLabel || "name", properties.optionValue || "id")
                                 }}
-                                onChange={(e) => {
-
-                                  if (isObject(e.value)) {
-                                    props.field.onChange(e.value[properties.fieldLabel]);
-                                  } else {
-                                    props.field.onChange(e.value);
-                                  }
-
+                                onChange={(value) => {
+                                  onChange(value);
                                   if (primeFieldProps && primeFieldProps.onChange && typeof primeFieldProps.onChange === "function") {
-                                    primeFieldProps.onChange(e, setValue);
+                                    primeFieldProps.onChange(value, setValue);
                                   }
                                 }}
-                                field={properties.fieldLabel}
-                                inputRef={props.field.ref} />
+                              />
                             }} />)
+
                         case "StateAutoComplete":
                           return (<Controller control={control} rules={validations} name={key} defaultValue={null}
                             render={(props) => {

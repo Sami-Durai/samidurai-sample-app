@@ -6,27 +6,27 @@ const config = {
 };
 
 class LoginService {
-  login (payload) {
+  login(payload) {
     return ax.post("user/authenticate", payload);
   }
 
-  ssoLogin (payload) {
+  ssoLogin(payload) {
     return ax.post("user/ssoauthenticate", payload);
   }
 
-  register (payload) {
+  register(payload) {
     return ax.post("user", payload, config);
   }
 
-  forgetPassword (payload) {
+  forgetPassword(payload) {
     return ax.post("user/forgotpassword", payload);
   }
 
-  resetPassword (payload) {
+  resetPassword(payload) {
     return ax.post("user/resetpassword", payload);
   }
 
-  changeUserRole (payload) {
+  changeUserRole(payload) {
     return ax.post("change-role", payload);
   }
 }
