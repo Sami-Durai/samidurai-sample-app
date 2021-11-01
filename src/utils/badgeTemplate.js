@@ -1,27 +1,71 @@
 import React from "react";
 
 //utils
-import { isEmpty } from "lodash";
+import { getDateString } from "utils/common";
 
-import { getDateString } from "src/utils/common";
-
-const statusBadge = (rowData, { field }) => {
-  let status = rowData[field];
-  let slug = "";
-  if (!isEmpty(rowData.status)) {
-    if (!isEmpty(rowData.status.status_name)) status = rowData.status.status_name;
-    if (!isEmpty(rowData.status.status_slug)) slug = "p-badge status-" + rowData.status.status_slug;
+export const ObjArrayBadge = (rowData, { field }) => {
+  if (Array.isArray(rowData[field])) {
+    return (
+      <ul className="p-pl-2">
+        {rowData[field].map(({ name, id }) => {
+          return <li key={id} title={name || ""}> {name || "-"} </li>
+        })}
+      </ul>
+    )
   }
+  else
+    return ""
+};
 
-  return slug ? <div className={slug}>{status}</div> : status;
+export const amountBadge = (rowData, { field, header }) => {
+  return (<React.Fragment>
+    <span className="p-column-title"> {header} </span>
+    {(rowData[field]) ?
+      <span className="hfn-datatable-td" title={rowData.currency ? (rowData[field] + " " + rowData.currency) : rowData[field]}>
+        {rowData.currency ? (rowData[field] + " " + rowData.currency) : rowData[field]}
+      </span>
+      :
+      <span className="hfn-datatable-td"> - </span>}
+  </React.Fragment>)
 };
 
 
-const createdDateBadge = (rowData, { field }) => {
-  return (!isEmpty(rowData[field])) ? <div className="hfn-datatable-td" title={getDateString(rowData[field])}>{getDateString(rowData[field])}</div> : "-";
+export const createdDateBadge = (rowData, { field, header }) => {
+  return (<React.Fragment>
+    <span className="p-column-title"> {header} </span>
+    {(rowData[field]) ?
+      <span className="hfn-datatable-td" title={getDateString(rowData[field])}> {getDateString(rowData[field])} </span>
+      :
+      <span className="hfn-datatable-td"> - </span>}
+  </React.Fragment>)
 };
 
-export {
-  statusBadge,
-  createdDateBadge
+export const boolBadge = (rowData, { field, header }) => {
+  return (<React.Fragment>
+    <span className="p-column-title"> {header} </span>
+    {(typeof rowData[field] === "boolean") ?
+      <span className="hfn-datatable-td" title={rowData[field] ? "Yes" : "No"}> {rowData[field] ? "Yes" : "No"} </span>
+      :
+      <span className="hfn-datatable-td"> - </span>}
+  </React.Fragment>)
+}
+
+export const cityACTemplate = ({ name, state, country }, { context }) => {
+  if (context === "menu")
+    return (
+      <div className="cac-wrapper">
+        <div className="cac-name">{name}</div>
+        <div className="cac-sc-wrapper">
+          <span className="cac-sc">
+            {state}
+            {
+              (state) ? <span>&nbsp;,&nbsp;</span> : <></>
+            }
+            {country}
+          </span>
+        </div>
+      </div>
+    );
+  else
+    return (name ? (name + (state ? ", " + state : "") + (country ? ", " + country : "")) : null);
 };

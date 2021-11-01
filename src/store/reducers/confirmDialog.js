@@ -1,17 +1,20 @@
-import appStore from '../index';
+// store
+import appStore from "store";
 
-import { TOGGLE, ACCEPT, REJECT, ONHIDE, CUSTOM } from '../actions/type/confirmDialog';
+import { TOGGLE, ACCEPT, REJECT, ONHIDE, CUSTOM } from "store/actionTypes/confirmDialog";
 
+// constants
 const initialState = {
-  message: 'Are you sure you want to proceed?',
-  header: 'Confirmation',
-  icon: 'pi pi-exclamation-triangle',
+  message: "Are you sure you want to proceed?",
+  header: "Confirmation",
+  icon: "pi pi-exclamation-triangle",
   visible: false,
   onHide: () => {
     appStore.dispatch({ type: TOGGLE, payload: false });
   }
 };
 
+// reducer
 const confirmDialogDetails = (state = initialState, action) => {
   switch (action.type) {
     case TOGGLE:
@@ -43,6 +46,4 @@ const confirmDialogDetails = (state = initialState, action) => {
   }
 };
 
-export {
-  confirmDialogDetails
-}
+export default confirmDialogDetails;

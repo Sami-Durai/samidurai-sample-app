@@ -150,16 +150,14 @@ body {
 
 .user-menu {
   .p-submenu-header {
-    padding: 0;
+    padding: 0 1rem;
   }
 }
 
-@import "~./responsive.scss";
+@import "~assets/styles/responsive.scss";
 
 @include md-max {
   .hfn {
-    .sidebar-wrapper {}
-
     .layout {
       width: 100% !important;
       margin-left: 0 !important;

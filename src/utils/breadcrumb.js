@@ -1,7 +1,7 @@
 // state
-import appStore from "../store/index";
+import appStore from "store";
 
-import { APP_UPDATEBREADCRUMB } from "../store/actions/type/app";
+import { APP_UPDATEBREADCRUMB } from "store/actionTypes/app";
 
 const buildBreadcrumb = breadcrumbs => {
   appStore.dispatch({ type: APP_UPDATEBREADCRUMB, payload: breadcrumbs });

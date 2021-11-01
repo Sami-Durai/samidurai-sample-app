@@ -1,11 +1,13 @@
-import { APP_OPENSIDEBAR, APP_UPDATEBREADCRUMB } from "../actions/type/app";
+import { APP_OPENSIDEBAR, APP_UPDATEBREADCRUMB } from "store/actionTypes/app";
 
-const appState = {
+// constants
+const initialState = {
   isSidebarOpen: (window.screen.width > 767) ? false : true,
   breadcrumb: []
 };
 
-const appDetails = (state = appState, action) => {
+// reducer
+const appDetails = (state = initialState, action) => {
   switch (action.type) {
     case APP_OPENSIDEBAR:
       return {

@@ -1,83 +1,93 @@
-import React, { Component } from "react";
+import React from "react";
 
 // react router
 import { Route, Switch, Redirect } from "react-router-dom";
 
 // state 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 // components
-import AuthGuard from "../../auth-guard/index";
+import AuthGuard from "auth-guard/index";
 
-import Header from "../../components/layouts/Header";
+import Header from "components/layouts/Header";
 
-import Sidebar from "../../components/layouts/Sidebar";
+import Sidebar from "components/layouts/Sidebar";
 
-import Footer from "../../components/layouts/Footer";
+import Footer from "components/layouts/Footer";
 
 // shared components 
-import HFNLoader from "../../shared-components/lazyLoading";
+import HFNLoader from "sharedComponents/lazyLoading";
 
-import HFNBreadCrumb from "../../shared-components/breadcrumb";
+import HFNBreadCrumb from "sharedComponents/breadcrumb";
 
 // utils 
-import lazy from "../../utils/lazy";
+import lazy from "utils/lazy";
 
 // constants
 const lazyDelay = 500;
 
 // lazy components 
-const Dashboard              = lazy("dashboard"         , lazyDelay);
-const DonationCollector      = lazy("donationCollector" , lazyDelay);
+const Dashboard            = lazy(  "dashboard"           , lazyDelay);
+const FinanceController    = lazy(  "financeController"   , lazyDelay);
+const AshramManager        = lazy(  "ashramManager"       , lazyDelay);
+const DonationCollector    = lazy(  "donationCollector"   , lazyDelay);
+const DonationTransaction  = lazy(  "donationTransaction" , lazyDelay);
+const PaymentTransaction   = lazy(  "paymentTransaction"  , lazyDelay);
+const Donation             = lazy(  "donation"            , lazyDelay);
+const DonationCollection   = lazy(  "donationCollection"  , lazyDelay);
+const StandardData         = lazy(  'standardData'        , lazyDelay);
 
-class DashboardContainer extends Component {
-  render() {
-    return (
-      <div className={`app-wrapper ${this.props.ad.isSidebarOpen ? "open" : ""}`}>
+const DashboardContainer = () => {
+  const isSidebarOpen = useSelector(state => state.appDetails.isSidebarOpen);
 
-        <div className="sidebar-wrapper">
-          <Sidebar />
+  return (
+    <div className={`app-wrapper ${isSidebarOpen ? "open" : ""}`}>
+
+      <div className="sidebar-wrapper">
+        <Sidebar />
+      </div>
+
+      <div className="layout">
+
+        <div className="header">
+          <Header />
         </div>
 
-        <div className="layout">
+        <div className="main-wrapper">
 
-          <div className="header">
-            <Header />
-          </div>
+          <div className="main-container">
 
-          <div className="main-wrapper">
-
-            <div className="main-container">
-
-              <div className="breadcrums-section">
-                <HFNBreadCrumb />
-              </div>
-
-              <HFNLoader>
-                <Switch>
-                  <AuthGuard path="/dashboard"                  component={Dashboard             } />
-                  <AuthGuard path="/donation-collectors"        component={DonationCollector     } />
-                  <Route exact path="/">
-                    <Redirect to="/dashboard" />
-                  </Route>
-                </Switch>
-              </HFNLoader>
-
+            <div className="breadcrums-section">
+              <HFNBreadCrumb />
             </div>
 
-            <div className="footer-section">
-              <Footer />
-            </div>
+            <HFNLoader>
+              <Switch>
+                <AuthGuard path="/dashboard"                component={  Dashboard              } />
+                <AuthGuard path="/finance-controllers"      component={  FinanceController      } />
+                <AuthGuard path="/ashram-managers"          component={  AshramManager          } />
+                <AuthGuard path="/donation-collectors"      component={  DonationCollector      } />
+                <AuthGuard path="/donation-transactions"    component={  DonationTransaction    } />
+                <AuthGuard path="/payment-transactions"     component={  PaymentTransaction     } />
+                <AuthGuard path="/donations"                component={  Donation               } />
+                <AuthGuard path="/donation-collections"     component={  DonationCollection     } />
+                <AuthGuard path='/standard-data'            component={  StandardData           } />
+                <Route exact path="/">
+                  <Redirect to="/dashboard" />
+                </Route>
+              </Switch>
+            </HFNLoader>
 
           </div>
+
+          <div className="footer-section">
+            <Footer />
+          </div>
+
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-const mapStateToProps = (state) => ({
-  ad: state.appDetails
-});
-
-export default connect(mapStateToProps)(DashboardContainer);
+export default DashboardContainer;

@@ -1,11 +1,12 @@
-import { SUCCESS, INFO, WARN, ERROR, CUSTOM , REQUESTERROR , SETTOASTERREF} from '../actions/type/toaster';
+import { SUCCESS, INFO, WARN, ERROR, CUSTOM, REQUESTERROR, SETREF } from "store/actionTypes/toaster";
 
+// constants
 const initialState = {
-  toasterRef : null,
+  toasterRef: null
 };
 
+// reducer
 const toasterDetails = (state = initialState, action) => {
-
   switch (action.type) {
     case SUCCESS:
     case INFO:
@@ -13,22 +14,20 @@ const toasterDetails = (state = initialState, action) => {
     case ERROR:
     case CUSTOM:
     case REQUESTERROR:
-      if(state.toasterRef && state.toasterRef.current) {
+      if (state.toasterRef && state.toasterRef.current) {
         state.toasterRef.current.show(action.payload.toastMessage)
       }
       return {
         ...state,
       };
-    case SETTOASTERREF:
-    return {
-      ...state,
-      toasterRef : action.payload.toasterRef
-    };
+    case SETREF:
+      return {
+        ...state,
+        toasterRef: action.payload
+      };
     default:
       return { ...state, };
   }
 };
 
-export {
-  toasterDetails
-}
+export default toasterDetails;

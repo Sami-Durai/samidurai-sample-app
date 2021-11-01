@@ -1,19 +1,17 @@
 import { combineReducers } from "redux";
 
 // reducers
-import appDetails from "./app";
+import appDetails from "store/reducers/app";
 
-import loginDetails from "./login";
+import loginDetails from "store/reducers/login";
 
-import { toasterDetails } from "./toaster";
+import toasterDetails from "store/reducers/toaster";
 
-import { confirmDialogDetails } from "./confirmDialog";
+import confirmDialogDetails from "store/reducers/confirmDialog";
 
-import { modalPopupDetails } from "./modalPopup";
+import modalPopupDetails from "store/reducers/modalPopup";
 
-import { cartDetails } from "./cart";
-
-import { dropdownDetails } from "./dropdown";
+import dropdownDetails from "store/reducers/dropdown";
 
 const rootReducer = combineReducers({
   appDetails,
@@ -21,7 +19,6 @@ const rootReducer = combineReducers({
   toasterDetails,
   confirmDialogDetails,
   modalPopupDetails,
-  cartDetails,
   dropdownDetails
 });
 

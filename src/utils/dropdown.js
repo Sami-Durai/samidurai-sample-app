@@ -1,79 +1,245 @@
-import appStore from 'src/store/index';
+// store
+import appStore from "store/index";
 
-// utils
-import { isEmpty, isArray, isObject } from 'lodash';
-
-import { lStorage } from 'src/utils/storage';
+import { CLEAR, GENERALSTATUS, COUNTRY, ORGANIZATION, ASHRAM, FC, AM, ACCOUNTTYPE } from "store/actionTypes/dropdown";
 
 // services
-import DropdownService from 'src/services/login';
+//import DropdownService from "services/login";
 
-import {
-  CLEAR,
-  COLLEGEPOC,
-  MODULELIST
-} from 'src/store/actions/type/dropdown';
+// config
+import config from "assets/config";
 
-const getAvailableVolunteersForPOC = async (payload) => {
+const getGeneralStatuses = async () => {
   try {
-    appStore.dispatch({ type: COLLEGEPOC, payload: [] })
-
-    let userDetails = lStorage.get('dmsAuthInfo');
-
-    if (userDetails && userDetails.role_priority) {
-      let dropdownService = new DropdownService()
-      let apiResponse = await dropdownService.getVolunteersForPOC(payload)
-
-      if (apiResponse && apiResponse.data) {
-        let apiResponseData = apiResponse.data;
-        if (!apiResponseData.isError && apiResponseData.data) {
-          let rows = [], dropdownOptions;
-          if (isArray(apiResponseData.data))
-            rows = apiResponseData.data;
-          else if (isObject(apiResponseData.data))
-            rows = [apiResponseData.data];
-          dropdownOptions = rows.map(value => ({
-            label: value.name || "",
-            value: value.user_id,
-            city: value.city || "",
-            state: value.state || "",
-            zone: value.zone || ""
-          }));
-          appStore.dispatch({ type: COLLEGEPOC, payload: dropdownOptions })
-        }
+    appStore.dispatch({ type: GENERALSTATUS, payload: [] });
+    //const dropdownService = new DropdownService();
+    //const apiResponse = await dropdownService.getGeneralStatusList();
+    const apiResponse = {
+      data: {
+        results:
+          [
+            {
+              name: "Active",
+              id: 1
+            },
+            {
+              name: "In Active",
+              id: 2
+            }
+          ]
       }
+    };
+
+    if (apiResponse && apiResponse.data && !apiResponse.data.isError && Array.isArray(apiResponse.data.results)) {
+      const results = apiResponse.data.results;
+      appStore.dispatch({ type: GENERALSTATUS, payload: results.map(({ name, id }) => ({ label: name, value: id })) });
     }
   }
   catch {
     console.log("Something went wrong.");
   }
-}
+};
 
-const getModuleDropdown = async () => {
-  let dd = appStore.getState().dropdownDetails;
-
-  if (isEmpty(dd.discipline)) {
-    let dropdownService = new DropdownService()
-    let apiResponse = await dropdownService.getModuleList()
-    if (apiResponse && apiResponse.data) {
-      let apiResponseData = apiResponse.data;
-
-      if (!apiResponseData.isError) {
-        let dropdownOptions = apiResponseData.data.map(value => {
-          return { label: value.module_name, value: value.module_id }
-        });
-        appStore.dispatch({ type: MODULELIST, payload: dropdownOptions })
+const getCountries = async () => {
+  try {
+    appStore.dispatch({ type: COUNTRY, payload: [] });
+    //const dropdownService = new DropdownService();
+    //const apiResponse = await dropdownService.getCountryList();
+    const apiResponse = {
+      data: {
+        results:
+          [
+            {
+              name: "India",
+              id: 1
+            },
+            {
+              name: "United States",
+              id: 2
+            },
+            {
+              name: "Canada",
+              id: 3
+            }
+          ]
       }
+    };
+
+    if (apiResponse && apiResponse.data && !apiResponse.data.isError && Array.isArray(apiResponse.data.results)) {
+      const results = apiResponse.data.results;
+      appStore.dispatch({ type: COUNTRY, payload: results.map(({ name, id }) => ({ label: name, value: id })) });
     }
   }
-}
+  catch {
+    console.log("Something went wrong.");
+  }
+};
+
+const getOrganizations = async () => {
+  try {
+    appStore.dispatch({ type: ORGANIZATION, payload: [] });
+    //const dropdownService = new DropdownService();
+    //const apiResponse = await dropdownService.getOrganizationList();
+    const apiResponse = {
+      data: {
+        results:
+          [
+            {
+              name: "Heartfulness Green",
+              id: 1
+            },
+            {
+              name: "Adopt A Tree Initiative",
+              id: 2
+            },
+            {
+              name: "Donation for SMSF India - General Fund",
+              id: 3
+            }
+          ]
+      }
+    };
+
+    if (apiResponse && apiResponse.data && !apiResponse.data.isError && Array.isArray(apiResponse.data.results)) {
+      const results = apiResponse.data.results;
+      appStore.dispatch({ type: ORGANIZATION, payload: results.map(({ name, id }) => ({ label: name, value: id })) });
+    }
+  }
+  catch {
+    console.log("Something went wrong.");
+  }
+};
+
+const getAshrams = async () => {
+  try {
+    appStore.dispatch({ type: ASHRAM, payload: [] });
+    //const dropdownService = new DropdownService();
+    //const apiResponse = await dropdownService.getOrganizationList();
+    const apiResponse = {
+      data: {
+        results:
+          [
+            {
+              name: "Babuji Memorial Ashram, Chennai",
+              id: 1
+            },
+            {
+              name: "Satkhol Himalayan Ashram",
+              id: 2
+            },
+            {
+              name: "Shahjahanpur, Uttar Pradesh",
+              id: 3
+            }
+          ]
+      }
+    };
+
+    if (apiResponse && apiResponse.data && !apiResponse.data.isError && Array.isArray(apiResponse.data.results)) {
+      const results = apiResponse.data.results;
+      appStore.dispatch({ type: ASHRAM, payload: results.map(({ name, id }) => ({ label: name, value: id })) });
+    }
+  }
+  catch {
+    console.log("Something went wrong.");
+  }
+};
+
+const getFinanceControllers = async () => {
+  try {
+    appStore.dispatch({ type: FC, payload: [] });
+    //const dropdownService = new DropdownService();
+    //const apiResponse = await dropdownService.getFinanceControllerList();
+    const apiResponse = {
+      data: {
+        results:
+          [
+            {
+              name: "Sami",
+              id: 11
+            },
+            {
+              name: "Natarajan",
+              id: 12
+            }
+          ]
+      }
+    };
+
+    if (apiResponse && apiResponse.data && !apiResponse.data.isError && Array.isArray(apiResponse.data.results)) {
+      const results = apiResponse.data.results;
+      appStore.dispatch({ type: FC, payload: results.map(({ name, id }) => ({ label: name, value: id })) });
+    }
+  }
+  catch {
+    console.log("Something went wrong.");
+  }
+};
+
+const getAshramManagers = async () => {
+  try {
+    appStore.dispatch({ type: AM, payload: [] });
+    //const dropdownService = new DropdownService();
+    //const apiResponse = await dropdownService.getAshramManagerList();
+    const apiResponse = {
+      data: {
+        results:
+          [
+            {
+              name: "Sami Durai",
+              id: 21
+            },
+            {
+              name: "Rajesh",
+              id: 22
+            },
+            {
+              name: "Yogesh",
+              id: 23
+            },
+            {
+              name: "Naga Rajan",
+              id: 24
+            }
+          ]
+      }
+    };
+
+    if (apiResponse && apiResponse.data && !apiResponse.data.isError && Array.isArray(apiResponse.data.results)) {
+      const results = apiResponse.data.results;
+      appStore.dispatch({ type: AM, payload: results.map(({ name, id }) => ({ label: name, value: id })) });
+    }
+  }
+  catch {
+    console.log("Something went wrong.");
+  }
+};
+
+const getAccountTypes = async () => {
+  try {
+    const dropdownDetails = appStore.getState().dropdownDetails;
+
+    if (!Array.isArray(dropdownDetails.accountType) || dropdownDetails.accountType.length === 0) {
+      const results = Array.isArray(config.donationAccountTypeList) ? config.donationAccountTypeList : [];
+      appStore.dispatch({ type: ACCOUNTTYPE, payload: results.map(({ name, value }) => ({ label: name, value: value })) });
+    }
+  }
+  catch {
+    console.log("Something went wrong.");
+  }
+};
 
 const clearDropdown = () => {
-  appStore.dispatch({ type: CLEAR })
-}
+  appStore.dispatch({ type: CLEAR });
+};
 
-export const dropdown = {
+export default {
   clear: clearDropdown,
-  collegePOC: getAvailableVolunteersForPOC,
-  moduleList: getModuleDropdown
-}
+  generalStatus: getGeneralStatuses,
+  country: getCountries,
+  organization: getOrganizations,
+  ashram: getAshrams,
+  fc: getFinanceControllers,
+  am: getAshramManagers,
+  accountType: getAccountTypes
+};

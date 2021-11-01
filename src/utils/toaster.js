@@ -1,30 +1,32 @@
-import appStore from 'src/store/index';
+// store
+import appStore from "store";
 
-import { SUCCESS, INFO, WARN, ERROR, CUSTOM } from 'src/store/actions/type/toaster';
+import { SETREF, SUCCESS, INFO, WARN, ERROR, CUSTOM } from "store/actionTypes/toaster";
 
 const toaster = {
+  setRef: (ref) => appStore.dispatch({ type: SETREF,  payload: ref }),
 
   success: (detail) => {
     appStore.dispatch({
-      type: SUCCESS, payload: { toastMessage: { severity: "success", summary: 'Success', detail: detail } }
+      type: SUCCESS, payload: { toastMessage: { severity: "success", summary: "Success", detail: detail } }
     });
   },
 
   info: (detail) => {
     appStore.dispatch({
-      type: INFO, payload: { toastMessage: { severity: "info", summary: 'Information', detail: detail } }
+      type: INFO, payload: { toastMessage: { severity: "info", summary: "Information", detail: detail } }
     });
   },
 
   warn: (detail) => {
     appStore.dispatch({
-      type: WARN, payload: { toastMessage: { severity: "warn", summary: 'Warning', detail: detail } }
+      type: WARN, payload: { toastMessage: { severity: "warn", summary: "Warning", detail: detail } }
     });
   },
 
   error: (detail) => {
     appStore.dispatch({
-      type: ERROR, payload: { toastMessage: { severity: "error", summary: 'Error', detail: detail } }
+      type: ERROR, payload: { toastMessage: { severity: "error", summary: "Error", detail: detail } }
     });
   },
 
@@ -32,10 +34,7 @@ const toaster = {
     appStore.dispatch({
       type: CUSTOM, payload: { toastMessage: toastMessage }
     });
-  },
+  }
+};
 
-}
-
-export {
-  toaster
-}
+export default toaster;

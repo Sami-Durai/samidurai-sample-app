@@ -8,7 +8,7 @@ import { BrowserRouter as Router, } from "react-router-dom";
 // redux store
 import { Provider } from "react-redux";
 
-import appStore from "./store";
+import appStore from "store";
 
 // components
 import App from "./App";

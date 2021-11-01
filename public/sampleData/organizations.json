@@ -1,0 +1,153 @@
+{
+    "count": 6,
+    "previous": "",
+    "next": "",
+    "results": [
+        {
+            "id": 1,
+            "name": "Heartfulness Green",
+            "dcountry": {
+                "name": "India",
+                "id": 1
+            },
+            "legal_name": "Heartfulness Green",
+            "business_address": "Heartfulness Green",
+            "pan": "ABCDE1234A",
+            "tan": "ABCDE1234A",
+            "gst": "ABCDE1234A",
+            "certified80g": true,
+            "sg_roles": [
+                {
+                    "name": "Auditor",
+                    "id": 1
+                },
+                {
+                    "name": "CA",
+                    "id": 2
+                }
+            ],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 2,
+            "name": "Adopt A Tree Initiative",
+            "dcountry": {
+                "name": "India",
+                "id": 1
+            },
+            "legal_name": "Adopt A Tree Initiative",
+            "business_address": "Adopt A Tree Initiative",
+            "pan": "ABCDE1234A",
+            "tan": "ABCDE1234A",
+            "gst": "ABCDE1234A",
+            "certified80g": true,
+            "sg_roles": [],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 3,
+            "name": "Donation for SMSF India - General Fund",
+            "dcountry": {
+                "name": "India",
+                "id": 1
+            },
+            "legal_name": "Donation for SMSF India - General Fund",
+            "business_address": "Donation for SMSF India - General Fund",
+            "pan": "ABCDE1234A",
+            "tan": "ABCDE1234A",
+            "gst": "ABCDE1234A",
+            "certified80g": true,
+            "sg_roles": [],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 4,
+            "name": "Donation for SMSF India - Corpus Fund",
+            "dcountry": {
+                "name": "India",
+                "id": 1
+            },
+            "legal_name": "Donation for SMSF India - Corpus Fund",
+            "business_address": "Donation for SMSF India - Corpus Fund",
+            "pan": "ABCDE1234A",
+            "tan": "ABCDE1234A",
+            "gst": "ABCDE1234A",
+            "certified80g": true,
+            "sg_roles": [],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 5,
+            "name": "SRCM",
+            "dcountry": {
+                "name": "United States",
+                "id": 2
+            },
+            "legal_name": "SRCM",
+            "business_address": "SRCM",
+            "pan": "ABCDE1234A",
+            "tan": "ABCDE1234A",
+            "gst": "ABCDE1234A",
+            "certified80g": true,
+            "sg_roles": [],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 6,
+            "name": "SMSF",
+            "dcountry": {
+                "name": "United States",
+                "id": 2
+            },
+            "legal_name": "SMSF",
+            "business_address": "SMSF",
+            "pan": "ABCDE1234A",
+            "tan": "ABCDE1234A",
+            "gst": "ABCDE1234A",
+            "certified80g": true,
+            "sg_roles": [
+                {
+                    "name": "Auditor",
+                    "id": 1
+                }
+            ],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        }
+    ]
+}

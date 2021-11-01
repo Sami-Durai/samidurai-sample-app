@@ -1,9 +1,9 @@
-import appStore from '../store/index';
+// store
+import appStore from "store";
 
-import { TOGGLE, ONHIDE, ONSHOW, CUSTOM } from '../store/actions/type/modalPopup';
+import { TOGGLE, ONHIDE, ONSHOW, CUSTOM } from "store/actionTypes/modalPopup";
 
 const modalPopup = {
-
   toggle: (bool) => {
     appStore.dispatch({
       type: TOGGLE, payload: bool
@@ -26,10 +26,7 @@ const modalPopup = {
     appStore.dispatch({
       type: CUSTOM, payload: confirmDialogOptions
     });
-  },
+  }
+};
 
-}
-
-export {
-  modalPopup
-}
+export default modalPopup;

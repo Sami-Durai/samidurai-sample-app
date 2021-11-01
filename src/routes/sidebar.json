@@ -1,0 +1,160 @@
+[
+  {
+    "role": "sa",
+    "routes": [
+      {
+        "url": "dashboard",
+        "label": "Dashboard",
+        "icon": "uil uil-home-alt"
+      },
+      {
+        "url": "finance-controllers",
+        "label": "Manage Finance Controller",
+        "icon": "uil uil-users-alt"
+      },
+      {
+        "url": "ashram-managers",
+        "label": "Manage Ashram Manager",
+        "icon": "uil uil-users-alt"
+      },
+      {
+        "url": "donation-collectors",
+        "label": "Manage Office Staff",
+        "icon": "uil uil-users-alt"
+      },
+      {
+        "url": "donation-transactions",
+        "label": "Manage Donation Transaction",
+        "icon": "uil uil-coins"
+      },
+      {
+        "url": "payment-transactions",
+        "label": "Manage Payment Transaction",
+        "icon": "uil uil-credit-card"
+      },
+      {
+        "label": "Standard Data",
+        "icon": "uil uil-database",
+        "items": [
+          {
+            "url": "standard-data/countries",
+            "label": "Donation Country"
+          },
+          {
+            "url": "standard-data/ashrams",
+            "label": "Donation Center / Ashram"
+          },
+          {
+            "url": "standard-data/organizations",
+            "label": "Donation Organization"
+          },
+          {
+            "url": "standard-data/donation-accounts",
+            "label": "Donation Accounts"
+          },
+          {
+            "url": "standard-data/payment-accounts",
+            "label": "Payment Accounts"
+          },
+          {
+            "url": "standard-data/roles",
+            "label": "Donation Roles"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "role": "fc",
+    "routes": [
+      {
+        "url": "dashboard",
+        "label": "Dashboard",
+        "icon": "uil uil-home-alt"
+      },
+      {
+        "url": "ashram-managers",
+        "label": "Manage Ashram Manager",
+        "icon": "uil uil-users-alt"
+      },
+      {
+        "url": "donation-collectors",
+        "label": "Manage Office Staff",
+        "icon": "uil uil-users-alt"
+      },
+      {
+        "url": "donation-transactions",
+        "label": "Manage Onsite Transaction",
+        "icon": "uil uil-coins"
+      },
+      {
+        "url": "payment-transactions",
+        "label": "Manage Online Transaction",
+        "icon":"uil uil-credit-card"
+      },
+      {
+        "label": "Standard Data",
+        "icon": "uil uil-database",
+        "items": [
+          {
+            "url": "standard-data/organizations",
+            "label": "Donation Organization"
+          },
+          {
+            "url": "standard-data/donation-accounts",
+            "label": "Donation Accounts"
+          },
+          {
+            "url": "standard-data/payment-accounts",
+            "label": "Payment Accounts"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "role": "am",
+    "routes": [
+      {
+        "url": "dashboard",
+        "label": "Dashboard",
+        "icon": "uil uil-home-alt"
+      },
+      {
+        "url": "donation-collectors",
+        "label": "Manage Office Staff",
+        "icon": "uil uil-users-alt"
+      },
+      {
+        "url": "donations",
+        "label": "Manage Donation",
+        "icon": "uil uil-coins"
+      }
+    ]
+  },
+  {
+    "role": "dc",
+    "routes": [
+      {
+        "url": "dashboard",
+        "label": "Dashboard",
+        "icon": "uil uil-home-alt"
+      },
+      {
+        "url": "donation-collections",
+        "label": "Manage Donations",
+        "icon": "uil uil-coins"
+      }
+    ]
+  },
+  {
+    "role": "sg",
+    "routes": [
+      {
+        "url": "dashboard",
+        "label": "Dashboard",
+        "icon": "uil uil-home-alt"
+      }
+    ]
+  }
+]

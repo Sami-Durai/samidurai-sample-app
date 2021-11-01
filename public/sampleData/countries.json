@@ -1,0 +1,99 @@
+{
+    "count": 6,
+    "previous": "",
+    "next": "",
+    "results": [
+        {
+            "id": 1,
+            "name": "India",
+            "fc": [
+                {
+                    "name": "Super Admin",
+                    "id": 1
+                }
+            ],
+            "dorgs": [],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 2,
+            "name": "United States",
+            "fc": [
+                {
+                    "name": "Super Admin",
+                    "id": 1
+                },
+                {
+                    "name": "Sami",
+                    "id": 6
+                }
+            ],
+            "dorgs": [],
+            "created_at": "2021-10-21T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 3,
+            "name": "Europe",
+            "fc": [],
+            "dorgs": [],
+            "created_at": "2021-10-21T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 4,
+            "name": "France",
+            "fc": [],
+            "dorgs": [],
+            "created_at": "2021-10-21T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 5,
+            "name": "Canada",
+            "fc": [],
+            "dorgs": [],
+            "created_at": "2021-10-21T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 6,
+            "name": "Others",
+            "fc": [],
+            "dorgs": [],
+            "created_at": "2021-10-21T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        }
+    ]
+}

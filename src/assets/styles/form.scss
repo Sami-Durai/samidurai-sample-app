@@ -18,6 +18,20 @@
 
 }
 
+.p-checkbox-label {
+  margin-bottom: 6px;
+  font-size: 14px;
+
+  em {
+    color: $danger;
+    font-size: 16px;
+  };
+  
+  .tooltip-icon {
+    color: $primary;
+  };
+}
+
 .p-error-section {
   margin-top: 5px;
   font-size: 12.5px;

@@ -1,38 +1,37 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { Switch, Redirect } from "react-router-dom";
 
-// components 
-import AuthGuard from "./auth-guard/index";
+// components
+import AuthGuard from "auth-guard/index";
 
-import Login from "./components/login/Login";
+import Login from "components/login/Login";
 
-// shared components 
-import HFNErrorBoundary from "./shared-components/errorBoundary";
+// shared components
+import HFNErrorBoundary from "sharedComponents/errorBoundary";
 
-import HFNLoader from "./shared-components/lazyLoading";
+import HFNLoader from "sharedComponents/lazyLoading";
 
-import HFNToaster from "./shared-components/toasters";
+import HFNToaster from "sharedComponents/toasters";
 
-import HFNConfirmDialog from "./shared-components/confirmDialog";
+import HFNConfirmDialog from "sharedComponents/confirmDialog";
 
-import TokenExpire from "./shared-components/logout/tokenExpire";
+import TokenExpire from "sharedComponents/logout/tokenExpire";
 
-// utils 
-import lazy from "./utils/lazy";
+// utils
+import lazy from "utils/lazy";
 
-// lazy components 
+// lazy components
 const LayoutContainer = lazy("layouts/Template");
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
       <HFNErrorBoundary>
         <HFNLoader>
           <div className="hfn">
             <Switch>
 
-              <Login path="/login"></Login>
+              <Login path="/login" />
 
               <AuthGuard path="/" component={LayoutContainer} />
 
@@ -48,8 +47,7 @@ class App extends Component {
           </div>
         </HFNLoader>
       </HFNErrorBoundary>
-    )
-  }
-}
+    );
+};
 
 export default App;

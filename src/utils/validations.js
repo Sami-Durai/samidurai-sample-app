@@ -1,3 +1,4 @@
+// messages
 const validationMessage = {
   required: "This field is required*",
   email: "Please enter a valid email id",
@@ -7,8 +8,8 @@ const validationMessage = {
   panNoPattern: "Please enter a valid PAN Number"
 };
 
+// validations
 const validations = {
-
   required: {
     value: true,
     message: validationMessage.required
@@ -43,11 +44,6 @@ const validations = {
     value: /^([A-Z]{5}[0-9]{4}[A-Z]{1})$/,
     message: validationMessage.panNoPattern
   }
-
 };
 
-
-export {
-  validations,
-  validationMessage
-}
+export default validations;

@@ -1,11 +1,11 @@
-import { ax } from "./base";
+import { ax } from "services/base";
 
 // constants
 const config = {
   headers: { "content-type": "multipart/form-data" } // to send file in request data
 };
 
-export default class LoginService {
+class LoginService {
   login(payload) {
     return ax.post("user/authenticate", payload);
   }
@@ -25,4 +25,10 @@ export default class LoginService {
   resetPassword(payload) {
     return ax.post("user/resetpassword", payload);
   }
+
+  changeUserRole(payload) {
+    return ax.post("change-role", payload);
+  }
 }
+
+export default LoginService;

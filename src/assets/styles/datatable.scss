@@ -52,9 +52,18 @@
 
     .p-datatable-tbody>tr>td:not(.p-selection-column) , .hfn-datatable-td{
       word-break: break-word;
-      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    &:not(.responsive-datatable) &:not(.cards-datatable){
+      .hfn-datatable-td {
+        white-space: nowrap;
+      };
+
+      .p-action-column > .actions {
+        text-align: center;
+      };
     }
 
     .p-datatable-tbody>tr>td:empty:after {
@@ -128,7 +137,7 @@
     }
 
     .p-column-filter {
-      width: 180px;
+      width: 100%;
       max-width: 100%;
     }
 
@@ -213,8 +222,52 @@
     .hfn-next-page-link .goto .p-inputtext {
       text-align: center;
     }
-
+    .p-datatable-tbody > tr > td > .p-column-title {
+      display: none;
+    }
   }
+
+  .p-datatable.cards-datatable {
+    .p-datatable-thead > tr > th,
+    .p-datatable-tfoot > tr > td {
+      display: none !important;
+    };
+  
+    .p-datatable-tbody > tr > td {
+      text-align: left;
+      display: block;
+      width: 100%;
+      float: left;
+      clear: left;
+      border: 0 none;
+
+      .p-column-title {
+        padding: .4rem;
+        min-width: 30%;
+        display: inline-block;
+        margin: -.4em 1em -.4em -.4rem;
+        font-weight: bold;
+      };
+
+      &:last-child {
+        padding-bottom: 8px;
+        border-bottom: 1px solid $border-color;
+      };
+    };
+  };
+
+  .p-dataview-layout-options {
+    .p-highlight {
+      background-color: $primary!important;
+    };
+    .p-highlight:hover {
+      background-color: $primaryHover!important;
+    };
+
+    .p-button {
+      background-color: #c8c8cb;
+    };
+  };
 
   .p-component-overlay {
     background-color: #00000005;
@@ -298,9 +351,55 @@
 
 // table style end
 
+@media screen and (min-width: 1024px) {
+  .p-datatable td {
+    .hfn-datatable-td {
+      white-space: nowrap;
+    };
+
+    .actions {
+      text-align: center;
+    }
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  .p-datatable.responsive-datatable .p-datatable-thead > tr > th,
+  .p-datatable.responsive-datatable .p-datatable-tfoot > tr > td {
+    display: none !important;
+  };
+
+  .p-datatable.responsive-datatable .p-datatable-tbody > tr > td {
+    text-align: left;
+    display: block;
+    width: 100%;
+    float: left;
+    clear: left;
+    border: 0 none;
+  };
+
+  .p-datatable.responsive-datatable .p-datatable-tbody > tr > td .p-column-title {
+      padding: .4rem;
+      min-width: 30%;
+      display: inline-block;
+      margin: -.4em 1em -.4em -.4rem;
+      font-weight: bold;
+  };
+
+  .p-datatable.responsive-datatable .p-datatable-tbody > tr > td:last-child {
+    padding-bottom: 8px;
+    border-bottom: 1px solid $border-color;
+  };
+}
+
 @media only screen and (max-width:645px) {
   .hfn-datatable {
     padding: 12.5px;
+
+    .layout-options-md {
+      display: none;
+    }
   }
 
   .p-toolbar {
@@ -341,13 +440,21 @@
     .add-new-btn-wrapper {
       width: 100%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+    }
+
+    .layout-options {
+      width: 50%!important;
+
+      .p-dataview-layout-options {
+        display: block!important;
+      }
     }
 
   }
 }
 
-@import "~./responsive.scss";
+@import "~assets/styles/responsive.scss";
 
 @include md-max {
   .p-toolbar {

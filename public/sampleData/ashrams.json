@@ -1,0 +1,121 @@
+{
+    "count": 6,
+    "previous": "",
+    "next": "",
+    "results": [
+        {
+            "id": 1,
+            "name": "Babuji Memorial Ashram, Chennai",
+            "dcountry": {
+                "name": "India",
+                "id": 1
+            },
+            "am": [
+                {
+                    "name": "Sami Durai",
+                    "id": 21
+                },
+                {
+                    "name": "Rajesh",
+                    "id": 22
+                },
+                {
+                    "name": "Yogesh",
+                    "id": 23
+                }
+            ],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 2,
+            "name": "Satkhol Himalayan Ashram",
+            "dcountry": {
+                "name": "India",
+                "id": 1
+            },
+            "am": [],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 3,
+            "name": "Shahjahanpur, Uttar Pradesh",
+            "dcountry": {
+                "name": "India",
+                "id": 1
+            },
+            "am": [],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 4,
+            "name": "Retreat Centre at Malampuzha, Kerala",
+            "dcountry": {
+                "name": "India",
+                "id": 1
+            },
+            "am": [],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 5,
+            "name": "Retreat Centre at Pune",
+            "dcountry": {
+                "name": "India",
+                "id": 1
+            },
+            "am": [],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        },
+        {
+            "id": 6,
+            "name": "Copenhagen",
+            "dcountry": {
+                "name": "Denmark",
+                "id": 1
+            },
+            "am": [
+                {
+                    "name": "Naga Rajan",
+                    "id": 24
+                }
+            ],
+            "created_at": "2021-10-20T00:00:00.000Z",
+            "created_by": 1,
+            "updated_by": null,
+            "status": {
+                "name": "Active",
+                "id": 1
+            }
+        }
+    ]
+}

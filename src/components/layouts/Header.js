@@ -1,123 +1,123 @@
-import React, { Component } from "react";
+import React, { useRef, useMemo, useCallback } from "react";
 
 // react router
-import { withRouter } from "react-router";
+import { useHistory } from "react-router";
 
-// react redux 
-import { connect } from "react-redux";
-
-// import { signOut } from "@heartfulnessinstitute/react-hfn-profile";
-
-import { APP_OPENSIDEBAR } from "../../store/actions/type/app";
+import { signOut } from "@heartfulnessinstitute/react-hfn-profile";
 
 // components
 // prime components
 import { Menu } from "primereact/menu";
 
 // utils 
-import { lStorage } from "../../utils/storage";
+import { lStorage } from "utils/storage";
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
+import { toggleSideBar } from "utils/common";
 
-    // state management start
-    this.state = {
-      userMenuItems: [
-        {
-          items: [
-            {
-              label: "My Account", icon: "uil uil-user", command: () => {
-                this.openAccount()
-              }
-            },
-            {
-              label: "Configurations", icon: "uil uil-cog", command: () => {
-                this.openSettings()
-              }
-            },
-            {
-              label: "Logout", icon: "uil uil-sign-out-alt", command: () => {
-                this.logout()
-              }
-            },
-          ]
-        }
-      ],
+import response from "utils/response";
 
-      userDetails: null
-    };
-    // state management end
-  }
+// services
+import LoginService from "services/login";
 
-  // logout section start
-  logout = () => {
-    lStorage.clear();
-    this.props.history.push("/login");
-    //signOut();
-  }
-  // logout section end
+import credentials from "assets/data/credentials.json";
 
-  // user edit section start
-  openAccount = () => {
-    this.props.history.push("/account");
-  };
-  // user edit section end
+const Header = () => {
+  const menuRef = useRef(null);
 
-  // open configuration settings section start
-  openSettings = () => {
-    this.props.history.push("/configurations");
-  };
-  // open configuration settings section end
+  const loginService = useRef(new LoginService());
 
-  openSidebar = () => {
-    if (this.props.ad.isSidebarOpen)
-      this.props.dispatch({ type: APP_OPENSIDEBAR, payload: false });
-    else
-      this.props.dispatch({ type: APP_OPENSIDEBAR, payload: true });
-  }
+  const history = useHistory();
 
-  componentDidMount() {
-    const userDetails = lStorage.get("dmsAuthInfo");
-    this.setState({ userDetails: userDetails });
-  }
+  const user = useMemo(() => lStorage.get("authInfo"), []);
 
-  render() {
-    const { userDetails } = this.state;
+  const changeRole = useCallback(async roleInfo => {
+    let apiResponse = await response.add({
+      service: loginService.current,
+      method: "changeUserRole",
+      data: { item: { role: roleInfo } },
+      toasterMessage: {
+        success: `Changed role to "${roleInfo.name}`,
+        error: `Unable to change role to ${roleInfo.name}`
+      }
+    });
 
-    return (
-      <nav className="header-nav">
+    const userInfo = credentials.find(({ email_address }) => email_address === user.email);
 
-        <div className="menu-toggler" onClick={this.openSidebar}>
-          <i className="uil uil-bars"></i>
+    if (userInfo) {
+      lStorage.set("authInfo", { ...user, role: roleInfo, roles: userInfo.roles });
+      window.location.reload();
+    }
+
+    if (apiResponse && apiResponse.data && !apiResponse.data.isError && apiResponse.data.data) {
+      const roleData = apiResponse.data.data;
+      lStorage.set("authInfo", { ...user, role: roleData.role, roles: roleData.roles });
+      window.location.reload();
+    }
+  }, []);
+
+  const menu = useMemo(() => {
+    let menuItems = [
+      {
+        items: [
+          {
+            label: "My Account", icon: "uil uil-user", command: () => {
+              history.push("/account");
+            }
+          },
+          {
+            label: "Logout", icon: "uil uil-sign-out-alt", command: () => {
+              lStorage.clear();
+              signOut();
+              history.push("/login");
+            }
+          }
+        ]
+      }
+    ];
+
+    if (user && Array.isArray(user.roles) && user.roles.length > 1) {
+      const roleMenu = {
+        label: "Roles",
+        items: user.roles.filter(roleInfo => user.role.role !== roleInfo.role).map(roleInfo => ({
+          label: roleInfo.name,
+          icon: "pi pi-user-edit",
+         command: () => changeRole(roleInfo)
+        }))
+      };
+      menuItems.unshift(roleMenu);
+    }
+    
+    return menuItems;
+  }, []);
+
+  return (
+    <nav className="header-nav">
+
+      <div className="menu-toggler" onClick={toggleSideBar}>
+        <i className="uil uil-bars"></i>
+      </div>
+
+      {user && <div className="left-menu">
+
+        <div className="helper-links">
         </div>
 
-        {userDetails && <div className="left-menu">
-
-          <div className="helper-links">
-          </div>
-
-          <div className="user-info" onClick={(event) => this.menu.toggle(event)}>
-            <span className="avator">
-              <img src="/assets/avatar.png" alt="profile" />
-            </span>
-            <span className="user-name">
-              <span className="name"> {userDetails.name || ""} </span>
-              <span className="role"> {userDetails.role || ""} </span>
-            </span>
-          </div>
-
-          <Menu className="user-menu" model={this.state.userMenuItems} popup ref={el => this.menu = el} />
-
+        <div className="user-info" onClick={(event) => menuRef.current && menuRef.current.toggle(event)}>
+          <span className="avator">
+            <img src="/assets/avatar.png" alt="profile" />
+          </span>
+          <span className="user-name">
+            <span className="name"> {user.name || ""} </span>
+            <span className="role"> {(user.role && user.role.name) ? user.role.name : ""} </span>
+          </span>
         </div>
-        }
-      </nav>
-    )
-  }
+
+        <Menu className="user-menu" model={menu} popup ref={menuRef} />
+
+      </div>
+      }
+    </nav>
+  );
 }
 
-const mapStateToProps = (state) => ({
-  ad: state.appDetails
-});
-
-export default withRouter(connect(mapStateToProps)(Header));
+export default Header;

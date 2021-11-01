@@ -1,18 +1,18 @@
 // redux store
-import appStore from "../store";
+import appStore from "store";
 
-import { REQUESTERROR } from "../store/actions/type/toaster";
+import { REQUESTERROR } from "store/actionTypes/toaster";
 
 // local storage
-import { lStorage } from "../utils/storage";
+import { lStorage } from "utils/storage";
 
 // utils
-import { logout } from "../utils/common";
+import { logout } from "utils/login";
 
 const interceptor = ax => {
   ax.interceptors.request.use(
     config => {
-      let token = lStorage.get("dmsAuthInfo") ? lStorage.get("dmsAuthInfo").token : null;
+      let token = lStorage.get("authInfo") ? lStorage.get("authInfo").token : null;
       config.headers = {
         "Authorization": `Bearer ${token}`
       }
