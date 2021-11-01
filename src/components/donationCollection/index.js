@@ -188,7 +188,7 @@ const DonationCollection = () => {
                 }
             },
             {
-                header: "Transaction Date",
+                header: "Txtn Date",
                 field: "transaction_date",
                 sortable: true,
                 filter: true,
