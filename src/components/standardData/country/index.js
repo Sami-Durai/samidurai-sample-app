@@ -167,6 +167,7 @@ const Country = () => {
             },
             {
                 title: "Delete country",
+                visibility: false,
                 onClick: (ev, rowData) => {
                     confirmDialog.custom({
                         message: "Are you sure you want to delete this country? This may affect other screens",

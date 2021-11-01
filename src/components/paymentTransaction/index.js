@@ -166,6 +166,7 @@ const PaymentTransaction = () => {
             },
             {
                 title: "Delete payment transaction",
+                visibility: false,
                 onClick: (ev, rowData) => {
                     confirmDialog.custom({
                         message: "Are you sure you want to delete this payment transaction? This may affect other screens",

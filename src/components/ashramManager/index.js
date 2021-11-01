@@ -217,6 +217,7 @@ const AshramManager = () => {
             },
             {
                 title: "Delete ashram manager",
+                visibility: false,
                 onClick: (ev, rowData) => {
                     confirmDialog.custom({
                         message: "Are you sure you want to delete this ashram manager? This may affect other screens",

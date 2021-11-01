@@ -206,6 +206,7 @@ const PaymentAccount = () => {
             },
             {
                 title: "Delete payment account",
+                visibility: false,
                 onClick: (ev, rowData) => {
                     confirmDialog.custom({
                         message: "Are you sure you want to delete this payment account? This may affect other screens",

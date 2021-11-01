@@ -221,6 +221,7 @@ const Donation = () => {
             },
             {
                 title: "Delete donation",
+                visibility: false,
                 onClick: (ev, rowData) => {
                     confirmDialog.custom({
                         message: "Are you sure you want to delete this donation? This may affect other screens",

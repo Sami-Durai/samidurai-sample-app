@@ -217,6 +217,7 @@ const FinanceController = () => {
             },
             {
                 title: "Delete finance controller",
+                visibility: false,
                 onClick: (ev, rowData) => {
                     confirmDialog.custom({
                         message: "Are you sure you want to delete this finance controller? This may affect other screens",

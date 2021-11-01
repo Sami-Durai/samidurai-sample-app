@@ -185,6 +185,7 @@ const Ashram = () => {
             },
             {
                 title: "Delete ashram",
+                visibility: false,
                 onClick: (ev, rowData) => {
                     confirmDialog.custom({
                         message: "Are you sure you want to delete this ashram? This may affect other screens",

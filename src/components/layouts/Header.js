@@ -46,14 +46,12 @@ const Header = () => {
     if (userInfo) {
       lStorage.set("authInfo", { ...user, role: roleInfo, roles: userInfo.roles });
       window.location.reload();
-      history.push("dashboard");
     }
 
     if (apiResponse && apiResponse.data && !apiResponse.data.isError && apiResponse.data.data) {
       const roleData = apiResponse.data.data;
       lStorage.set("authInfo", { ...user, role: roleData.role, roles: roleData.roles });
       window.location.reload();
-      history.push("dashboard");
     }
   }, []);
 

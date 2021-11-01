@@ -236,6 +236,7 @@ const Organization = () => {
             },
             {
                 title: "Delete organization",
+                visibility: false,
                 onClick: (ev, rowData) => {
                     confirmDialog.custom({
                         message: "Are you sure you want to delete this organization? This may affect other screens",

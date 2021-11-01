@@ -222,6 +222,7 @@ const DonationAccount = () => {
             },
             {
                 title: "Delete donation account",
+                visibility: false,
                 onClick: (ev, rowData) => {
                     confirmDialog.custom({
                         message: "Are you sure you want to delete this donation account? This may affect other screens",
