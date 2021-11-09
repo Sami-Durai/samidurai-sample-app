@@ -93,6 +93,11 @@
         "icon":"uil uil-credit-card"
       },
       {
+        "url": "reports",
+        "label": "Reports",
+        "icon": "uil uil-file-exclamation-alt"
+      },
+      {
         "label": "Standard Data",
         "icon": "uil uil-database",
         "items": [
@@ -129,6 +134,11 @@
         "url": "donations",
         "label": "Manage Donation",
         "icon": "uil uil-coins"
+      },
+      {
+        "url": "reports",
+        "label": "Reports",
+        "icon": "uil uil-file-exclamation-alt"
       }
     ]
   },

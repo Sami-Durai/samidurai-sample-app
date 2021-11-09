@@ -1,6 +1,6 @@
 import React from "react";
 
-// react router
+// router
 import { Route, Switch, Redirect } from "react-router-dom";
 
 // state 
@@ -35,7 +35,8 @@ const DonationTransaction  = lazy(  "donationTransaction" , lazyDelay);
 const PaymentTransaction   = lazy(  "paymentTransaction"  , lazyDelay);
 const Donation             = lazy(  "donation"            , lazyDelay);
 const DonationCollection   = lazy(  "donationCollection"  , lazyDelay);
-const StandardData         = lazy(  'standardData'        , lazyDelay);
+const Reports              = lazy(  "reports"             , lazyDelay);
+const StandardData         = lazy(  "standardData"        , lazyDelay);
 
 const DashboardContainer = () => {
   const isSidebarOpen = useSelector(state => state.appDetails.isSidebarOpen);
@@ -71,7 +72,8 @@ const DashboardContainer = () => {
                 <AuthGuard path="/payment-transactions"     component={  PaymentTransaction     } />
                 <AuthGuard path="/donations"                component={  Donation               } />
                 <AuthGuard path="/donation-collections"     component={  DonationCollection     } />
-                <AuthGuard path='/standard-data'            component={  StandardData           } />
+                <AuthGuard path="/reports"                  component={  Reports                } />
+                <AuthGuard path="/standard-data"            component={  StandardData           } />
                 <Route exact path="/">
                   <Redirect to="/dashboard" />
                 </Route>

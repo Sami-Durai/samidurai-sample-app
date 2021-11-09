@@ -5,16 +5,16 @@ import ReactDOM from "react-dom";
 // router
 import { BrowserRouter as Router, } from "react-router-dom";
 
-// redux store
+// state
 import { Provider } from "react-redux";
 
 import appStore from "store";
 
 // components
-import App from "./App";
+import App from "App";
 
 // styles
-import "./index.scss";
+import "index.scss";
 
 ReactDOM.render(
   <Provider store={appStore}>
