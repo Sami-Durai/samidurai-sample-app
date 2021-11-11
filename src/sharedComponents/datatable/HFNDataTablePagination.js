@@ -12,6 +12,23 @@ const HFNDataTablePagination = (pagination) => {
 
     layout: 'RowsPerPageDropdown PrevPageLink PageLinks NextPageLink CurrentPageReport',
 
+    'FirstPageLink': (options) => {
+      if (!prevPageLink.isPrevPageLink)
+        return <></>;
+      else
+        return (
+          <div className="hfn-prev-page-link">
+            <button type="button"
+              className={`${options.className} ${(prevPageLink.classNames) ? prevPageLink.classNames : ''}`}
+              onClick={options.onClick}
+              disabled={options.disabled}
+            >
+              <span className="pi pi-chevron-left "></span>
+            </button>
+          </div>
+        )
+    },
+
     'PrevPageLink': (options) => {
       if (!prevPageLink.isPrevPageLink)
         return <></>;
