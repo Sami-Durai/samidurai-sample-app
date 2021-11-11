@@ -8,7 +8,7 @@ import AuthGuard from "auth-guard/index";
 import Login from "components/login/Login";
 
 // shared components
-import HFNErrorBoundary from "sharedComponents/errorBoundary";
+import HFNErrorBoundary from "components/errorBoundary";
 
 import HFNLoader from "sharedComponents/lazyLoading";
 
@@ -16,7 +16,7 @@ import HFNToaster from "sharedComponents/toasters";
 
 import HFNConfirmDialog from "sharedComponents/confirmDialog";
 
-import TokenExpire from "sharedComponents/logout/tokenExpire";
+import TokenExpire from "components/logout/tokenExpire";
 
 // utils
 import lazy from "utils/lazy";
